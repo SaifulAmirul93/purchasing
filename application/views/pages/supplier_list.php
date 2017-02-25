@@ -50,17 +50,17 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th>Username</th>
+                                            <th>Company</th>
+                                            <th>Contact</th>
                                             <th>Email</th>
-                                            <th>Role</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                 <?php
                                 $n = 0; 
-                                if (sizeof($arr) != 0) { 
-                                    foreach ($arr as $supplier) {
+                                
+                                    foreach ($arr as $supplier): 
                                         $n++;
                                         ?>
 
@@ -68,22 +68,26 @@
                                         <tr>
                                             <td><?= $n; ?></td>
                                             <td>
-                                            <?php $text = ($arr->supplier_name == null) ? "Not Set" : $arr->supplier_name ; echo $text; ?> 
+                                            <?php echo $supplier->supplier_name; ?> 
                                             </td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Otto</td>
+                                            <td><?php echo $supplier->supplier_company; ?> </td>
+                                            <td><?php echo $supplier->supplier_contact; ?> </td>
+                                            <td><?php echo $supplier->supplier_email; ?></td>
                                             <td>
-                                            <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button>
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c12?view=').$supplier->supplier_id; ?>" name="c5" title="View Supplier">
+                                            <button type="button" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></button></a>
                                             &nbsp;&nbsp;&nbsp;
-                                            <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button>
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c11?edit=').$supplier->supplier_id; ?>" name="c5" title="Edit Supplier">
+                                            <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
+                                            </a>
                                              &nbsp;&nbsp;&nbsp;
-                                             <button type="button" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-close"></i></button>
+                                             <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a13?delete=').$supplier->supplier_id; ?>" name="c5" title="Delete Supplier">
+                                             <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close"></i></button></a>
                                             </td>
                                         </tr>
                                     <?php
-                                           }
-                                      }
+                                           endforeach;
+                                
                     
                                         ?>
                                  
@@ -114,6 +118,13 @@
  
   
 <script>
+function onDel() {
+        return confirm('Are You Sure ?');
+    }
+
+
+
+
 
 function allowDrop(ev) {
     ev.preventDefault();

@@ -139,7 +139,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Purchase List</h1>
+                        <h1 class="page-header">Purchase Dashboard</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -150,17 +150,12 @@
 
                     
 
-                        <div id="div1" class="task-contain" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 60%;">
+                        <div id="div1" class="task-contain" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 30%;">
 
-                        <h3 class="ui-sortable-handle" style="text-align: left;">Backlog</h3>
+                        <h3 class="ui-sortable-handle" style="text-align: left;"> <img src="<?= base_url(); ?>dist/img/Apps-help-icon.png" /> Inprogress</h3>
                         <hr>
                    
 
-                      <!--   <div class="todo-task" draggable="true" ondragstart="drag(event)" id="drag3">
-                                    <div class="task-header">Sample Header</div>
-                                    <div class="task-date">25/06/1992</div>
-                                    <div class="task-description">Lorem Ipsum Dolor Sit Amet</div>
-                                </div> -->
                             <div style="opacity: 1;" class="todo-task" draggable="true" ondragstart="drag(event)" id="drag1">
                                 <div class="task-header">
                                     <div class="task-no">30</div>
@@ -190,231 +185,24 @@
 
 
                         </div>
-
-
-                        
-                         
-                        <div class="col-md-4">
-
-                            <div class="row">
-                                <div id="div2" class="task-contain" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 100%;height: 30px;">
-                                    
-
-                                <h6 class="ui-sortable-handle">Pending</h6>
+                         <div id="div2" class="task-contain" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 30%;">
+                                <h3 class="ui-sortable-handle" style="text-align: left;"> <img src="<?= base_url(); ?>dist/img/Time-Management-icon.png" /> Pending</h3>
                                 <hr>
-                                </div>
-                            </div>
-                            <div class="row">    
-                                 <div id="div2" class="task-contain" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 100%;height: 30px;">
-                                    
-
-                                <h6 class="ui-sortable-handle">Inprogress</h6>
-                                <hr>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div id="div2" class="task-contain" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 100%;height: 30px;">
-                                    
-
-                                <h6 class="ui-sortable-handle">Completed</h6>
-                                <hr>
-                                </div>
-                            </div>
-
-                        
                         </div>
 
-                        <!-- div class="task-list task-container ui-droppable ui-sortable ui-state-highlight" id="backlog" style="width: 60%;">
 
-                                <h3 class="ui-sortable-handle">Backlog</h3>
-                                <!--<div class="todo-task">
-                                    <div class="task-header">Sample Header</div>
-                                    <div class="task-date">25/06/1992</div>
-                                    <div class="task-description">Lorem Ipsum Dolor Sit Amet</div>
-                                </div>-->
-                            <!-- div style="opacity: 1;" class="todo-task ui-sortable-handle">
-                                <div class="task-header">
-                                    <div class="task-no">30</div>
-                                    <div class="task-type">Action</div>
+                                 <div id="div2" class="task-contain" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 30%;">
+                                    
+
+                                <h3 class="ui-sortable-handle" style="text-align: left;">
+                                 <img src="<?= base_url(); ?>dist/img/check-mark-xxl.png" /> Completed</h3>
+                                <hr>
                                 </div>
-                                <div class="task-body">
-                                    <div class="task-title">Meet with technical teams to discuss solution</div>
-                                </div>
-                                <div class="task-footer">
-                                    <div class="task-date">Due: 17/07/2012</div>
-                                </div>
-                            </div>
-                         
                             
-                            <div class="todo-task ui-sortable-handle">
-                                <div class="task-header">
-                                <div class="task-no">1877</div>
-                                <div class="task-type">WBS</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">Engage Vendors</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 20/09/2014</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">1878</div>
-                            <div class="task-type">WBS</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">Build Servers</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 20/03/2015</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">1894</div>
-                            <div class="task-type">WBS</div>
-                            </div><div class="task-body">
-                            <div class="task-title">Develop Prototype Application</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 02/11/2014</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">5327</div>
-                            <div class="task-type">WBS</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">Hand over to operations</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 01/10/2015</div>
-                            </div>
-                            </div> -->
-                            <!-- <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">5328</div>
-                            <div class="task-type">WBS</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">New task</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 12/04/2015</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">5329</div>
-                            <div class="task-type">WBS</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">New task</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 20/03/2015</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">5330</div>
-                            <div class="task-type">WBS</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">New task</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 12/04/2015</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">661</div>
-                            <div class="task-type">Issue</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">No BA's available from operations to support solution design</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 07/06/2012</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header"><div class="task-no">662</div>
-                            <div class="task-type">Issue</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">Resources reassigned away from dependant network join initiatives</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 31/07/2012</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">665</div>
-                            <div class="task-type">Issue</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">Projector being used for the demonstration is not working</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 31/12/2013</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">839</div>
-                            <div class="task-type">Issue</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">Demo Issue</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 28/01/2014</div>
-                            </div>
-                            </div>
-                            <div class="todo-task ui-sortable-handle">
-                            <div class="task-header">
-                            <div class="task-no">809</div>
-                            <div class="task-type">Issue</div>
-                            </div>
-                            <div class="task-body">
-                            <div class="task-title">Application coding is bloated</div>
-                            </div>
-                            <div class="task-footer">
-                            <div class="task-date">Due: 30/10/2014</div>
-                            </div>
-                            </div> -->
-
-
-
-
-                          <!--   </div>
-                            </div>
-
-
-
-                            <div class="row">
-                               <div class="task-list task-container ui-droppable ui-sortable" id="pending">
-                                <h3 class="ui-sortable-handle">Pending</h3>
-                                <div class="todo-task">
-                                    <div class="task-header">Sample Header</div>
-                                    <div class="task-date">25/06/1992</div>
-                                    <div class="task-description">Lorem Ipsum Dolor Sit Amet</div>
-                                </div>
-                            </div>
-                            <div class="task-list task-container ui-droppable ui-sortable" id="inProgress">
-                                <h3 class="ui-sortable-handle">In Progress</h3>
-                            </div>
-                            <div class="task-list task-container ui-droppable ui-sortable" id="completed">
-                                <h3 class="ui-sortable-handle">Completed</h3>
-                            </div>
-                            </div>    
-                            <!-- <div style="clear:both;"></div> -->
-                         <!--</div> -->
+                        
+                         
+                       
+                    
                     
                 
                 <!-- /.row -->

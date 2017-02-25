@@ -47,7 +47,7 @@
                                     <a href="<?= site_url('purchase_v1/dashboard/page/a26'); ?>">Add Item</a>
                                 </li>
                                 <li>
-                                    <a href="#">Item List</a>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/a27'); ?>">Item List</a>
                                 </li>
                             
                             </ul>

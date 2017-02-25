@@ -56,36 +56,37 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                     <?php
+                                $n = 0; 
+                                
+                                    foreach ($arr as $user): 
+                                        $n++;
+                                        ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Otto</td>
+                                            <td><?= $n; ?></td>
+                                            <td><?= $user->us_fname; ?> </td>
+                                            <td><?= $user->us_username; ?></td>
+                                            <td><?= $user->us_email; ?></td>
+                                            <td><?= $user->ul_desc; ?></td>
                                             <td>
-                                            <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button>
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c25?view=').$user->us_id; ?>" name="c5" title="View User">
+                                            <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
                                             &nbsp;&nbsp;&nbsp;
-                                            <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button>
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c24?edit=').$user->us_id; ?>" name="c5" title="Edit User">
+                                            <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
                                              &nbsp;&nbsp;&nbsp;
-                                             <button type="button" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-close"></i></button>
+                                             <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a14?delete=').$user->us_id; ?>" name="c5" title="Delete User">
+                                             <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close"></i></button></a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
+
+                                          <?php
+                                           endforeach;
+                                
+                    
+                                        ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -115,6 +116,9 @@
   
 
 <script>
+function onDel() {
+        return confirm('Are You Sure ?');
+    } 
 
 function allowDrop(ev) {
     ev.preventDefault();

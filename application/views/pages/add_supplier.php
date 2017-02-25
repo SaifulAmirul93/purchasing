@@ -16,7 +16,7 @@
                     </div>
                     <!-- /.col-lg-12 -->
                   
-                       <form role="form" action="" method="post" id="supplier-form">
+                       <form role="form" action="<?= site_url('purchase_v1/dashboard/addSupplier'); ?>" method="post" id="supplier-form">
 
                                         <div class="row">
                                             <div class=" col-md-4">
@@ -46,7 +46,7 @@
                                               <div class="form-group">
                                                         <label class="col-md-2" >Email</label> 
                                                         <div class=" col-md-3">  
-                                                                <input type="text" name="supplier_email" id="supplier_email" class="form-control">
+                                                                <input type="email" name="supplier_email" id="supplier_email" class="form-control">
                                             
                                                     </div>
                                                 </div>
@@ -110,7 +110,7 @@
                                                         <div class="clear" style="height:30px;"></div>
                                                      <div class=" col-md-12">  
    
-                                                <textarea name="supplier_note" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                <textarea name="supplier_note" id="supplier_note" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                             
                                                        </div>
                                                     </div>
@@ -119,10 +119,17 @@
                         
                         
                                         <div class="clear" style="height: 50px;"></div>
-                                         <div class="row">
-                                            <button type="submit" class="btn btn-success">Add Supplier</button>
-                                            <button type="reset" class="btn btn-danger">Cancel</button>  
-                                        </div>                  
+                                             <div class="row">
+                                              <div class=" col-md-5">
+                                                <button type="submit" class="btn btn-success">Add Supplier</button>
+                                                <button type="reset" class="btn btn-danger">Reset</button> 
+                                                <a href="<?= site_url('purchase_v1/dashboard/page/a6'); ?>" name="c5">    
+                                                    <button type="button" class="btn btn-warning">Back</button>
+                                                </a>
+                                                </div> 
+                                            </div> 
+
+                                        <div class="clear" style="height: 50px;"></div>                 
                     </form>
                 
                 

@@ -78,9 +78,12 @@ class M_supplier extends CI_Model {
       public function getList()
         {
 
-            $this->db->select('*');
-            $this->db->from(self::TABLE_NAME);
-              if ($where !== NULL) {
+
+            $arr = $this->db->select('*')->from(self::TABLE_NAME)->get();
+            
+            /*$this->db->select('*');
+            $this->db->from(self::TABLE_NAME);*/
+            /*  if ($where !== NULL) {
             if (is_array($where)) {
                 foreach ($where as $field=>$value) {
                     $this->db->where($field, $value);
@@ -88,17 +91,44 @@ class M_supplier extends CI_Model {
             } else {
                 $this->db->where(self::PRI_INDEX, $where);
             }
-        }
+        }*/
 
-            $result = $this->db->get()->result();
+           /* $arr = $this->db->get();*/
 
-            for ($i=0; $i < sizeof($result); $i++) { 
+           /* for ($i=0; $i < sizeof($result); $i++) { 
                 $result[$i]->supplier = $this->db->get()->result();
-            }
-            return $result;
+            }*/
+            return $arr->result();
         }
 
-
+     public function getAll($where = null , $all = false)
+        {
+            $this->db->select('*');
+            $this->db->from(self::TABLE_NAME);
+            if ($where !== NULL) {
+                if (is_array($where)) {
+                    foreach ($where as $field=>$value) {
+                        $this->db->where($field, $value);
+                    }
+                } else {
+                    $this->db->where(self::PRI_INDEX, $where);
+                }
+            }
+       /*     if (!$all) {
+                $this->db->where('us_lvl >', 0);
+            }           
+            $this->db->join('user_level ul', 'user.us_lvl = ul.ul_id', 'left');*/
+            $result = $this->db->get()->result();
+            if ($result) {
+                if ($where !== NULL) {
+                    return array_shift($result);
+                } else {
+                    return $result;
+                }
+            } else {
+                return false;
+            }
+        }
 
     /**
      * Deletes specified record from the database
@@ -107,9 +137,9 @@ class M_supplier extends CI_Model {
      * @return int Number of rows affected by the delete query
      */
     public function delete($where = array()) {
-        if (!is_array()) {
+    
             $where = array(self::PRI_INDEX => $where);
-        }
+       
         $this->db->delete(self::TABLE_NAME, $where);
         return $this->db->affected_rows();
     }

@@ -31,6 +31,8 @@
 
      <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?= base_url(); ?>dist/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+        <link rel="stylesheet" href="<?= base_url(); ?>dist/datepicker/css/bootstrap-datepicker.css">
        <!-- bootstrap combined -->
  <!--  <link rel="stylesheet" href="<?= base_url(); ?>dist/validate/bootstrap-combined.min.css"> -->
 

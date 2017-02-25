@@ -1,11 +1,12 @@
   <!-- /#wrapper -->
 
+ 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
  <!-- jQuery -->
     <script src="<?= base_url(); ?>vendor/jquery/jquery.min.js"></script>
-
+    <script src="<?= base_url(); ?>dist/datepicker/js/bootstrap-datepicker.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="<?= base_url(); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
 
