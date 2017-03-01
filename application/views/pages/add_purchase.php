@@ -120,35 +120,15 @@
                                                                     <table class="table table-striped table-bordered table-hover">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th>#</th>
+                                                                                
                                                                                 <th>Item Detial</th>
                                                                                 <th>Quantitty</th>
                                                                                 <th>Unit Price</th>
+                                                                                <th>GST</th>
                                                                                 <th>Action</th>
                                                                             </tr>
                                                                         </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>Mark</td>
-                                                                                <td>Otto</td>
-                                                                                <td>@mdo</td>
-                                                                                <td>@mdo</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>Jacob</td>
-                                                                                <td>Thornton</td>
-                                                                                <td>@fat</td>
-                                                                                <td>@mdo</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>Larry</td>
-                                                                                <td>the Bird</td>
-                                                                                <td>@twitter</td>
-                                                                                <td>@mdo</td>
-                                                                            </tr>
+                                                                        <tbody id="purchaseList">
                                                                             
                                                                         </tbody>
                                                                     </table>
@@ -180,15 +160,18 @@
                                                                 <select class="form-control" disabled="" id="itemType">
                                                                     <option value="-1">-- Select Type --</option>
                                                                   </select>
-                                                              <!--       <?php foreach ($item as $key) {
-                                                                ?>
-                                                                <option value="<?= $key->item_id; ?>" > <?= $key->item_name; ?></option>
-                                                                <?php
-                                                            } ?> -->
-                                                              
-                                                                
                                                                 </div>
                                                         </div>
+                                                        <div class="clearfix">
+                                                                            &nbsp;
+                                                                            </div>
+                                                                            <div class="clearfix">
+                                                                            &nbsp;
+                                                                            </div>
+                                                                            <span class="pull-right"><span class="pull-left" id="loadingCat" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Be Pat</span><span class="pull-left" id="loadingItem" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Wait</span></span>
+
+
+
                                                     </div>
                                                         
                                                 
@@ -206,7 +189,8 @@
 
                                         <div class="clear" style="height: 20px;"></div>
                                         <button type="submit" class="btn btn-success">Submit</button>
-                                        <button type="reset" class="btn btn-danger">Reset</button>                    
+                                        <button type="reset" class="btn btn-danger">Reset</button> 
+                                        <div class="clear" style="height: 20px;"></div>                   
                     </form>
                 
                 
@@ -236,6 +220,7 @@
 <script>
 var num = 1;
 $(document).ready(function() {
+
         $('#Supplier').change(function() {
             temp = $(this).val();
             $.when($('#loadingText').show()).then(function(){
@@ -262,11 +247,13 @@ $(document).ready(function() {
         $("#addBtn").click(function() {
             $.when($('#loadingItem').show()).then(function(){
                 type = $("#itemType").val();
-                nic = $("#inputNico").val();
-                cat = $("#cat").val();          
+                cat = $("#cat_id").val();
+
                 num ++;
-                $.post('<?= site_url("nasty_v2/dashboard/getAjaxItemList") ?>', {type : type , nico : nic , cat : cat , num : num}, function(data) {
-                    $.when($("#orderList").append(data)).then(function(){
+
+                $.post('<?= site_url('purchase_v1/dashboard/getAjaxItemList') ?>', {type : type , cat : cat , num : num}, function(data) {
+            
+                    $.when($("#purchaseList").append(data)).then(function(){
                         $('#loadingItem').hide();
                     });                 
                 });

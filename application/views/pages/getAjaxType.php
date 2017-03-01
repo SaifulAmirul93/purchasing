@@ -1,9 +1,12 @@
 
 <?php 
 if ($cat == -1) { ?>
+ <label class="col-sm-2">Item :</label>
+	<div class=" col-sm-4">
 <select id="itemType" class="form-control" disabled>
     <option value="-1">-- Select Type --</option>
-</select>	
+</select>
+</div>	
 <?php }else{ ?>
  <label class="col-sm-2">Item :</label>
 	<div class=" col-sm-4">

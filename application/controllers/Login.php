@@ -27,25 +27,30 @@ class Login extends CI_Controller {
 
 
 	    function signin(){
-	    	/*$email = $this->input->post("email");
-	        $pass = $this->input->post("pass");
+	    	$email = $this->input->post("us_email");
+	        $pass = $this->input->post("us_pass");
 
-	        $this->load->library("my_func");
-	        $pass = $this->my_func->scpro_encrypt($pass);*/
+	        $this->load->database();
+	    	$this->load->model('m_login');
+	    	$data = $this->m_login->login($email,$pass);
+	    	if ($data) {
+	        $array = array(
+	        		'us_id' => $data->us_id,
+	    			'us_lvl' => $data->us_lvl,
+	    			'us_username' => $data->us_username
+
+	    			// 'us_id' => $this->my_func->scpro_encrypt($data->us_id),
+	    			// 'us_lvl' => $this->my_func->scpro_encrypt($data->us_lvl),
+	    			// 'us_username' => $this->my_func->scpro_encrypt($data->us_username)
+	    		);	    		
+	    		$this->session->set_userdata( $array );
 	        redirect(site_url('purchase_v1/dashboard'),'refresh');
-	        //echo $email;
-	        //echo $pass;
+	        }
+	        else{
+	    		//echo "Login Not Success";
+	    		redirect(site_url('login'),'refresh');
+	    	}
 
-	        /*$this->load->model("m_login");*/
-
-	      /*  $data = array(
-	        	"us_email" => $email , 
-	        	"us_pass" => $pass
-	        );*/
-	       /* if (!$this->m_login->insert($data)) {
-	        	echo "Not success";
-	        }else{
-	        	echo "success";
-	        }*/
+	        
 	    }
 }

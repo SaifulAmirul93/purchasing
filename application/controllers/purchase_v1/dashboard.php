@@ -305,14 +305,14 @@
                    break;
                      case "a29" :// dashboard
                         //start added
-                        $this->load->database();
-                        $this->load->model('m_supplier');
-                        $arr = $this->m_order->getList();
+                        // $this->load->database();
+                        // $this->load->model('m_supplier');
+                        // $arr = $this->m_order->getList();
                      
                         //end added
                         //$this->load->view($this->parent_page.'/dashboard');
                         $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_purchase', true);
+                        $this->load->view($this->parent_page.'/view_purchase');
                         
                    break;
 
@@ -668,31 +668,21 @@
               }
 
               public function getAjaxItemList()
-        {
-            $arr = $this->input->post();
-            $this->load->database();
-            $this->load->model('m_item');
-            $this->load->model('m_cat');
-            $temp['cat'] = $this->m_cat->get($arr['cat']);
-            $temp['item'] = $this->m_item->get($arr['type']);
-            $temp['num'] = $arr['num'];
-            echo $this->load->view($this->parent_page."/ajax/getAjaxItem", $temp , true);
-        }
+              {
+                  $catt_id = $this->input->post('cat');
+                  $item_id = $this->input->post('type');
+                
+                 
+                  $this->load->database();
+                  $this->load->model('m_item');
+                  $this->load->model('m_cat');
+                  $temp['cat'] = $this->m_cat->get($catt_id);
+                  $temp['item'] = $this->m_item->get($item_id);
+                  $temp['num'] = $this->input->post('num');
+                  $this->load->view($this->parent_page."/getAjaxItem", $temp);
+              }
 
-                      // public function getAjaxItem()
-                      // {
-                      //     $this->load->database();
-                      //     $ca_id = $this->input->post('ca_id');
-                      //     $this->load->model('m_item');
-                      //     if ($ca_id == -1) {
-                      //         $type['cat'] = $ca_id;
-                      //     } else {
-                      //         $type['type'] = $this->m_type2->get(array('ca_id' => $ca_id));
-                      //         $type['cat'] = $ca_id;
-                      //     }         
-                          
-                      //     echo $this->load->view($this->parent_page."/ajax/getAjaxType", $type , true);
-                      // }
+            
 
               public function addUser()
               {
