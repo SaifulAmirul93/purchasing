@@ -67,10 +67,10 @@
                         <form role="form" action="<?= site_url('Login/signin'); ?>" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" id="us_email" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" id="us_email" name="us_email" type="email" autofocus value="epul@nastyjuice.com">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" id="us_pass" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" id="us_pass" name="us_pass" type="password" value="1111">
                                 </div>
                                 <div class="checkbox">
                                     <label>

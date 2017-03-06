@@ -17,7 +17,16 @@ class Login extends CI_Controller {
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
+
+
+
 	 */
+
+
+	  function __construct() {
+	        parent::__construct();
+	        $this->load->library('session');
+	    }
 	public function index()
 	{
 		$this->load->view('pages/login');
@@ -29,14 +38,15 @@ class Login extends CI_Controller {
 	    function signin(){
 	    	$email = $this->input->post("us_email");
 	        $pass = $this->input->post("us_pass");
-
+	        echo "<script>alert($email);</script>";
 	        $this->load->database();
 	    	$this->load->model('m_login');
 	    	$data = $this->m_login->login($email,$pass);
+	    	
 	    	if ($data) {
 	        $array = array(
 	        		'us_id' => $data->us_id,
-	    			'us_lvl' => $data->us_lvl,
+	    			'ul_id' => $data->ul_id,
 	    			'us_username' => $data->us_username
 
 	    			// 'us_id' => $this->my_func->scpro_encrypt($data->us_id),
