@@ -21,7 +21,7 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Delivery Date</label>
-        <input class="form-control" id="datepicker">
+        <input class="form-control" id="deli_date" name="deli_date">
     </div>
 </div>
 
@@ -85,7 +85,7 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Delivery Date</label>
-        <input class="form-control" id="datepicker">
+        <input class="form-control" id="deli_date" name="deli_date">
     </div>
 </div>
 

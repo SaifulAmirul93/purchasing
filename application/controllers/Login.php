@@ -38,20 +38,18 @@ class Login extends CI_Controller {
 	    function signin(){
 	    	$email = $this->input->post("us_email");
 	        $pass = $this->input->post("us_pass");
-	        echo "<script>alert($email);</script>";
+	  
 	        $this->load->database();
 	    	$this->load->model('m_login');
 	    	$data = $this->m_login->login($email,$pass);
 	    	
 	    	if ($data) {
+	    		echo "success";
 	        $array = array(
 	        		'us_id' => $data->us_id,
 	    			'ul_id' => $data->ul_id,
 	    			'us_username' => $data->us_username
 
-	    			// 'us_id' => $this->my_func->scpro_encrypt($data->us_id),
-	    			// 'us_lvl' => $this->my_func->scpro_encrypt($data->us_lvl),
-	    			// 'us_username' => $this->my_func->scpro_encrypt($data->us_username)
 	    		);	    		
 	    		$this->session->set_userdata( $array );
 	        redirect(site_url('purchase_v1/dashboard'),'refresh');

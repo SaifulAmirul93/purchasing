@@ -6,12 +6,12 @@ class M_purchase extends CI_Model {
     /**
      * @name string TABLE_NAME Holds the name of the table in use by this model
      */
-    const TABLE_NAME = 'purchase';
+    const TABLE_NAME = 'purchase_item';
 
     /**
      * @name string PRI_INDEX Holds the name of the tables' primary index used in this model
      */
-    const PRI_INDEX = 'pur_id';
+    const PRI_INDEX = 'pi_id';
 
     /**
      * Retrieves record(s) from the database

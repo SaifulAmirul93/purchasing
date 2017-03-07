@@ -18,7 +18,8 @@
                     </div>
                     <!-- /.col-lg-12 -->
                   
-                       <form role="form">
+                       <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z11'); ?>" method="post">
+                       <input type="hidden" name="pro_id" id="pro_id" class="form-control" value="1">
                                         <div class="row">
                                          <div class="form-group">
                                             <label class="col-md-2">Supplier Name :</label>
@@ -61,7 +62,7 @@
                                         <div class=" col-md-4">
                                           <div class="form-group">
                                           <label>Delivery Date</label>
-                                                 <input class="form-control" id="datepicker">
+                                                 <input class="form-control" id="deli_date" name="deli_date">
                                             </div>
                                         </div>
 
@@ -212,7 +213,10 @@
 <script>
 
  $( function() {
-    $( "#datepicker" ).datepicker();
+    $( "#deli_date" ).datepicker({
+        format: 'dd-mm-yyyy'
+
+    });
   } );
 </script>
 

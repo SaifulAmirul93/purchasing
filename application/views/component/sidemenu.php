@@ -30,7 +30,18 @@
                         </li>
 
                          <li>
-                            <a href="#"><i class="fa fa-list fa-fw"></i> Purchase<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-list fa-fw"></i> Purchasing<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                    
+                                <li>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/a21'); ?>">Purchase Action</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                         <li>
+                            <a href="#"><i class="fa fa-calculator fa-fw"></i> Accounting<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                     
                                 <li>

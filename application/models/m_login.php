@@ -60,12 +60,13 @@
             $this->db->from(self::TABLE_NAME);
             $this->db->where($data);
             $result = $this->db->get()->result();
+           
             if ($result) {
                 if ($result[0]->us_pass === $pass) {
                     return array_shift($result);
                 }               
             }
-            return false;
+            //return false;
         }
     
         /**

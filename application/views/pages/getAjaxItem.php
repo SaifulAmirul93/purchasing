@@ -8,8 +8,8 @@
             <td><input type="number" name="qty[]" id="inputQty" min="0" class="price form-control" required="required"></td>
             <td><input type="number" name="gst[]" id="inputQty" min="0" class="price form-control" required="required"></td>
             <td><span><button type="button" class="btn btn-danger btn-xs delBtn<?= $num; ?>"><i class="fa fa-trash" ></i></button></span>
-			<input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="">
-			<input type="hidden" name="nico[]" id="inputNico[]" class="form-control" value="">
+			<input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="<?= $item->item_id; ?>">
+			
 			</td>
 
 

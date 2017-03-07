@@ -438,8 +438,57 @@
                         
 
                         break;
+                      case 'z11':
+                      //add purchase
+
+                      if ($this->input->post()) {
+                        $arr = $this->input->post();
+                        $this->load->database();
+                        $this->load->model('m_purchase');
+
+                        if ($arr['Supplier'] == -1) {  
+                            $sl = array(
+                                'supplier_name' => $arr['supplier_name'],
+                                'supplier_email' => $arr['supplier_email'],                              
+                                'supplier_contact' => $arr['supplier_contact'],
+                                'supplier_address' => $arr['supplier_address'],
+                                'supplier_company' => $arr['supplier_company'],
+                                
+                            );
+                            $this->load->model('m_supplier');
+                            $arr['Supplier'] = $this->m_supplier->insert($sl);
+                        }
+                        if($arr!= null){
+                          echo $arr['pur_date'];
+                        }
+                        $purchase = array(
+                            "supplier_id" => $arr['Supplier'],
+                            "us_id" => $this->session->userdata('us_id'),                            
+                            "pur_date" => $arr['pur_date'],
+                            "deli_date" => $arr['deli_date'],
+                            "pro_id" => $arr['pro_id']
+                        );
+                        $pur_id = $this->m_purchase->insert($purchase);
+                        $this->load->model('m_order_item');
+                        $sizeArr = sizeof($arr['itemId']);
+
+                        for ($i=0; $i < $sizeArr ; $i++) { 
+                            $item = array(
+                                'pur_id' => $pur_id,
+                                'ty2_id' => $arr['itemId'][$i],
+                                'pi_price' => $arr['price'][$i],
+                                'pi_qty' => $arr['qty'][$i],
+                                'pi_gst' => $arr['gst'][$i]
+  
+                            );
+                            $this->m_order_item->insert($item);
+                        }
 
 
+                      }
+
+
+                      break;
                     default:
                         //$this->_show();
                         break;
