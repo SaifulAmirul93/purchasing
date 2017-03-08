@@ -9,7 +9,7 @@
             <td><input type="number" name="gst[]" id="inputQty" min="0" class="price form-control" required="required"></td>
             <td><span><button type="button" class="btn btn-danger btn-xs delBtn<?= $num; ?>"><i class="fa fa-trash" ></i></button></span>
 			<input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="<?= $item->item_id; ?>">
-			
+			<input type="hidden" name="cattId[]" id="inputItemId[]" class="form-control" value="<?= $cat->catt_id; ?>">
 			</td>
 
 

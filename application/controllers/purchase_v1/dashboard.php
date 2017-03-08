@@ -303,16 +303,12 @@
                         $this->load->view($this->parent_page.'/add_supplier', true);
                         
                    break;
-                     case "a29" :// dashboard
-                        //start added
-                        // $this->load->database();
-                        // $this->load->model('m_supplier');
-                        // $arr = $this->m_order->getList();
-                     
-                        //end added
-                        //$this->load->view($this->parent_page.'/dashboard');
+                     case "a29" :
+                        $this->load->database();
+                        $this->load->model('m_purchase');
+                        $arr['arr'] = $this->m_purchase->getAll();
                         $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_purchase');
+                        $this->load->view($this->parent_page.'/view_purchase',$arr);
                         
                    break;
 
@@ -458,37 +454,40 @@
                             $this->load->model('m_supplier');
                             $arr['Supplier'] = $this->m_supplier->insert($sl);
                         }
-                        if($arr!= null){
-                          echo $arr['pur_date'];
-                        }
+                      
                         $purchase = array(
-                            "supplier_id" => $arr['Supplier'],
+                            "supp_id" => $arr['Supplier'],
                             "us_id" => $this->session->userdata('us_id'),                            
                             "pur_date" => $arr['pur_date'],
                             "deli_date" => $arr['deli_date'],
                             "pro_id" => $arr['pro_id']
                         );
                         $pur_id = $this->m_purchase->insert($purchase);
-                        $this->load->model('m_order_item');
+                        $this->load->model('m_purchase_item');
                         $sizeArr = sizeof($arr['itemId']);
 
                         for ($i=0; $i < $sizeArr ; $i++) { 
                             $item = array(
                                 'pur_id' => $pur_id,
-                                'ty2_id' => $arr['itemId'][$i],
+                                'item_id' => $arr['itemId'][$i],
+                                'catt_id' => $arr['cattId'][$i],
                                 'pi_price' => $arr['price'][$i],
                                 'pi_qty' => $arr['qty'][$i],
                                 'pi_gst' => $arr['gst'][$i]
   
                             );
-                            $this->m_order_item->insert($item);
+                            $this->m_purchase_item->insert($item);
                         }
-
-
+                        $this->session->set_flashdata('success', 'New Purchase Order successfully added');
+                        redirect(site_url('purchase_v1/dashboard/page/a1'),'refresh');
                       }
 
 
                       break;
+
+
+
+
                     default:
                         //$this->_show();
                         break;
@@ -660,9 +659,7 @@
                       }
                       $result = $this->m_item->update($arr2 , $id);
                       
-                             echo "<script>
-                          alert('Successfully Updated!');  
-                      </script>";
+                          
                       redirect(site_url('purchase_v1/dashboard/page/a27'),'refresh');
                   /*    else{
                         $this->session->set_flashdata("message","Record Not Updated!");

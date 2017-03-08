@@ -129,9 +129,14 @@ class M_purchase extends CI_Model {
                 }
             }
             if (!$all) {
-                $this->db->where('ull_id >', 0);
+                $this->db->where('supplier_id >', 0);
             }           
-            $this->db->join('user_level ul', 'user.ul_id = ul.ull_id', 'left');
+            $this->db->join('supplier', 'supp_id = supplier_id', 'left');
+
+            if (!$all) {
+                $this->db->where('us_id >', 0);
+            }           
+            $this->db->join('user', 'user_id = us_id', 'left');
             $result = $this->db->get()->result();
             if ($result) {
                 if ($where !== NULL) {

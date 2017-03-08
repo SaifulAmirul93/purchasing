@@ -2,7 +2,7 @@
 
 
 <?php 
-    //$saleperson = $this->my_func->scpro_decrypt($this->session->userdata('us_username'));
+    $pur_person = $this->session->userdata('us_username');
     if (isset($supplier)) {
         ?>
 <div class=" col-md-4">
@@ -44,7 +44,7 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Purchase Date</label>
-        <input class="form-control" disabled="true" value="<?= date("d-m-Y"); ?>" name="pur_date" id="pur_date">
+        <input class="form-control" value="<?= date("Y-m-d"); ?>" name="pur_date" id="pur_date">
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -108,7 +108,7 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Purchase Date</label>
-        <input class="form-control" disabled="true" value="<?= date("d-m-Y"); ?>" name="pur_date" id="pur_date">
+        <input class="form-control" value="<?= date("Y-m-d"); ?>" name="pur_date" id="pur_date">
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -134,6 +134,9 @@
 <script>
 
  $( function() {
-    $( "#datepicker" ).datepicker();
+    $( "#deli_date" ).datepicker({
+        format: 'yyyy-mm-dd'
+
+    });
   } );
 </script>

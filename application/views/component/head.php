@@ -19,6 +19,14 @@
     <!-- MetisMenu CSS -->
     <link href="<?= base_url(); ?>vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="<?= base_url(); ?>vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="<?= base_url(); ?>vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    
+
+
     <!-- Custom CSS -->
     <link href="<?= base_url(); ?>dist/css/sb-admin-2.css" rel="stylesheet">
 

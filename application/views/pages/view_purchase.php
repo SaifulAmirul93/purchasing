@@ -19,20 +19,16 @@
 
 
                     <!-- /.col-lg-12 -->
-                  
-                     <div class="row">
+                 <div class="col-lg-12"> 
+                    
+                <div class="row">
                 
                     <div class="panel panel-default">
                         <div class="panel-heading">
 
                                             
                                                          
-                             <div class=" col-md-3 pull-right">  
-                                <div class="form-group input-group">
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                </div>
-                            </div>
+                           
 
                             <a href="<?= site_url('purchase_v1/dashboard/page/a22'); ?>">                             
                             <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add Purchase</button>
@@ -43,25 +39,35 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
+                            
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example" width="100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Purchase Desp</th>
+                                            <th>Supplier Name</th>
                                             <th>Purchase No</th>
+                                            <th>Made By</th>
                                             <th>Purchase Date</th>
-                                            <th>Purchaser</th>
+                                            <th>Delivery Date</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                     <?php
+                                $n = 0; 
+                                
+                                    foreach ($arr as $pur){
+                                        $n++;
+                                        ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>Otto</td>
+                                            <td><?= $n; ?></td>
+                                            <td><?= $pur->supplier_name; ?> </td>
+                                            <td><?= $pur->pur_id; ?></td>
+                                            <td><?= $pur->us_username; ?></td>
+                                            <td><?= $pur->pur_date; ?></td>
+                                            <td><?= $pur->deli_date; ?></td>
+                                            <td><?= $pur->pro_id; ?></td>
                                             <td>
                                             <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button>
                                             &nbsp;&nbsp;&nbsp;
@@ -70,31 +76,22 @@
                                              <button type="button" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-close"></i></button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
+                                          <?php
+                                           }
+                                
+                    
+                                        ?>
+                                        
+                                      
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
-                        </div>
+                        
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                
+                </div>
          
             </div>
                 
@@ -112,7 +109,13 @@
     <!-- /#wrapper -->
 
     
-  
+   <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 
 <script>
 

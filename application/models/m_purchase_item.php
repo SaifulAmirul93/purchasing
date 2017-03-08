@@ -1,7 +1,7 @@
 <?php 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class M_purchase extends CI_Model {
+class M_purchase_item extends CI_Model {
 
     /**
      * @name string TABLE_NAME Holds the name of the table in use by this model

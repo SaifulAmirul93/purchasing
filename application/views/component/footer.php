@@ -16,6 +16,11 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?= base_url(); ?>dist/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
    
+
+    <!-- DataTables JavaScript -->
+    <script src="<?= base_url(); ?>vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url(); ?>vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>vendor/datatables-responsive/dataTables.responsive.js"></script>
    
        <!-- Morris Charts JavaScript -->
     <script src="<?= base_url(); ?>vendor/raphael/raphael.min.js"></script>
