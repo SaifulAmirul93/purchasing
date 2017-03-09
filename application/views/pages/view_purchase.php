@@ -63,17 +63,31 @@
                                         <tr>
                                             <td><?= $n; ?></td>
                                             <td><?= $pur->supplier_name; ?> </td>
-                                            <td><?= $pur->pur_id; ?></td>
+                                            <td>
+                                            <?php 
+                                            if ($pur->pur_id) {
+                                                $id = '#'.(110000+$pur->pur_id);
+                                                echo '<span style = "color : #3F6AFE;"><strong>'.$id.'</strong></span>';
+                                            } else {
+                                                echo "--Not Set--";
+                                            }
+                                            ?>
+
+
+                                            </td>
                                             <td><?= $pur->us_username; ?></td>
                                             <td><?= $pur->pur_date; ?></td>
                                             <td><?= $pur->deli_date; ?></td>
-                                            <td><?= $pur->pro_id; ?></td>
-                                            <td>
+                                            <td><span class="label" style = "background-color : <?= $pur->pro_color; ?>"><strong><?= $pur->pro_desc; ?></strong></span></td>
+                                            <td><button type="button" class="btn btn-success btn-xs" title="View"><i class="fa fa-print"></i></button>
+                                            &nbsp;&nbsp;&nbsp;
                                             <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button>
                                             &nbsp;&nbsp;&nbsp;
-                                            <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button>
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$pur->pur_id; ?>" name="c5" title="Delete User">
+                                            <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button></a>
                                              &nbsp;&nbsp;&nbsp;
-                                             <button type="button" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-close"></i></button>
+                                             <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a15?delete=').$pur->pur_id; ?>" name="c5" title="Delete User">
+                                             <button type="button" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-close"></i></button></a>
                                             </td>
                                         </tr>
                                           <?php

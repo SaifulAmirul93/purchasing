@@ -333,6 +333,17 @@
                      $this->m_user->delete($userID);
                      redirect(site_url('purchase_v1/dashboard/page/a25'),'refresh');
                      break;
+                      } 
+
+                      case "a15" :// delete
+                    if ($this->input->get('delete')) {
+                     $proID = $this->input->get('delete');
+                     $this->load->database();
+                     $this->load->model('m_purchase');
+
+                     $this->m_purchase->delete($proID);
+                     redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+                     break;
                       }     
                    
                     case 'c11':
@@ -434,6 +445,29 @@
                         
 
                         break;
+
+
+                         case "c29" :
+                          //edit
+                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                       if ($this->input->get('edit')) {
+                            $PurId = $this->input->get('edit');
+                        //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                        //echo $staffId;
+                            $this->load->database();
+                            $this->load->model('m_purchase');
+                            $this->load->model('m_item');
+                            $this->load->model('m_cat');
+                            $arr['cat'] = $this->m_cat->get();
+                            $arr['item'] = $this->m_item->get();
+                            $arr['arr'] = $this->m_purchase->getList($PurId);
+                            $this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/edit_purchase',$arr);
+                      }       
+                       
+                        
+
+                        break;
                       case 'z11':
                       //add purchase
 
@@ -457,10 +491,10 @@
                       
                         $purchase = array(
                             "supp_id" => $arr['Supplier'],
-                            "us_id" => $this->session->userdata('us_id'),                            
+                            "user_id" => $this->session->userdata('us_id'),                            
                             "pur_date" => $arr['pur_date'],
                             "deli_date" => $arr['deli_date'],
-                            "pro_id" => $arr['pro_id']
+                            "pr_id" => $arr['pro_id']
                         );
                         $pur_id = $this->m_purchase->insert($purchase);
                         $this->load->model('m_purchase_item');
@@ -468,7 +502,7 @@
 
                         for ($i=0; $i < $sizeArr ; $i++) { 
                             $item = array(
-                                'pur_id' => $pur_id,
+                                'purc_id' => $pur_id,
                                 'item_id' => $arr['itemId'][$i],
                                 'catt_id' => $arr['cattId'][$i],
                                 'pi_price' => $arr['price'][$i],

@@ -75,30 +75,41 @@ class M_purchase extends CI_Model {
     }
 
 
-      public function getList()
+      public function getList($where = null )
         {
 
+            $this->db->select('*');
+            $this->db->from(self::TABLE_NAME);
+            if ($where !== NULL) {
+                if (is_array($where)) {
+                    foreach ($where as $field=>$value) {
+                        $this->db->where($field, $value);
+                    }
+                } else {
+                    $this->db->where(self::PRI_INDEX, $where);
+                }
+            }
 
-            $arr = $this->db->select('*')->from(self::TABLE_NAME)->get();
+            //$this->db->where(self::TABLE_NAME);
+            $this->db->join('user', 'user_id = us_id', 'left');            
+            $this->db->join('supplier','supp_id = supplier_id', 'left');
+            $this->db->join('purchase_item' , 'pur_id = purc_id' , 'left');            
             
-            /*$this->db->select('*');
-            $this->db->from(self::TABLE_NAME);*/
-            /*  if ($where !== NULL) {
-            if (is_array($where)) {
-                foreach ($where as $field=>$value) {
-                    $this->db->where($field, $value);
+              $result = $this->db->get()->result();
+              $data = array();
+
+
+
+              
+            if ($result) {
+                if ($where !== NULL) {
+                    return array_shift($result);
+                } else {
+                    return $result;
                 }
             } else {
-                $this->db->where(self::PRI_INDEX, $where);
+                return false;
             }
-        }*/
-
-           /* $arr = $this->db->get();*/
-
-           /* for ($i=0; $i < sizeof($result); $i++) { 
-                $result[$i]->supplier = $this->db->get()->result();
-            }*/
-            return $arr->result();
         }
 
          public function getLvl(){
@@ -137,6 +148,11 @@ class M_purchase extends CI_Model {
                 $this->db->where('us_id >', 0);
             }           
             $this->db->join('user', 'user_id = us_id', 'left');
+
+            if (!$all) {
+                $this->db->where('pro_id >', 0);
+            }           
+            $this->db->join('process', 'pr_id = pro_id', 'left');
             $result = $this->db->get()->result();
             if ($result) {
                 if ($where !== NULL) {
