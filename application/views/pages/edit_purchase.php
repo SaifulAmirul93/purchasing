@@ -31,28 +31,28 @@
                                          <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Name</label>
-                                            <input class="form-control" name="supplier_name" id="supplier_name" disabled="" value="<?= $arr->supplier_name; ?>">
+                                            <input class="form-control" name="supplier_name" id="supplier_name" disabled="" value="<?= $arr['purchase']->supplier_name; ?>">
                                             
                                         </div>
                                         </div>
                                            <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Company</label>
-                                            <input class="form-control"  name="supplier_company" id="supplier_company" disabled="" value="<?= $arr->supplier_company; ?>">
+                                            <input class="form-control"  name="supplier_company" id="supplier_company" disabled="" value="<?= $arr['purchase']->supplier_company; ?>">
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
                                         <div class=" col-md-4">
                                           <div class="form-group">
                                           <label>Delivery Date</label>
-                                                 <input class="form-control" id="deli_date" name="deli_date" value="<?= $arr->deli_date; ?>">
+                                                 <input class="form-control" id="deli_date" name="deli_date" value="<?= $arr['purchase']->deli_date; ?>">
                                             </div>
                                         </div>
 
                                          <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Contact Number</label>
-                                            <input class="form-control" name="supplier_contact" id="supplier_contact" disabled="" value="<?= $arr->supplier_contact; ?>">
+                                            <input class="form-control" name="supplier_contact" id="supplier_contact" disabled="" value="<?= $arr['purchase']->supplier_contact; ?>">
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
@@ -60,7 +60,7 @@
                                          <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Email</label>
-                                            <input class="form-control" name="supplier_email" id="supplier_email" disabled="" value="<?= $arr->supplier_email; ?>">
+                                            <input class="form-control" name="supplier_email" id="supplier_email" disabled="" value="<?= $arr['purchase']->supplier_email; ?>">
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
@@ -68,7 +68,7 @@
                                              <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Purchase Date</label>
-                                            <input class="form-control" name="pur_date" id="pur_date" disabled="" value="<?= $arr->pur_date; ?>">
+                                            <input class="form-control" name="pur_date" id="pur_date" disabled="" value="<?= $arr['purchase']->pur_date; ?>">
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
@@ -76,7 +76,7 @@
                                          <div class=" col-md-8">
                                          <div class="form-group">
                                             <label>Address</label>
-                                            <textarea class="form-control"  name="supplier_address" id="supplier_address" disabled=""> <?= $arr->supplier_address; ?></textarea> 
+                                            <textarea class="form-control"  name="supplier_address" id="supplier_address" disabled=""> <?= $arr['purchase']->supplier_address; ?></textarea> 
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
@@ -113,7 +113,34 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody id="purchaseList">
-                                                                            
+                                                                            <?php 
+                                                                    if (!isset($arr)) {
+                                                                        ?>
+                                                                            <tr>
+                                                                                <td colspan="6" align="center">-- No Data--</td>
+                                                                            </tr>
+                                                                        <?php
+                                                                    } else {
+                                                                        foreach ($arr['item'] as $key) {
+                                                                            ?>
+                                                                            <tr>
+                                                                              <td style="width: 500px;"><?= $key->item_name; ?>
+                                                                                <br/>
+                                                                                <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span></td>
+                                                                                                                           
+                                                                                <td><input type="number" name="price[]" id="inputPrice" min="0" step="any" class="quantity form-control" value="<?= $key->pi_price; ?>" required="required"></td>
+                                                                                <td><input type="number" name="qty[]" id="inputQty" min="0" class="price form-control" required="required" value="<?= $key->pi_qty; ?>"></td>
+                                                                                <td><input type="number" name="gst[]" id="inputGst" min="0" class="price form-control" required="required"  value="<?= $key->pi_gst; ?>"></td>
+                                                                                <td><span><button type="button" class="btn btn-danger btn-xs delBtn"><i class="fa fa-trash" ></i></button></span>
+                                                                                <input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="<?= $key->it_id; ?>>">
+                                                                                <input type="hidden" name="cattId[]" id="inputItemId[]" class="form-control" value="<?= $key->cat_id; ?>">
+                                                                                </td>
+                                                                                </tr>
+                                                                            <?php
+                                                                        }
+                                                                    }                                                                   
+                                                                ?>  
+
                                                                         </tbody>
                                                                     </table>
                                                                 </div>

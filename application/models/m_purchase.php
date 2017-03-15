@@ -99,17 +99,40 @@ class M_purchase extends CI_Model {
               $data = array();
 
 
+              foreach ($result as $key) {
+                      $this->db->select('*');
+                      
+                        $this->db->from('purchase_item');
+                        $this->db->join('category_item', 'catt_id = cat_id', 'left');
+                        $this->db->join('item', 'item_id = it_id', 'left');
+                        //$this->db->order_by('cat_id', 'asc');
+                      
+                        $this->db->where('purc_id', $key->pur_id); 
+                        $res2 = $this->db->get()->result();
+                      $this->db->select("us_username");
+                      $this->db->from('user');
+                      $this->db->where('us_id', $key->us_id);
+                      $res3 = $this->db->get()->result();
+                      $res3 = array_shift($res3);
+                      $data[] = array(
+                        'user' => $res3,
+                        'purchase' => $key,
+                        'item' => $res2
+                      );
+                        }
+                        return $data;
+
 
               
-            if ($result) {
-                if ($where !== NULL) {
-                    return array_shift($result);
-                } else {
-                    return $result;
-                }
-            } else {
-                return false;
-            }
+            // if ($result) {
+            //     if ($where !== NULL) {
+            //         return array_shift($result);
+            //     } else {
+            //         return $result;
+            //     }
+            // } else {
+            //     return false;
+            // }
         }
 
          public function getLvl(){

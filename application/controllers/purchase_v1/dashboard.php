@@ -425,7 +425,7 @@
                         break;
 
                          case "c25" :
-                          //edit
+                          //view
                       //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
                       if ($this->input->get('view')) {
                          $UserId = $this->input->get('view');
@@ -460,14 +460,35 @@
                             $this->load->model('m_cat');
                             $arr['cat'] = $this->m_cat->get();
                             $arr['item'] = $this->m_item->get();
-                            $arr['arr'] = $this->m_purchase->getList($PurId);
+                            $data=$this->m_purchase->getList($PurId);
+                            $arr['arr'] = array_shift($data);
                             $this->_show('display', $key);
                         $this->load->view($this->parent_page.'/edit_purchase',$arr);
                       }       
-                       
-                        
 
                         break;
+
+                           case "c30" :
+                          //view
+                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                       if ($this->input->get('view')) {
+                            $PurId = $this->input->get('view');
+                        //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                        //echo $staffId;
+                            $this->load->database();
+                            $this->load->model('m_purchase');
+                            $this->load->model('m_item');
+                            $this->load->model('m_cat');
+                            $arr['cat'] = $this->m_cat->get();
+                            $arr['item'] = $this->m_item->get();
+                            $data=$this->m_purchase->getList($PurId);
+                            $arr['arr'] = array_shift($data);
+                            $this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/purchase_view',$arr);
+                      }       
+
+                        break;
+
                       case 'z11':
                       //add purchase
 
@@ -503,8 +524,8 @@
                         for ($i=0; $i < $sizeArr ; $i++) { 
                             $item = array(
                                 'purc_id' => $pur_id,
-                                'item_id' => $arr['itemId'][$i],
-                                'catt_id' => $arr['cattId'][$i],
+                                'it_id' => $arr['itemId'][$i],
+                                'cat_id' => $arr['cattId'][$i],
                                 'pi_price' => $arr['price'][$i],
                                 'pi_qty' => $arr['qty'][$i],
                                 'pi_gst' => $arr['gst'][$i]
@@ -565,33 +586,6 @@
           redirect(site_url('purchase_v1/dashboard/page/a62'),'refresh');
         }
       }
-
-
-
-
-
-            /*    if ($this->input->post()) {
-                  $id = $this->input->get('edit');
-                  $arr = $this->input->post();          
-                  $this->load->database();
-                  $this->load->model('m_supplier');
-                  //$this->load->library('my_func');
-                  foreach ($arr as $key => $value) {
-                    if ($value != null) {
-                      if ($key == 'pass') {
-                        $value = $this->my_func->scpro_encrypt($value);
-                      }
-                      if ($key == 'id') {
-                        $id = $this->my_func->scpro_decrypt($value);
-                      }else{
-                        $arr2[$key] = $value;
-                     /* }   */          
-                /*    }
-                  }
-                  $result = $this->m_supplier->update($arr2,$id );
-                  redirect(site_url('purchase_v1/dashboard/page/a62'),'refresh');
-                }*/
-             /* }*/
     
 
 
