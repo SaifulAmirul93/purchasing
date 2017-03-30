@@ -18,8 +18,8 @@
                     </div>
                     <!-- /.col-lg-12 -->
                   
-                       <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z11'); ?>" method="post">
-                       <input type="hidden" name="pro_id" id="pro_id" class="form-control" value="1">
+                       <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z121?key=').$arr['purchase']->pur_id; ?>" method="post">
+                       <input type="hidden" name="pr_id" id="pr_id" class="form-control" value="<?= $arr['purchase']->pr_id; ?>">
                                         
                                         <div class="row">
                                             <div class=" col-md-4">
@@ -132,8 +132,9 @@
                                                                                 <td><input type="number" name="qty[]" id="inputQty" min="0" class="price form-control" required="required" value="<?= $key->pi_qty; ?>"></td>
                                                                                 <td><input type="number" name="gst[]" id="inputGst" min="0" class="price form-control" required="required"  value="<?= $key->pi_gst; ?>"></td>
                                                                                 <td><span><button type="button" class="btn btn-danger btn-xs delBtn"><i class="fa fa-trash" ></i></button></span>
-                                                                                <input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="<?= $key->it_id; ?>>">
-                                                                                <input type="hidden" name="cattId[]" id="inputItemId[]" class="form-control" value="<?= $key->cat_id; ?>">
+                                                                               <!--  <input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="<?= $key->it_id; ?>>"> -->
+                                                                              <!--  <input type="hidden" name="cattId[]" id="cattId[]" class="form-control" value="<?= $key->cat_id; ?>"> -->
+                                                                                <input type="hidden" name="idE[]" id="inputIdE" class="form-control" value="<?= $key->pi_id;?>">
                                                                                 </td>
                                                                                 </tr>
                                                                             <?php

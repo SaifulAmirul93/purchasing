@@ -86,7 +86,7 @@
                                                                   <select class="form-control" name="us_pass" id="us_pass">
                                                             <?php foreach ($lvl as $key) {
                                                                 ?>
-                                                                <option value="<?= $key->ul_id; ?>" <?php if($key->ull_id == $arr->ul_id){echo " selected ";} ?>> <?= $key->ul_desc; ?></option>
+                                                                <option value="<?= $key->ull_id; ?>" <?php if($key->ull_id == $arr->ul_id){echo " selected ";} ?>> <?= $key->ul_desc; ?></option>
                                                                 <?php
                                                             } ?>
                                                             

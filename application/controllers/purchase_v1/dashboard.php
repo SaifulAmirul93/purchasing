@@ -13,7 +13,7 @@
 
 
 
-	    function index() {
+	    function index(){
 	        $this->page('a1');
 	    }
 
@@ -540,7 +540,32 @@
 
                       break;
 
+                      case 'z121':
+                          if ($this->input->post() && $this->input->get('key')) {
+                              $arr = $this->input->post();
+                              $pur_id = $this->input->get('key');
+                              $this->load->database();
+                              $this->load->model('m_purchase_item');
 
+
+                              $sizeArr = sizeof($arr['itemId']);
+
+                        if (isset($arr['idE'])) {
+                            if (sizeof($arr['idE']) != 0) {
+                                for ($i=0; $i < sizeof($arr['idE']); $i++) { 
+                                    $pi_id = $arr['idE'][$i];
+                                    $temp = array(
+                                        'pi_price' => $arr['price'][$i],
+                                'pi_qty' => $arr['qty'][$i],
+                                'pi_gst' => $arr['gst'][$i]
+                                    );
+                                    $this->m_purchase_item->update($temp , $pi_id);
+                                }
+                            }
+                        }
+                        }   
+
+                      break;
 
 
                     default:
