@@ -44,7 +44,7 @@ class Login extends CI_Controller {
 	    	$data = $this->m_login->login($email,$pass);
 	    	
 	    	if ($data) {
-	    		echo "success";
+	    		echo "<script>alert('Login Successfull')</script>";
 	        $array = array(
 	        		'us_id' => $data->us_id,
 	    			'ul_id' => $data->ul_id,
@@ -55,7 +55,7 @@ class Login extends CI_Controller {
 	        redirect(site_url('purchase_v1/dashboard'),'refresh');
 	        }
 	        else{
-	    		//echo "Login Not Success";
+	    		echo "<script>alert('Not Successfull')</script>";
 	    		redirect(site_url('login'),'refresh');
 	    	}
 

@@ -61,7 +61,24 @@
                         
                    break;   
 
-              case "a21" :// dashboard
+                  case "a21" :// dashboard
+                        //start added
+                      /*  $this->load->database();
+                        $this->load->model('m_order');*/
+                         
+                     
+                        //end added
+                        //$this->load->view($this->parent_page.'/dashboard');
+                        $this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/list_purchase', true);
+                        
+                   break;  
+
+                   case 'c1':
+                        
+                   break;
+
+                    case "p1" :// dashboard
                         //start added
                       /*  $this->load->database();
                         $this->load->model('m_order');*/
@@ -83,6 +100,7 @@
                         $this->load->model('m_item');
                         $this->load->model('m_cat');
                         $this->load->model('m_supplier');
+                        $arr['prjk'] = $this->m_purchase->getPro();
                         $arr['lvl'] = $this->m_purchase->getLvl();
                         $arr['cat'] = $this->m_cat->get();
                         $arr['item'] = $this->m_item->get();
@@ -179,6 +197,22 @@
                         $this->load->view($this->parent_page.'/add_item',$arr);
                         
                    break;
+
+
+                   case "e26" :// dashboard
+                        //start added
+                      /*  $this->load->database();
+                        $this->load->model('m_order');*/
+                        // $this->load->database();
+                        // $this->load->model('m_item');
+                        // $arr['lvl'] = $this->m_item->getLvl();
+                     
+                        //end added
+                        //$this->load->view($this->parent_page.'/dashboard');
+                        $this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/add_cat');
+                        
+                   break;
                      case "a27" :// dashboard
                         //start added
                       /*  $this->load->database();
@@ -209,6 +243,38 @@
 
                         $this->_show('display', $key);
                         $this->load->view($this->parent_page.'/item_list', $arr);
+                        
+                   break;
+                   case "e27" :// dashboard
+                        //start added
+                      /*  $this->load->database();
+                        $this->load->model('m_order');*/
+                         
+                     
+                        //end added
+                        //$this->load->view($this->parent_page.'/dashboard');
+                        $this->load->database();
+                        $this->load->model('m_category');
+
+
+
+                        /*if (!$this->_checkLvl()) {
+                          $where = array(
+                            'cat_id !=' => 1
+                            );
+                          $arr['arr'] = $this->m_item->getAll($where);
+                        }else{
+                          $arr['arr'] = $this->m_item->getAll();
+                        }*/
+                         $arr['arr'] = $this->m_category->get();
+                        /*$arr = $this->m_item->getList();
+
+                        $temp['arr'] = $arr;*/
+
+
+
+                        $this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/cat_list', $arr);
                         
                    break;
 
@@ -255,6 +321,29 @@
 
                         break;  
 
+
+                        case "d27" :
+                          //edit
+                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                      if ($this->input->get('edit')) {
+                         $UserId = $this->input->get('edit');
+                        //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                        //echo $staffId;
+                        $this->load->database();
+                        $this->load->model('m_category');
+                        $arr['id'] = $this->input->get('edit');
+                        // $arr['lvl'] = $this->m_item->getLvl();
+                        $arr['arr'] = $this->m_category->get($UserId);
+                        /*$data['display'] = $this->load->view($this->parent_page.'/editStaff' , $arr , true);
+                        $this->_show('display' , $data , $key); */
+
+                      }       
+                        $this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/edit_cat',$arr);
+                        
+
+                        break;  
+
                         
 
                     case "c28" :// delete
@@ -265,6 +354,17 @@
 
                      $this->m_item->delete($itemID);
                      redirect(site_url('purchase_v1/dashboard/page/a27'),'refresh');
+                     break;
+                      } 
+
+                        case "e28" :// delete
+                    if ($this->input->get('delete')) {
+                     $itemID = $this->input->get('delete');
+                     $this->load->database();
+                     $this->load->model('m_category');
+
+                     $this->m_category->delete($itemID);
+                     redirect(site_url('purchase_v1/dashboard/page/e27'),'refresh');
                      break;
                       } 
 
@@ -342,6 +442,8 @@
                      $this->load->model('m_purchase');
 
                      $this->m_purchase->delete($proID);
+
+                     $this->session->set_flashdata('success', 'Purchase Order successfully deleted');
                      redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
                      break;
                       }     
@@ -485,6 +587,45 @@
                             $arr['arr'] = array_shift($data);
                             $this->_show('display', $key);
                         $this->load->view($this->parent_page.'/purchase_view',$arr);
+                      }   
+                      break;
+                         case "s30" :
+                          //view
+                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                       if ($this->input->get('view')) {
+                            $PurId = $this->input->get('view');
+                        //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                        //echo $staffId;
+                            $this->load->database();
+                            $this->load->model('m_purchase');
+                            $this->load->model('m_item');
+                            $this->load->model('m_cat');
+                            $arr['cat'] = $this->m_cat->get();
+                            $arr['item'] = $this->m_item->get();
+                            $data=$this->m_purchase->getList($PurId);
+                            $arr['arr'] = array_shift($data);
+                            //$this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/pur_view',$arr);
+                      }       
+
+                        break;
+                        case "P01" :
+                          //view
+                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                       if ($this->input->get('edit')) {
+                            $PurId = $this->input->get('edit');
+                        //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                        //echo $staffId;
+                            $this->load->database();
+                            $this->load->model('m_purchase');
+                            $this->load->model('m_item');
+                            $this->load->model('m_cat');
+                            $arr['cat'] = $this->m_cat->get();
+                            $arr['item'] = $this->m_item->get();
+                            $data=$this->m_purchase->getList($PurId);
+                            $arr['arr'] = array_shift($data);
+                            //$this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/purchase_order',$arr);
                       }       
 
                         break;
@@ -504,6 +645,7 @@
                                 'supplier_contact' => $arr['supplier_contact'],
                                 'supplier_address' => $arr['supplier_address'],
                                 'supplier_company' => $arr['supplier_company'],
+
                                 
                             );
                             $this->load->model('m_supplier');
@@ -515,7 +657,11 @@
                             "user_id" => $this->session->userdata('us_id'),                            
                             "pur_date" => $arr['pur_date'],
                             "deli_date" => $arr['deli_date'],
-                            "pr_id" => $arr['pro_id']
+                            "pr_id" => $arr['pro_id'],
+                            'currency' => $arr['currency'],
+                            'pay' => $arr['pay'],
+                            ' prjk_id' => $arr['prjk_id'],
+                            ' unit' => $arr['unit'],
                         );
                         $pur_id = $this->m_purchase->insert($purchase);
                         $this->load->model('m_purchase_item');
@@ -528,13 +674,13 @@
                                 'cat_id' => $arr['cattId'][$i],
                                 'pi_price' => $arr['price'][$i],
                                 'pi_qty' => $arr['qty'][$i],
-                                'pi_gst' => $arr['gst'][$i]
+                                
   
                             );
                             $this->m_purchase_item->insert($item);
                         }
                         $this->session->set_flashdata('success', 'New Purchase Order successfully added');
-                        redirect(site_url('purchase_v1/dashboard/page/a1'),'refresh');
+                        redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
                       }
 
 
@@ -545,10 +691,11 @@
                               $arr = $this->input->post();
                               $pur_id = $this->input->get('key');
                               $this->load->database();
+                              $this->load->model('m_purchase');
                               $this->load->model('m_purchase_item');
 
 
-                              $sizeArr = sizeof($arr['itemId']);
+                              //$sizeArr = sizeof($arr['itemId']);
 
                         if (isset($arr['idE'])) {
                             if (sizeof($arr['idE']) != 0) {
@@ -556,12 +703,20 @@
                                     $pi_id = $arr['idE'][$i];
                                     $temp = array(
                                         'pi_price' => $arr['price'][$i],
-                                'pi_qty' => $arr['qty'][$i],
-                                'pi_gst' => $arr['gst'][$i]
+                                'pi_qty' => $arr['qty'][$i]
+                                // 'pi_gst' => $arr['gst'][$i]
                                     );
                                     $this->m_purchase_item->update($temp , $pi_id);
                                 }
+                                $order_ext = array(
+                            'currency' => $arr['currency'],                          
+                            'deli_date' => $arr['deli_date'],
+                            'pay' => $arr['pay']
+                        );
+                                $orex_id = $this->m_purchase->update($order_ext , array('pur_id' => $pur_id));
                             }
+                             $this->session->set_flashdata("success","Record Updated!");
+                              redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
                         }
                         }   
 
@@ -653,7 +808,136 @@
                   redirect(site_url('purchase_v1/dashboard/page/a62'),'refresh');
                 }
               }
+        public function getAjaxUpload()
+        {
+                        //$this->_show('display', $key);
+                        
+                            $arr = $this->input->post();
+                            $this->load->database();
+                            $this->load->model('m_picture');
+                            $temp = array(
+                                "ne_id" =>$this->input->post('pur_id')
+                            );
+                        $arr['img'] = $this->m_picture->getPaid($temp);   
+                        echo $this->load->view('pages/getAjaxUpload', $arr, TRUE);
+                        //$this->load->view($this->parent_page.'/getAjaxUpload');
+                      
+        }
 
+        public function uploadPaid()
+        {
+
+
+            if ($this->input->post()) {
+               
+
+                $arr = $this->input->post();                
+                $this->load->database();
+                $this->load->model('m_picture');
+                $this->load->model('m_purchase');
+                //$this->load->library('my_func');
+                $this->load->library('upload');
+               
+
+
+                $config = array(
+                'upload_path' => "./dist/invoice/",
+                'allowed_types' => "gif|jpg|png|jpeg|pdf",
+                'overwrite' => TRUE,
+                'max_size' => "4000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+                'max_height' => "1600",
+                'max_width' => "1600",
+                'encrypt_name' => true
+                );
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                
+                $pur_id = $this->input->post('pur_id');
+                $img_background = $this->input->post('fileImg');
+
+
+                 $result2=$this->upload->do_upload('fileImg');
+                 $data = $this->upload->data();
+                 $background="dist/invoice/".$data['raw_name'].$data['file_ext'];
+               
+
+                
+
+
+
+
+                 $arr2 = array(
+                            
+                            "img_url" => $background,
+                            "ne_id" => $arr['pur_id'] 
+                            
+                            
+                           
+                        );           
+                
+                $result=$this->m_purchase->updateInv(1, $pur_id);
+                $this->m_picture->insert($arr2);
+                $this->session->set_flashdata('success' , '<b>Well done!</b> You successfully send the picture.');
+                redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+            }else{
+                $this->session->set_flashdata('warning' , '<b>Uh Crap!</b> You got Error. The image size is to big');
+                redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+            }
+        
+
+
+            
+    
+        }
+
+
+
+
+               public function change_pr_id()
+        {
+                
+                //if ($this->input->post('or_id')){
+                //echo "<script>alert('test');</script>";
+                //$this->load->library('my_func'); 
+                $pur_id = $this->input->post('pur_id');
+                //$or_id = $this->my_func->scpro_decrypt($this->input->post('or_id'));
+                $pr_id = $this->input->post('pr_id');
+                $this->load->database();
+                $this->load->model('m_purchase');
+
+               
+/*
+                  1 - New Order
+                    2 - In Progress
+                    3 - Complete
+                    4 - Unconfirm
+                    5 - Cancel
+                    6 - Cancel In Progress
+                    7 - On Hold In Progress
+                    8 - ROS
+                    9 - DOC
+                    10 - RTS
+                    11 - Shipping
+                    12 - Arrived
+                    13 - Return */
+                    $result=$this->m_purchase->updatePR($pr_id, $pur_id);
+                    if($result){
+                    $this->session->set_flashdata('success', 'Your order status is updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'Your order status is not updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+                    }
+
+                // }
+                // else{
+                //     return false;
+                // }
+
+                    
+        }
 
               public function updateUser()
               {
@@ -722,6 +1006,40 @@
                     
                     }else{
                       redirect(site_url('purchase_v1/dashboard/page/a27'),'refresh');
+                    }
+            }
+             public function updateCat()
+              {
+                      if (
+                        $this->input->post()) {
+                      $arr = $this->input->post();          
+                      $this->load->database();
+                      $this->load->model('m_category');
+                      //$this->load->library('my_func');
+                      foreach ($arr as $key => $value) {
+                        if ($value != null) {
+                         /* if ($key == 'pass') {
+                            $value = $this->my_func->scpro_encrypt($value);
+                          }*/
+                          if ($key == 'id') {
+                            $id = $value;
+                          }else{
+                            $arr2[$key] = $value;
+                          }             
+                        }
+                      }
+                      $result = $this->m_category->update($arr2 , $id);
+                      
+                          
+                      redirect(site_url('purchase_v1/dashboard/page/e27'),'refresh');
+                  /*    else{
+                        $this->session->set_flashdata("message","Record Not Updated!");
+                                  redirect(site_url('purchase_v1/dashboard/page/a25'),'refresh');
+                                  
+                      }*/
+                    
+                    }else{
+                      redirect(site_url('purchase_v1/dashboard/page/e27'),'refresh');
                     }
             }
 
@@ -847,12 +1165,86 @@
                      }
                      else{
                       $this->session->set_flashdata("message","Record Not Inserted!");
-                      redirect(site_url('purchase_v1/dashboard/page/a26'),'refresh');
+                      redirect(site_url('purchase_v1/dashboard/page/a27'),'refresh');
                      }
                 }else{
-                  redirect(site_url('purchase_v1/dashboard/page/a26'),'refresh');
+                  redirect(site_url('purchase_v1/dashboard/page/a27'),'refresh');
                 }
               }
+               public function addCat()
+              {
+                if ($this->input->post()) {
+                  $arr = $this->input->post();          
+                  $this->load->database();
+                  $this->load->model('m_category');
+                  //$this->load->library('my_func');
+                  
+                  foreach ($arr as $key => $value) {
+                    if ($value != null) {
+                    /*  if ($key == 'pass') {
+                        $value = $this->my_func->scpro_encrypt($value);
+                      }*/
+                     
+                      $arr2[$key] = $value;             
+                    }
+                  }
+                  $result = $this->m_category->insert($arr2);
+
+                    if(!$result)
+                     {
+                      echo "<script>
+                        alert('Successfully Added!');  
+                      </script>";
+                      redirect(site_url('purchase_v1/dashboard/page/e27'),'refresh');
+                     }
+                     else{
+                      $this->session->set_flashdata("message","Record Not Inserted!");
+                      redirect(site_url('purchase_v1/dashboard/page/e27'),'refresh');
+                     }
+                }else{
+                  redirect(site_url('purchase_v1/dashboard/page/e27'),'refresh');
+                }
+              }
+
+              public function getAjaxImg()
+        {
+            
+            $ne_id =$this->input->post("pur_id");            
+            $this->load->database();
+            $this->load->model("m_picture");
+            $arr['img'] = $this->m_picture->getPaid(array("ne_id" => $ne_id));
+            echo $this->load->view('pages/getAjaxImg', $arr , TRUE);
+        }
+
+
+
+        public function logout()
+    {
+            
+            
+            //$this->session->sess_destroy();
+            $this->session->unset_userdata('us_id');
+            $this->session->unset_userdata('ul_id');
+            $this->session->unset_userdata('us_username');
+            
+            
+
+
+
+            $this->load->driver('cache');
+            $this->session->sess_destroy();
+            $this->cache->clean();
+            // $this->load->view("main/login");
+
+            $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
+            $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+            $this->output->set_header('Pragma: no-cache');
+            $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+
+            redirect(site_url('login'),'refresh');
+        
+      
+    }
 
 
 

@@ -59,71 +59,38 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Add Item</h1>
+                        <h1 class="page-header">Add Category</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                   
-                       <form role="form" method="post" action="<?= site_url('purchase_v1/dashboard/addItem'); ?>">
+                       <form role="form" method="post" action="<?= site_url('purchase_v1/dashboard/addCat'); ?>">
 
-
-
-
-                                                               <div class="row">
+                                        <div class="row">
                                             <div class=" col-md-4">
-                                                <h3 class="page-header">Item Detial</h3>
+                                                <h3 class="page-header">Category Detial</h3>
                                             </div>
                                         </div>
+
                                         <div class="row">
                                                 <div class="form-group">
+                                                
+
                                                     <div class="form-group">
-                                                        <label class="col-md-2" >Item Name</label> 
+                                                        <label class="col-md-2" >Category Name</label> 
                                                         <div class=" col-md-3">  
-                                                                <input class="form-control" name="item_name" id="item_name">
+                                                                <input class="form-control" name="cat_name" id="cat_name">
+                                            
                                                         </div>
                                                     </div>
                                                 </div>
                                          </div>
 
-
-                                                                                  <div class="row">
-                                            <div class="form-group">
-                                              <div class="form-group">
-                                                        <label class="col-md-2" >Category</label> 
-                                                        <div class=" col-md-4">  
-                                                                <select class="form-control" name="cat_id" id="cat_id">
-                                                            <?php foreach ($lvl as $key) {
-                                                                ?>
-                                                                <option value="<?= $key->catt_id; ?>" > <?= $key->cat_name; ?></option>
-                                                                <?php
-                                                            } ?>
-                                                            
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                          </div>
-                                        </div>
-                                        <div class="row">
-                                                <div class="form-group">
-                                                <div class="clear" style="height:10px;"></div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-2" >Description</label> 
-                                                        <div class="clear" style="height:20px;"></div>
-                                                     <div class=" col-md-12">  
-                                                <textarea name="item_desc" id="item_desc" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                                       </div>
-                                                    </div>
-                                                </div>
-                                        </div>
-
-
-                                        
-
-                                        
+                                    
                         
                                         <div class="clear" style="height: 50px;"></div>
                                          <div class="row">
                                             <div class=" col-md-5">
-                                                <button type="submit" class="btn btn-success">Add Item</button>
+                                                <button type="submit" class="btn btn-success">Add Category</button>
                                                 <button type="reset" class="btn btn-danger">Cancel</button>
                                             </div> 
                                         </div>  

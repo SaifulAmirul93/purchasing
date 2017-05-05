@@ -58,12 +58,16 @@
 </div>
 
 <div class=" col-md-4">
-    <div class="form-group">
-        <label>GST (%)</label>
-        <input class="form-control"  name="gst" id="gst">
-        <!-- <p class="help-block">Example block-level help text here.</p> -->
-    </div>
-</div>
+                                         <div class="form-group">
+                                            <label>Currency</label>
+                                            <select class="form-control" name="currency" id="currency">
+                                            <option value="0">--Select Currency--</option>
+                                            <option value="1">MYR</option>
+                                            <option value="2">USD</option>
+                                            </select>
+                                            
+                                        </div>
+                                        </div>
         <?php
     }else{
         ?>
@@ -122,12 +126,17 @@
 </div>
 
 <div class=" col-md-4">
-    <div class="form-group">
-        <label>GST (%)</label>
-        <input class="form-control"  name="gst" id="gst">
-        <!-- <p class="help-block">Example block-level help text here.</p> -->
-    </div>
-</div>
+                                         <div class="form-group">
+                                            <label>Currency</label>
+                                            <select class="form-control" name="currency" id="currency">
+                                            <option value="0">--Select Currency--</option>
+                                            <option value="1">MYR</option>
+                                            <option value="2">USD</option>
+                                            </select>
+                                            
+                                        </div>
+                                        </div>
+
  <?php
     }
 ?>

@@ -53,6 +53,7 @@
         public function login($email,$pass)
         {           
             //$this->load->library("my_func");
+            //echo "<script>alert($pass)</script>";
             $data = array(
                 'us_email' => $email 
             );
@@ -62,11 +63,13 @@
             $result = $this->db->get()->result();
            
             if ($result) {
+                $p=$result[0]->us_pass;
+                
                 if ($result[0]->us_pass === $pass) {
                     return array_shift($result);
                 }               
             }
-            //return false;
+            return false;
         }
     
         /**

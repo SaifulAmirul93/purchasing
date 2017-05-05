@@ -83,13 +83,30 @@
 
                                         <div class=" col-md-4">
                                          <div class="form-group">
-                                            <label>GST (%)</label>
-                                            <input class="form-control"  name="gst" id="gst" disabled="">
-                                            <!-- <p class="help-block">Example block-level help text here.</p> -->
+                                            <label>Currency</label>
+                                            <select class="form-control" name="currency" id="currency">
+                                            <option value="0">--Select Currency--</option>
+                                            <option value="1" <?php if($arr['purchase']->currency == 1){echo "selected";} ?>>MYR</option>
+                                            <option value="2" <?php if($arr['purchase']->currency == 2){echo "selected";} ?>>USD</option>
+                                            </select>
+                                            
                                         </div>
                                         </div>
 
                                         </div>
+                                        <div class="row">
+                                        <div class=" col-md-4 pull-right">
+                                         <div class="form-group">
+                                            <label>Quantity Unit</label>
+                                            <select class="form-control" name="currency" id="currency">
+                                            <option value="0">--Select Unit--</option>
+                                            <option value="1" <?php if($arr['purchase']->unit == 1){echo "selected";} ?>>PCS</option>
+                                            <option value="2" <?php if($arr['purchase']->unit == 2){echo "selected";} ?>>KG</option>
+                                            </select>
+                                            
+                                        </div>
+                                        </div>
+                                    </div>
                                         <div class="row">
 
                                         <div class="col-lg-12">
@@ -106,9 +123,9 @@
                                                                             <tr>
                                                                                 
                                                                                 <th>Item Detial</th>
-                                                                                <th>Quantitty</th>
+                                                                                <th>Quantity</th>
                                                                                 <th>Unit Price</th>
-                                                                                <th>GST</th>
+                                                                                <!-- <th>GST</th> -->
                                                                                 <th>Action</th>
                                                                             </tr>
                                                                         </thead>
@@ -128,9 +145,9 @@
                                                                                 <br/>
                                                                                 <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span></td>
                                                                                                                            
-                                                                                <td><input type="number" name="price[]" id="inputPrice" min="0" step="any" class="quantity form-control" value="<?= $key->pi_price; ?>" required="required"></td>
-                                                                                <td><input type="number" name="qty[]" id="inputQty" min="0" class="price form-control" required="required" value="<?= $key->pi_qty; ?>"></td>
-                                                                                <td><input type="number" name="gst[]" id="inputGst" min="0" class="price form-control" required="required"  value="<?= $key->pi_gst; ?>"></td>
+                                                                                <td><input type="number" name="qty[]" id="inputPrice" min="0" step="any" class="quantity form-control" value="<?= $key->pi_qty; ?>" required="required"></td>
+                                                                                <td><input type="number" name="price[]" id="inputQty" min="0" class="price form-control" required="required" value="<?= $key->pi_price; ?>"></td>
+                                                                                <!-- <td><input type="number" name="gst[]" id="inputGst" min="0" class="price form-control" required="required"  value="<?= $key->pi_gst; ?>"></td> -->
                                                                                 <td><span><button type="button" class="btn btn-danger btn-xs delBtn"><i class="fa fa-trash" ></i></button></span>
                                                                                <!--  <input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="<?= $key->it_id; ?>>"> -->
                                                                               <!--  <input type="hidden" name="cattId[]" id="cattId[]" class="form-control" value="<?= $key->cat_id; ?>"> -->
@@ -189,6 +206,7 @@
                                                 
                                                   
                                                 </div>
+
                                                 <br>
                                                 <button type="button" class="btn btn-primary" disabled="true" id="addBtn"><i class="fa fa-plus"></i>Add Item</button>
                                             </div>
@@ -197,6 +215,48 @@
                                             </div> -->
                                             </div>
                                         </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-info">
+                                                    <div class="panel-heading">
+                                                     Payment Note
+                                                    </div>
+
+                                                    <div class="panel-body">
+                                                    <div class="row">
+                                                    <div class="form-group">
+                                                    <label class="col-sm-2">Payment Status :</label>
+                                                        <div class="mt-radio-inline">
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="pay" value="0" <?php if($arr['purchase']->pay == 0){echo "checked";} ?>>
+                                                                <strong>Unpaid</strong>
+                                                            <span></span>
+                                                        </label>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="pay" value="1" <?php if($arr['purchase']->pay == 1){echo "checked";} ?>>
+                                                                <strong>50% Payment</strong>
+                                                            <span></span>
+                                                        </label>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="pay" value="2" <?php if($arr['purchase']->pay == 2){echo "checked";} ?>>
+                                                                <strong>Full Payment</strong>
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+
+                                                   
+
+                                                 
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="clear" style="height: 20px;"></div>

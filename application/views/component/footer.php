@@ -33,3 +33,6 @@
      <!-- Validate JavaScript -->
     <script src="<?= base_url(); ?>dist/validate/additional-methods.js"></script> 
 
+    <script src="<?= base_url(); ?>dist/bootbox/bootbox.min.js" type="text/javascript"></script>
+
+    <script src="<?= base_url(); ?>dist/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>

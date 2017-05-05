@@ -61,24 +61,33 @@
                   -->
                     </div>
                         <div class="clear" style="height:30px;"></div>
-                        <h1 class="panel-title" align="center">Welcome senpai!!!</h1>
+                        <h1 class="panel-title" align="center">CHECK YOUR PURCHASE HERE</h1>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="<?= site_url('Login/signin'); ?>" method="post">
+                        <form role="form" action="<?= site_url('purchase/search'); ?>" method="post">
                             <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" id="us_email" name="us_email" type="email" autofocus required="">
-                                </div>
-                                <div class="form-group">
+                                <select class="form-control" name="prjk_id" id="prjk_id">
+                                            <option value="-1">--Select Project Code--</option>
+                                                <?php foreach ($prjk as $key) {
+                                                                ?>
+                                                                <option value="<?= $key->projek_id; ?>" > <?= $key->project_code; ?>
+                                                                    
+                                                                </option>
+                                                                <?php
+                                                            } ?>
+                                            </select>
+
+                                            <br>
+                                <!-- <div class="form-group">
                                     <input class="form-control" placeholder="Password" id="us_pass" name="us_pass" type="password"  required="">
-                                </div>
+                                </div> -->
                                 <!-- <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div> -->
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">Check</button>
                             </fieldset>
                         </form>
                     </div>

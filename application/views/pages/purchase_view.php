@@ -78,7 +78,17 @@
 
                                                                 <div class=" col-md-4">
                                                                      <div class="form-group">
-                                                                        <label class="control-label">GST (%) : </label>
+                                                                        <label class="control-label">Currency (%) : 
+                                                                        <?php if($arr['purchase']->currency == 1){
+
+                                                                            echo "MYR";}
+                                                                        else if($arr['purchase']->currency == 2){
+                                                                            echo "USD";
+                                                                            } ?>
+
+
+
+                                                                        </label>
                                                                         
                                                                     </div>
                                                                 </div>
@@ -91,7 +101,43 @@
                                             </div>
                                         </div>
                                         </div>
+ <?php if ($arr['purchase']->unit ==1){
+          $unit="PCS";
 
+         }
+         else if ($arr['purchase']->unit ==2){
+          $unit="KG";
+
+         }
+           else {
+          $unit="Error";
+
+
+              
+         } 
+           if($arr['purchase']->currency == 1){
+                  $curr="MYR";
+              }else if($arr['purchase']->currency == 2){
+                  $curr="USD";
+              }
+              else{
+                  $curr="Error";
+              }
+               if($arr['purchase']->pay == 0){
+                  $pay="Unpaid";
+              }else if($arr['purchase']->pay == 1){
+                  $pay="50% paid";
+              }
+              else{
+                  $pay="Full Paid";
+              }
+
+
+
+
+
+
+         ?>
                                          <div class="row">
          <div class="col-lg-12">
 
@@ -108,7 +154,7 @@
                                                                                                         <th>Item Detial</th>
                                                                                                         <th>Quantitty</th>
                                                                                                         <th>Unit Price</th>
-                                                                                                        <th>GST</th>
+                                                                                                        
                                                                                                       
                                                                                                     </tr>
                                                                                                 </thead>
@@ -128,9 +174,9 @@
                                                                                                         <br/>
                                                                                                         <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span></td>
                                                                                                                                                    
-                                                                                                        <td><?= $key->pi_price; ?></td>
-                                                                                                        <td><?= $key->pi_qty; ?></td>
-                                                                                                        <td><?= $key->pi_gst; ?></td>
+                                                                                                        <td><?= $key->pi_qty; ?> <?= $unit; ?></td>
+                                                                                                        <td><?= $curr; ?> <?= number_format((float)$key->pi_price, 2, '.', '');?></td>
+                                                                                                        
                                                                                                         
                                                                                                      
                                                                                                         
@@ -146,6 +192,35 @@
                     </div>
             </div>
         </div>
+        <div class="col-lg-12">
+         <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-info">
+                                                    <div class="panel-heading">
+                                                     Payment Note
+                                                    </div>
+
+                                                    <div class="panel-body">
+                                                    <div class="row">
+                                                    <div class="form-group">
+                                                    <label class="col-sm-2">Payment Status :</label>
+                                                        <?= $pay; ?>
+                                                        </label>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+
+                                                   
+
+                                                 
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
   </div>
                                        
                                                             

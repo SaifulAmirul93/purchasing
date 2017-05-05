@@ -37,6 +37,23 @@
                                             </div>
                                             <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2">Project Code :</label>
+                                            <div class=" col-md-2">
+                                            <select class="form-control" name="prjk_id" id="prjk_id">
+                                            <option value="-1">--New Client--</option>
+                                                <?php foreach ($prjk as $key) {
+                                                                ?>
+                                                                <option value="<?= $key->projek_id; ?>" > <?= $key->project_code; ?>
+                                                                    
+                                                                </option>
+                                                                <?php
+                                                            } ?>
+                                            </select>
+                                            </div>
+                                            <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span>
+                                        </div>
                                         </div>
                                         <div class="row">
                                             <div class=" col-md-4">
@@ -97,16 +114,33 @@
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
-
+                                            
                                         <div class=" col-md-4">
                                          <div class="form-group">
-                                            <label>GST (%)</label>
-                                            <input class="form-control"  name="gst" id="gst">
-                                            <!-- <p class="help-block">Example block-level help text here.</p> -->
+                                            <label>Currency</label>
+                                            <select class="form-control" name="currency" id="currency">
+                                            <option value="0">--Select Currency--</option>
+                                            <option value="1">MYR</option>
+                                            <option value="2">USD</option>
+                                            </select>
+                                            
                                         </div>
                                         </div>
 
+</div>
+                                    <div class="row">
+                                        <div class=" col-md-4 pull-right">
+                                         <div class="form-group">
+                                            <label>Quantity Unit</label>
+                                            <select class="form-control" name="unit" id="unit">
+                                            <option value="0">--Select Unit--</option>
+                                            <option value="1">PCS</option>
+                                            <option value="2">KG</option>
+                                            </select>
+                                            
                                         </div>
+                                        </div>
+                                    </div>
                                         <div class="row">
 
                                         <div class="col-lg-12">
@@ -125,7 +159,7 @@
                                                                                 <th>Item Detial</th>
                                                                                 <th>Quantitty</th>
                                                                                 <th>Unit Price</th>
-                                                                                <th>GST</th>
+                                                                                <!-- <th>GST</th> -->
                                                                                 <th>Action</th>
                                                                             </tr>
                                                                         </thead>
@@ -186,6 +220,50 @@
                                             </div> -->
                                             </div>
                                         </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-info">
+                                                    <div class="panel-heading">
+                                                     Payment Note
+                                                    </div>
+
+                                                    <div class="panel-body">
+                                                    <div class="row">
+                                                    <div class="form-group">
+                                                    <label class="col-sm-2">Payment Status :</label>
+                                                        <div class="mt-radio-inline">
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="pay" value="0">
+                                                                <strong>Unpaid</strong>
+                                                            <span></span>
+                                                        </label>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="pay" value="1">
+                                                                <strong>50% Payment</strong>
+                                                            <span></span>
+                                                        </label>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="pay" value="2">
+                                                                <strong>Full Payment</strong>
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+
+                                                   
+
+                                                 
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="clear" style="height: 20px;"></div>

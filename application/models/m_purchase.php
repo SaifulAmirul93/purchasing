@@ -94,7 +94,7 @@ class M_purchase extends CI_Model {
             $this->db->join('user', 'user_id = us_id', 'left');            
             $this->db->join('supplier','supp_id = supplier_id', 'left');
             $this->db->join('purchase_item' , 'pur_id = purc_id' , 'left');            
-            
+            $this->db->join('project' , 'prjk_id = projek_id' , 'left'); 
               $result = $this->db->get()->result();
               $data = array();
 
@@ -134,10 +134,70 @@ class M_purchase extends CI_Model {
             //     return false;
             // }
         }
+        public function getSearch($where = null , $all=false )
+        {
+
+
+
+              $this->db->select('*');
+            $this->db->from(self::TABLE_NAME);
+            if ($where !== NULL) {
+                if (is_array($where)) {
+                    foreach ($where as $field=>$value) {
+                        $this->db->where($field, $value);
+                    }
+                } else {
+                    $this->db->where('prjk_id', $where);
+                }
+            }
+            if (!$all) {
+                $this->db->where('supplier_id >', 0);
+            }           
+            $this->db->join('supplier', 'supp_id = supplier_id', 'left');
+
+            if (!$all) {
+                $this->db->where('us_id >', 0);
+            }           
+            $this->db->join('user', 'user_id = us_id', 'left');
+
+            if (!$all) {
+                $this->db->where('pro_id >', 0);
+            }           
+            $this->db->join('process', 'pr_id = pro_id', 'left');
+
+            if (!$all) {
+                $this->db->where('projek_id >', 0);
+            }           
+            $this->db->join('project', 'pr_id = projek_id', 'left');
+            $result = $this->db->get()->result();
+            return $result;
+            // if ($result) {
+            //     if ($where !== NULL) {
+            //         return array_shift($result);
+            //     } else {
+            //         return $result;
+            //     }
+            // } else {
+            //     return false;
+            // }
+        }
 
          public function getLvl(){
             $this->db->select("*");
             $this->db->from('supplier');
+            $result = $this->db->get()->result();
+            return $result;
+        }
+         public function getCode($where = null){
+            $this->db->select("project_name");
+            $this->db->from('project');
+            $this->db->where('projek_id', $where);
+            $result = $this->db->get()->result();
+            return $result;
+        }
+        public function getPro(){
+            $this->db->select("*");
+            $this->db->from('project');
             $result = $this->db->get()->result();
             return $result;
         }
@@ -148,6 +208,26 @@ class M_purchase extends CI_Model {
             $result = $this->db->get()->result();
             return $result;
         }
+
+
+        public function updatePR($data = array(), $where = array()) {
+            if (!is_array($where)) {
+                $where =array(self::PRI_INDEX => $where);
+                $pr_id =array('pr_id' => $data);
+            }
+          $this->db->update(self::TABLE_NAME, $pr_id, $where);
+          return $this->db->affected_rows();
+      }
+
+      public function updateInv($data, $where = array()) {
+            if (!is_array($where)) {
+                $where =array(self::PRI_INDEX => $where);
+                $pr_inv =array('pr_inv' => $data);
+            }
+          $this->db->update(self::TABLE_NAME, $pr_inv, $where);
+          return $this->db->affected_rows();
+      }
+
 
         public function getAll($where = null , $all = false)
         {
@@ -176,6 +256,11 @@ class M_purchase extends CI_Model {
                 $this->db->where('pro_id >', 0);
             }           
             $this->db->join('process', 'pr_id = pro_id', 'left');
+
+            if (!$all) {
+                $this->db->where('projek_id >', 0);
+            }           
+            $this->db->join('project', 'pr_id = projek_id', 'left');
             $result = $this->db->get()->result();
             if ($result) {
                 if ($where !== NULL) {
