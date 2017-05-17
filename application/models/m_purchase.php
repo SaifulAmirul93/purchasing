@@ -219,6 +219,15 @@ class M_purchase extends CI_Model {
           return $this->db->affected_rows();
       }
 
+       public function updatePay($data = array(), $where = array()) {
+            if (!is_array($where)) {
+                $where =array(self::PRI_INDEX => $where);
+                $pay =array('pay' => $data);
+            }
+          $this->db->update(self::TABLE_NAME, $pay, $where);
+          return $this->db->affected_rows();
+      }
+
       public function updateInv($data, $where = array()) {
             if (!is_array($where)) {
                 $where =array(self::PRI_INDEX => $where);
@@ -257,10 +266,11 @@ class M_purchase extends CI_Model {
             }           
             $this->db->join('process', 'pr_id = pro_id', 'left');
 
-            if (!$all) {
-                $this->db->where('projek_id >', 0);
-            }           
-            $this->db->join('project', 'pr_id = projek_id', 'left');
+            // if (!$all) {
+            //     $this->db->where('projek_id >', 0);
+            // }           
+            // $this->db->join('project', 'prjk_id = projek_id', 'left');
+
             $result = $this->db->get()->result();
             if ($result) {
                 if ($where !== NULL) {

@@ -406,6 +406,8 @@
                      case "a29" :
                         $this->load->database();
                         $this->load->model('m_purchase');
+                        $this->load->model('m_project');
+                        $arr['lvl'] = $this->m_project->get();
                         $arr['arr'] = $this->m_purchase->getAll();
                         $this->_show('display', $key);
                         $this->load->view($this->parent_page.'/view_purchase',$arr);
@@ -722,6 +724,18 @@
 
                       break;
 
+                      case "acc1" :
+                        $this->load->database();
+                        $this->load->model('m_purchase');
+                        $this->load->model('m_project');
+                        $arr['lvl'] = $this->m_project->get();
+                        $arr['arr'] = $this->m_purchase->getAll();
+                        $this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/view_acc',$arr);
+                        
+                   break;
+
+
 
                     default:
                         //$this->_show();
@@ -823,6 +837,21 @@
                         //$this->load->view($this->parent_page.'/getAjaxUpload');
                       
         }
+          public function getAjaxUpload2()
+        {
+                        //$this->_show('display', $key);
+                        
+                            $arr = $this->input->post();
+                            $this->load->database();
+                            $this->load->model('m_payment');
+                            $temp = array(
+                                "ny_id" =>$this->input->post('pur_id')
+                            );
+                        $arr['img'] = $this->m_payment->getPaid($temp);   
+                        echo $this->load->view('pages/getAjaxUpload2', $arr, TRUE);
+                        //$this->load->view($this->parent_page.'/getAjaxUpload');
+                      
+        }
 
         public function uploadPaid()
         {
@@ -889,6 +918,71 @@
             
     
         }
+        public function uploadPaid2()
+        {
+
+
+            if ($this->input->post()) {
+               
+
+                $arr = $this->input->post();                
+                $this->load->database();
+                $this->load->model('m_payment');
+                $this->load->model('m_purchase');
+                //$this->load->library('my_func');
+                $this->load->library('upload');
+               
+
+
+                $config = array(
+                'upload_path' => "./dist/payment/",
+                'allowed_types' => "gif|jpg|png|jpeg|pdf",
+                'overwrite' => TRUE,
+                'max_size' => "4000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+                'max_height' => "1600",
+                'max_width' => "1600",
+                'encrypt_name' => true
+                );
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                
+                $pur_id = $this->input->post('pur_id');
+                $img_background = $this->input->post('fileImg');
+
+
+                 $result2=$this->upload->do_upload('fileImg');
+                 $data = $this->upload->data();
+                 $background="dist/payment/".$data['raw_name'].$data['file_ext'];
+               
+
+                
+
+
+
+
+                 $arr2 = array(
+                            
+                            "image_url" => $background,
+                            "ny_id" => $arr['pur_id'] 
+                            
+                            
+                           
+                        );           
+                
+               //$result=$this->m_purchase->updateInv(1, $pur_id);
+                $this->m_payment->insert($arr2);
+                $this->session->set_flashdata('success' , '<b>Well done!</b> You successfully send the picture.');
+                redirect(site_url('purchase_v1/dashboard/page/acc1'),'refresh');
+            }else{
+                $this->session->set_flashdata('warning' , '<b>Uh Crap!</b> You got Error. The image size is to big');
+                redirect(site_url('purchase_v1/dashboard/page/acc1'),'refresh');
+            }
+        
+
+
+            
+    
+        }
 
 
 
@@ -938,6 +1032,52 @@
 
                     
         }
+
+               public function change_pay()
+                {
+                
+                //if ($this->input->post('or_id')){
+                //echo "<script>alert('test');</script>";
+                //$this->load->library('my_func'); 
+                $pur_id = $this->input->post('pur_id');
+                //$or_id = $this->my_func->scpro_decrypt($this->input->post('or_id'));
+                $pay = $this->input->post('pay');
+                $this->load->database();
+                $this->load->model('m_purchase');
+
+               
+/*
+                  1 - New Order
+                    2 - In Progress
+                    3 - Complete
+                    4 - Unconfirm
+                    5 - Cancel
+                    6 - Cancel In Progress
+                    7 - On Hold In Progress
+                    8 - ROS
+                    9 - DOC
+                    10 - RTS
+                    11 - Shipping
+                    12 - Arrived
+                    13 - Return */
+                    $result=$this->m_purchase->updatePay($pay, $pur_id);
+                    if($result){
+                    $this->session->set_flashdata('success', 'Your order status is updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'Your order status is not updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+                    }
+
+                // }
+                // else{
+                //     return false;
+                // }
+
+                    
+                     }
 
               public function updateUser()
               {
@@ -1206,6 +1346,23 @@
                 }
               }
 
+         public function getAjaxDelImg()
+        {
+            $pi_id = $this->input->post("pi_id");            
+            $this->load->database();
+            $this->load->model("m_picture");
+            $img = $this->m_picture->get($pi_id);
+            $this->load->helper('file');            
+            if (unlink('./assets/uploads/img/'.$img->img_url)) {
+                $this->m_picture->delete($pi_id);
+                echo "true";
+            }else{
+                echo "false";
+            }            
+        }
+
+
+
               public function getAjaxImg()
         {
             
@@ -1214,6 +1371,16 @@
             $this->load->model("m_picture");
             $arr['img'] = $this->m_picture->getPaid(array("ne_id" => $ne_id));
             echo $this->load->view('pages/getAjaxImg', $arr , TRUE);
+        }
+
+              public function getAjaxImg2()
+        {
+            
+            $ny_id =$this->input->post("pur_id");            
+            $this->load->database();
+            $this->load->model("m_payment");
+            $arr['img'] = $this->m_payment->getPaid(array("ny_id" => $ny_id));
+            echo $this->load->view('pages/getAjaxImg2', $arr , TRUE);
         }
 
 

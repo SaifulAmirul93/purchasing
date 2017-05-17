@@ -131,16 +131,16 @@ body .ReadOnlyExtrasStatus {
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>OrdYs v2.3.0 Alpha</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NASTY Purchasing System</title>
 
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	</head>
-	<body style="background-color:#EAEDED">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  </head>
+  <body style="background-color:#EAEDED">
 
 
 
@@ -178,23 +178,23 @@ body .ReadOnlyExtrasStatus {
         <img class="contemporary-template__business-logo" src="<?= base_url(); ?>dist/img/formlogo.jpg" width="400" height="157"/>
       
    
-  	<div class="pull-right" style="text-align: right;">
+    <div class="pull-right" style="text-align: right;">
       <h3>PURCHASE ORDER</h3>
       <!-- <strong>NSTY WORLDWIDE SDN BHD</strong> -->
       
  <!--        <div class="contemporary-template__header__info__address">
           
-		  Lot 139, 1st Floor, Jalan Besar Tampin,<br>
-		  Tampin,
-		  Negeri Sembilan  73000<br>
-		  Malaysia<br>
+      Lot 139, 1st Floor, Jalan Besar Tampin,<br>
+      Tampin,
+      Negeri Sembilan  73000<br>
+      Malaysia<br>
 
-		<br>
+    <br>
 
- 		 Phone:  +6012 3437638<br>
+     Phone:  +6012 3437638<br>
 
- 		 Mobile: +6013 6777791<br>
-  			<span class="wrappable">www.nastyjuice.com<br></span>
+     Mobile: +6013 6777791<br>
+        <span class="wrappable">www.nastyjuice.com<br></span>
         </div> -->
         </div>
       
@@ -224,6 +224,7 @@ body .ReadOnlyExtrasStatus {
     <div class="pull-left">
       <div class="contemporary-template__metadata__customer--billing">
         <div class="contemporary-template__metadata__customer__address-header"><strong>TO </strong></div>
+        <div class="clearfix" style="height: 10px"></div>
         <strong>NAME : <?= $arr['purchase']->supplier_name; ?></strong>
 
         <br>
@@ -231,13 +232,13 @@ body .ReadOnlyExtrasStatus {
 
        
           
-  	
+    
 
-				  <br>
+          <br>
         <strong>ADDRESS : <?= $arr['purchase']->supplier_address; ?></strong>
         <br>
         <strong>PHONE : <?= $arr['purchase']->supplier_contact; ?></strong>
-				
+        
         
       </div>
       
@@ -245,10 +246,9 @@ body .ReadOnlyExtrasStatus {
 
     <div class="pull-right">
     <br>
-      <table>
-        <tr>
-          <td style="text-align: left;">
-            <strong>PURCHASE NO. :
+     <div class="contemporary-template__metadata__customer--billing">
+        <!-- <div class="contemporary-template__metadata__customer__address-header"><strong>TO </strong></div> -->
+        <strong>PURCHASE NO. :
               <?php 
                                             if ($arr['purchase']->pur_id) {
                                                 $id = '#'.(110000+$arr['purchase']->pur_id);
@@ -261,59 +261,36 @@ body .ReadOnlyExtrasStatus {
 
 
              </strong>
-          </td>
-          <td></td>
-        
-        </tr>
-          <tr>
-          <td style="text-align: left;">
-            <strong>PROJECT CODE. :
-              <?= $arr['purchase']->project_code; ?>
+             <br>
+        <strong>PROJECT CODE : <?= $arr['purchase']->project_code; ; ?></strong>
 
+        <br>
+        <strong>P.O DATE : <?= $arr['purchase']->pur_date; ?></strong>
 
-
-             </strong>
-          </td>
-          <td></td>
-        
-        </tr>
-        <tr>
-          <td style="text-align: left;">
-            <strong>P.O DATE : <?= $arr['purchase']->pur_date; ?></strong>
-          </td>
-          <td></td>
+       
           
-        </tr>
-        <tr>
-          <td style="text-align: left;">
-            <strong>REQUESTIONER : <?= $arr['purchase']->supplier_name; ?></strong>
-          </td>
-          <td></td>
-         
-        </tr>
-         <tr>
-          <td style="text-align: left;">
-            <strong>SHIPPED VIA : </strong>
-          </td>
-          <td></td>
-         
-        </tr>
-      <tr>
-          <td style="text-align: left;">
-            <strong>TERMS : </strong>
-          </td>
-          <td></td>
-         
-        </tr>
-      </table>
+    
+
+          <br>
+        <strong>REQUESTIONER : <?= $arr['purchase']->us_username; ?></strong>
+        <br>
+        <strong>PHONE : <?= $arr['purchase']->supplier_contact; ?></strong>
+        <br>
+        <strong>SHIPPED VIA : </strong>
+        <br>
+        <strong>TERMS : </strong>
+        
+      </div>
    </div>
   </section>
+<div class="clear" style="height: 100px;"></div>
 <div class="clear" style="height: 100px;"></div>
 <div class="clear" style="height: 100px;"></div>
   <div class="contemporary-template__items">
     <table class="table table-bordered">
       <thead style="background-color: #FFFFFF;">
         <tr>
+        <th style="color: #000000;" align="center">Item Code</th>
           <th colspan="8" style="color: #000000;" align="center">Description</th>
           <th style="color: #000000;" align="center">Quantity</th>
           <th style="color: #000000;" align="center">Unit Price</th>
@@ -367,6 +344,7 @@ body .ReadOnlyExtrasStatus {
             ?>
 
          <tr>
+         <td colspan="1" style="color: #000000;" style="width:20px;"><?= $key->sku_code; ?>-<?= $key->item_id; ?></td>
           <td colspan="8" style="color: #000000;">
           <strong><?= $key->item_name; ?></strong><br>
           <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span>
@@ -391,11 +369,11 @@ body .ReadOnlyExtrasStatus {
       
       
          <tr>
-        <td style="color: #000000;text-align: right;" colspan="10"><strong>SUB TOTAL : </strong></td>
+        <td style="color: #000000;text-align: right;" colspan="11"><strong>SUB TOTAL : </strong></td>
           <td style="color: #000000;"><?= $curr; ?> <?= number_format((float)$sub_total, 2, '.', '');?> </td>
         </tr>
          <tr>
-        	  
+            
                <?php 
 
 
@@ -404,7 +382,7 @@ body .ReadOnlyExtrasStatus {
 
           $grand=$sub_total+$gst; ?>
           <tr>
-          <td style="color: #000000;text-align: right;" colspan="10"><strong>6% GST:</strong></td>
+          <td style="color: #000000;text-align: right;" colspan="11"><strong>6% GST:</strong></td>
           <td style="color: #000000;"><?= $curr; ?> <?= number_format((float)$gst, 2, '.', '');?> </td>
           </tr>
           <?php
@@ -419,7 +397,7 @@ body .ReadOnlyExtrasStatus {
       ?>
         
         
-          <td style="color: #000000;text-align: right;" colspan="10"> <strong>GRAND TOTAL :</strong></td>
+          <td style="color: #000000;text-align: right;" colspan="11"> <strong>GRAND TOTAL :</strong></td>
           <td style="color: #000000;"><?= $curr; ?> <?= number_format((float)$grand, 2, '.', '');?></td>
         </tr>      
       </tbody>
@@ -429,16 +407,16 @@ body .ReadOnlyExtrasStatus {
 <!-- invoice end -->
 <footer>
 <div class="clear" style="height: 100px;"></div>
-		<!-- jQuery 
-		<script src="//code.jquery.com/jquery.js"></script>-->
-		<!-- Bootstrap JavaScript 
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
-	</body>
+    <!-- jQuery 
+    <script src="//code.jquery.com/jquery.js"></script>-->
+    <!-- Bootstrap JavaScript 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
+  </body>
 </html>
 <script>
 
     
-	 	//window.print();
+    window.print();
 
-	
-	</script>
+  
+  </script>

@@ -67,10 +67,22 @@
 
                                         <div class="row">
                                             <div class=" col-md-4">
-                                                <h3 class="page-header">Item Detial</h3>
+                                                <h3 class="page-header">Item Detail</h3>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                                <div class="form-group">
+                                                
 
+                                                    <div class="form-group">
+                                                        <label class="col-md-2" >Item Code</label> 
+                                                        <div class=" col-md-3">  
+                                                                <input class="form-control" name="item_name" id="item_name" value="<?= $arr->item_name; ?>">
+                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                         </div>
                                         <div class="row">
                                                 <div class="form-group">
                                                 

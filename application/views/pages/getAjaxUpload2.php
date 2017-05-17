@@ -15,10 +15,10 @@
 	            	<div class="col-md-6">
 	            	<div class="panel panel-info">
 	            	<div class="panel-heading">
-                            Upload Invoice Proof For 
+                            Upload Payment Proof For 
                     </div>	
                     <div class="panel-body">				
-	            		<form action="<?= site_url('purchase_v1/dashboard/uploadPaid'); ?>" method="POST" role="form" enctype="multipart/form-data">
+	            		<form action="<?= site_url('purchase_v1/dashboard/uploadPaid2'); ?>" method="POST" role="form" enctype="multipart/form-data">
 	            		
 					       
 					        <div class="portlet-body flip-scroll" align="center">

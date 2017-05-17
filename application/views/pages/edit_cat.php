@@ -70,7 +70,19 @@
                                                 <h3 class="page-header">Category Detial</h3>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                                <div class="form-group">
+                                                
 
+                                                    <div class="form-group">
+                                                        <label class="col-md-2" >SKU Code</label> 
+                                                        <div class=" col-md-3">  
+                                                                <input class="form-control" name="sku_code" id="sku_code" value="<?= $arr->sku_code; ?>">
+                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                         </div>
                                         <div class="row">
                                                 <div class="form-group">
                                                 

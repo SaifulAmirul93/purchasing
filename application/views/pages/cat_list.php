@@ -48,6 +48,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>SKU Code</th>
                                             <th>Category Name</th>
                                             
                                             
@@ -65,6 +66,7 @@
                                         ?>
                                         <tr>
                                             <td><?= $n; ?></td>
+                                            <td><?= $cat->sku_code; ?> </td>
                                             <td><?= $cat->cat_name; ?> </td>
                                          
                                             </td>

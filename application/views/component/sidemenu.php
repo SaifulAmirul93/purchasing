@@ -46,7 +46,7 @@
                             <ul class="nav nav-second-level">
                     
                                 <li>
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a21'); ?>">Purchase List</a>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/acc1'); ?>">Purchase List</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

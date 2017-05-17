@@ -146,7 +146,7 @@
                                                                                 <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span></td>
                                                                                                                            
                                                                                 <td><input type="number" name="qty[]" id="inputPrice" min="0" step="any" class="quantity form-control" value="<?= $key->pi_qty; ?>" required="required"></td>
-                                                                                <td><input type="number" name="price[]" id="inputQty" min="0" class="price form-control" required="required" value="<?= $key->pi_price; ?>"></td>
+                                                                                <td><input type="text" name="price[]" id="inputQty" min="0" class="price form-control" required="required" value="<?= $key->pi_price; ?>"></td>
                                                                                 <!-- <td><input type="number" name="gst[]" id="inputGst" min="0" class="price form-control" required="required"  value="<?= $key->pi_gst; ?>"></td> -->
                                                                                 <td><span><button type="button" class="btn btn-danger btn-xs delBtn"><i class="fa fa-trash" ></i></button></span>
                                                                                <!--  <input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="<?= $key->it_id; ?>>"> -->
