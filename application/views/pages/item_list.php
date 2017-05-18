@@ -48,6 +48,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Item Code</th>
                                             <th>Item Name</th>
                                             <th>Category</th>
                                             
@@ -65,6 +66,12 @@
                                         ?>
                                         <tr>
                                             <td><?= $n; ?></td>
+
+                                            <td>
+                                            <?php if($item->sku_code!=null){?>
+                                            <?= $item->sku_code; ?>-<?= $item->sku_no; ?>
+                                             <?php }?>   
+                                            </td>
                                             <td><?= $item->item_name; ?> </td>
                                             <td><?= $item->cat_name; ?>
                                             </td>

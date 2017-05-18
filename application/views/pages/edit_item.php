@@ -77,7 +77,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-2" >Item Code</label> 
                                                         <div class=" col-md-3">  
-                                                                <input class="form-control" name="item_name" id="item_name" value="<?= $arr->item_name; ?>">
+                                                                <input class="form-control" name="sku_no" id="sku_no" value="<?= $arr->sku_no; ?>">
                                             
                                                         </div>
                                                     </div>

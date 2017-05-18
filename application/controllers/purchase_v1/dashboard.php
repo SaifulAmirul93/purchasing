@@ -49,14 +49,18 @@
         switch ($key) {
                 case "a1" :// dashboard
                         //start added
-                      /*  $this->load->database();
-                        $this->load->model('m_order');*/
-                         
-                     
-                        //end added
-                        //$this->load->view($this->parent_page.'/dashboard');
+                       $this->load->database();
+                        $this->load->model('m_purchase');
+
+                        $arr['enquiry'] = $this->m_purchase->countPurType(1);
+                         $arr['nego'] = $this->m_purchase->countPurType(2);
+                         $arr['inv'] = $this->m_purchase->countPurType(3);
+                         $arr['happy'] = $this->m_purchase->countPurType(4);
+                         $arr['etd'] = $this->m_purchase->countPurType(5);
+                         $arr['arr'] = $this->m_purchase->countPurType(6);
+                        
                         $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/dashboard', true);
+                        $this->load->view($this->parent_page.'/dashboard',$arr);
                         
                         
                    break;   

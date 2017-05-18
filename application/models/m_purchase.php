@@ -44,7 +44,25 @@ class M_purchase extends CI_Model {
             return false;
         }
     }
-
+       public function countPurType($num = 0){
+      
+          if($num != 0){
+            $this->db->where('pr_id', $num);
+          $this->db->from('purchase');
+          // if ($ver != -1) {
+          //   $this->db->where('or_ver', $ver);
+          // }
+            $result = $this->db->count_all_results();
+            }
+            // else{
+          //   $this->db->from('order');
+          //   if ($ver != -1) {
+          //   $this->db->where('or_ver', $ver);
+          // }
+          //   $result = $this->db->count_all_results();
+          //   }
+            return $result;
+        }
     /**
      * Inserts new data into database
      *

@@ -344,7 +344,7 @@ body .ReadOnlyExtrasStatus {
             ?>
 
          <tr>
-         <td colspan="1" style="color: #000000;" style="width:20px;"><?= $key->sku_code; ?>-<?= $key->item_id; ?></td>
+         <td colspan="1" style="color: #000000;" style="width:20px;"><?= $key->sku_code; ?>-<?= $key->sku_no; ?></td>
           <td colspan="8" style="color: #000000;">
           <strong><?= $key->item_name; ?></strong><br>
           <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span>

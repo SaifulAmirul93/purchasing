@@ -75,6 +75,20 @@
                                         </div>
                                         <div class="row">
                                                 <div class="form-group">
+                                                
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-2" >SKU Code</label> 
+                                                        <div class=" col-md-3">  
+                                                                <input class="form-control" name="sku_no" id="sku_no">
+                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                         </div>
+
+                                        <div class="row">
+                                                <div class="form-group">
                                                     <div class="form-group">
                                                         <label class="col-md-2" >Item Name</label> 
                                                         <div class=" col-md-3">  
