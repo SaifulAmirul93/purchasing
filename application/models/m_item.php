@@ -112,6 +112,21 @@ class M_item extends CI_Model {
         return $this->db->affected_rows();
     }
 
+     public function totalByOrder()
+    {
+        $this->db->select('ord.pur_date as date,MONTH(ord.pur_date) AS bulan , YEAR(ord.pur_date) as tahun, sum(ori.pi_qty) as total');
+        $this->db->from('purchase_item ori');
+        //$this->db->join('order_ext ox', 'ox.orex_id = ori.orex_id', 'left');
+        $this->db->join('purchase ord', 'ori.purc_id = ord.pur_id', 'left');
+        //$this->db->group_by('ori.orex_id');
+        //$this->db->where('ord.or_del', 0);
+        $this->db->group_by('date(ord.pur_date)');
+        $this->db->order_by('ord.pur_date', 'asc');
+       
+        $result = $this->db->get()->result();
+        return $result;
+    }
+
 
       // public function getList()
       //   {

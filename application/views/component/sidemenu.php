@@ -15,7 +15,8 @@
                         <li>
                             <a href="<?= site_url('purchase_v1/dashboard/page/a1'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-
+                        <?php $us_lvl = $this->session->userdata('ul_id');?>
+                        <?php if($us_lvl != 4 ){?>
                          <li>
                             <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Purchase<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -23,12 +24,12 @@
                                     <a href="<?= site_url('purchase_v1/dashboard/page/a22'); ?>">Add Purchase</a>
                                 </li>
                                 <li>
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a29'); ?>">View Purchase</a>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/a29'); ?>">Purchase List</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-
+                        <?php }?>
                          <!-- <li>
                             <a href="#"><i class="fa fa-list fa-fw"></i> Purchasing<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -39,7 +40,7 @@
                             </ul>
                             
                         </li> -->
-                        <?php $us_lvl = $this->session->userdata('ul_id');?>
+                        
                         <?php if($us_lvl != 2 && $us_lvl != 3 ){?>
                          <li>
                             <a href="#"><i class="fa fa-calculator fa-fw"></i> Accounting<span class="fa arrow"></span></a>
@@ -52,7 +53,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <?php }?>
-                      
+                      <?php if($us_lvl != 4 ){?>
                          <li>
                             <a href="#"><i class="fa fa-gift fa-fw"></i> Item<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -66,6 +67,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <?php } ?>
+                        <?php if($us_lvl != 4 ){?>
                          <li>
                             <a href="#"><i class="fa fa-list fa-fw"></i> Categories<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -79,6 +82,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                         <?php } ?>
+                         <?php if($us_lvl != 4 ){?>
                             <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Supplier<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -90,7 +95,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <?php if($us_lvl != 2 && $us_lvl != 3 ){?>
+                        <?php } ?>
+                        <?php if($us_lvl != 2 && $us_lvl != 3 && $us_lvl != 4){?>
                              <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i> User<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

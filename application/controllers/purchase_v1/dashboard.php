@@ -58,6 +58,7 @@
                          $arr['happy'] = $this->m_purchase->countPurType(4);
                          $arr['etd'] = $this->m_purchase->countPurType(5);
                          $arr['arr'] = $this->m_purchase->countPurType(6);
+
                         
                         $this->_show('display', $key);
                         $this->load->view($this->parent_page.'/dashboard',$arr);
@@ -1387,7 +1388,13 @@
             echo $this->load->view('pages/getAjaxImg2', $arr , TRUE);
         }
 
-
+public function getAjaxGraph()
+        {
+            $this->load->database();
+            $this->load->model('m_item');
+            $arr['arr'] = $this->m_item->totalByOrder();
+            echo $this->load->view('pages/getAjaxGraph', $arr, TRUE);
+        }
 
         public function logout()
     {
