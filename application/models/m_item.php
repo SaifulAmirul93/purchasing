@@ -114,9 +114,8 @@ class M_item extends CI_Model {
 
      public function totalByOrder()
     {
-        $this->db->select('ord.pur_date as date,MONTH(ord.pur_date) AS bulan , YEAR(ord.pur_date) as tahun, sum(ori.pi_qty) as total');
+        $this->db->select('ord.pur_date as date,MONTH(ord.pur_date) AS bulan , YEAR(ord.pur_date) as tahun, sum(ori.pi_price) as total');
         $this->db->from('purchase_item ori');
-        //$this->db->join('order_ext ox', 'ox.orex_id = ori.orex_id', 'left');
         $this->db->join('purchase ord', 'ori.purc_id = ord.pur_id', 'left');
         //$this->db->group_by('ori.orex_id');
         //$this->db->where('ord.or_del', 0);
@@ -128,31 +127,67 @@ class M_item extends CI_Model {
     }
 
 
-      // public function getList()
-      //   {
-
-
-      //       $arr = $this->db->select('*')->from(self::TABLE_NAME)->get();
-            
-            /*$this->db->select('*');
-            $this->db->from(self::TABLE_NAME);*/
-            /*  if ($where !== NULL) {
-            if (is_array($where)) {
-                foreach ($where as $field=>$value) {
-                    $this->db->where($field, $value);
-                }
-            } else {
-                $this->db->where(self::PRI_INDEX, $where);
+     public function totalByItem($year = null , $month = -1 , $cat = -1 , $item = -1, $supp = -1)
+    {
+        $this->db->select('pri.pi_id ,it.item_id as item_id, it.item_name as name, MONTH(pur.pur_date) as month , YEAR(pur.pur_date) as year , sum(pri.pi_qty) as total');
+        $this->db->from('purchase_item pri');
+        $this->db->join('purchase pur', 'pri.purc_id = pur.pur_id', 'left');
+        $this->db->join('item it' , 'it.item_id = pri.it_id' , 'left');
+        $this->db->join('category_item ct' , 'ct.catt_id = pri.cat_id' , 'left');
+        $this->db->join('supplier sp' , 'sp.supplier_id = pur.supp_id' , 'left');
+        //$this->db->group_by('ori.orex_id');
+        if ($year != null) {
+            $this->db->where('YEAR(pur.pur_date)', $year);
+            if ($month != -1) {
+                $this->db->where('MONTH(pur.pur_date)', $month);
             }
-        }*/
-
-           /* $arr = $this->db->get();*/
-
-           /* for ($i=0; $i < sizeof($result); $i++) { 
-                $result[$i]->supplier = $this->db->get()->result();
-            }*/
-        //     return $arr->result();
-        // }
+        }
+        
+        if ($cat != -1) {
+            $this->db->where('pri.cat_id', $cat);
+        }
+        if ($item != -1) {
+            $this->db->where('pri.it_id', $item);
+        }
+        if ($supp != -1) {
+            $this->db->where('pur.supp_id', $supp);
+        }
+         $this->db->group_by('pri.it_id');  
+        // $this->db->where('ord.or_del', 0);
+        $this->db->order_by('pur.pur_date', 'asc'); 
+        $result = $this->db->get()->result();
+        return $result;
+    }
+    public function totalByValue($year = null , $month = -1 , $cat = -1 , $item = -1, $supp = -1)
+    {
+        $this->db->select('pri.pi_id ,it.item_id as item_id, it.item_name as name, MONTH(pur.pur_date) as month , YEAR(pur.pur_date) as year , sum(pri.pi_price * pri.pi_qty) as price');
+        $this->db->from('purchase_item pri');
+        $this->db->join('purchase pur', 'pri.purc_id = pur.pur_id', 'left');
+        $this->db->join('item it' , 'it.item_id = pri.it_id' , 'left');
+        $this->db->join('category_item ct' , 'ct.catt_id = pri.cat_id' , 'left');
+        //$this->db->group_by('ori.orex_id');
+        if ($year != null) {
+            $this->db->where('YEAR(pur.pur_date)', $year);
+            if ($month != -1) {
+                $this->db->where('MONTH(pur.pur_date)', $month);
+            }
+        }
+        
+        if ($cat != -1) {
+            $this->db->where('pri.cat_id', $cat);
+        }
+        if ($item != -1) {
+            $this->db->where('pri.it_id', $item);
+        }
+         if ($supp != -1) {
+            $this->db->where('pur.supp_id', $supp);
+        }
+         $this->db->group_by('pri.it_id');  
+        // $this->db->where('ord.or_del', 0);
+        $this->db->order_by('pur.pur_date', 'asc'); 
+        $result = $this->db->get()->result();
+        return $result;
+    }
 
          public function getLvl(){
             $this->db->select("*");
@@ -189,6 +224,19 @@ class M_item extends CI_Model {
                 return false;
             }
         }
+        public function getName($where = NULL) 
+        {
+        
+
+                $this->db->select("item_name");
+                $this->db->from(self::TABLE_NAME);
+                $this->db->where('item_id', $where);
+                $result = $this->db->get()->result();
+
+                return array_shift($result);
+
+        }
+
 
     /**
      * Deletes specified record from the database

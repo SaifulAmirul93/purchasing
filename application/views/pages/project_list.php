@@ -1,5 +1,4 @@
 
-
 <body>
 
     <div id="wrapper">
@@ -13,11 +12,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Supplier List</h1>
+                        <h1 class="page-header">Project List</h1>
                     </div>
                  </div>
 
-                <div class="row">                   
+
+                 <div class="row">                   
                         <div class="col-md-12">
                     <?php if($this->session->flashdata('success')){ ?>
                             <div class="alert alert-success alert-dismissable">
@@ -44,6 +44,7 @@
                         </div>
                     </div>
 
+
                     <!-- /.col-lg-12 -->
                   
                      <div class="row">
@@ -60,8 +61,8 @@
                                 </div>
                             </div>
 
-                            <a href="<?= site_url('purchase_v1/dashboard/page/a62'); ?>">                             
-                            <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add Supplier</button>
+                            <a href="<?= site_url('purchase_v1/dashboard/page/d1'); ?>">                             
+                            <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add Project</button>
                             </a>
                        
 
@@ -70,52 +71,54 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example"  width="100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Company</th>
-                                            <th>Contact</th>
-                                            <th>Email</th>
+                                            <th>Project Code</th>
+                                            <th>Project Name</th>
+                                            <th>Department</th>
+                                            
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                <?php
+
+
+                                     <?php
                                 $n = 0; 
                                 
-                                    foreach ($arr as $supplier): 
+                                    foreach ($arr as $pj){
                                         $n++;
                                         ?>
-
-
                                         <tr>
                                             <td><?= $n; ?></td>
+
                                             <td>
-                                            <?php echo $supplier->supplier_name; ?> 
+                                            <?= $pj->project_code; ?>
                                             </td>
-                                            <td><?php echo $supplier->supplier_company; ?> </td>
-                                            <td><?php echo $supplier->supplier_contact; ?> </td>
-                                            <td><?php echo $supplier->supplier_email; ?></td>
+                                            <td><?= $pj->project_name; ?> </td>
+                                            <td><?= $pj->dp_name; ?>
+                                            </td>
                                             <td>
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c12?view=').$supplier->supplier_id; ?>" name="c5" title="View Supplier">
-                                            <button type="button" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></button></a>
+                                           <center>
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/d4?view=').$pj->projek_id; ?>" name="c5" title="View User">
+                                            <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
                                             &nbsp;&nbsp;&nbsp;
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c11?edit=').$supplier->supplier_id; ?>" name="c5" title="Edit Supplier">
-                                            <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
-                                            </a>
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/d3?edit=').$pj->projek_id; ?>" name="c5" title="Edit User">
+                                            <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button></a>
                                              &nbsp;&nbsp;&nbsp;
-                                             <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a13?delete=').$supplier->supplier_id; ?>" name="c5" title="Delete Supplier">
-                                             <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close"></i></button></a>
+                                             <button type="button" class="delBtn btn btn-danger btn-xs" title="Delete"  id="<?= $n.'del' ?>" name="<?= $n.'del' ?>"><i class="fa fa-close"></i></button>
+                                             <input type="hidden" class="form-control <?= $n.'del' ?>" name="item_id" id="item_id" value="<?= $pj->projek_id; ?>">
+                                           </center>
                                             </td>
                                         </tr>
-                                    <?php
-                                           endforeach;
+                                          <?php
+                                           }
                                 
                     
                                         ?>
-                                 
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -139,96 +142,55 @@
 
     </div>
     </div>
+    <!-- /#wrapper -->
+   <script>
+    $(document).ready(function() {
+    
 
- 
-  
-<script>
-function onDel() {
-        return confirm('Are You Sure ?');
-    }
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
 
+        $(".delBtn").click(function() {
 
+                    id = $(this).prop('id');
+                    
+                    project = $("."+id).val();
+                    
+                    bootbox.confirm({
+                        message: "Are you sure that you want to delete this project?",
+                        buttons: {
+                            confirm: {
+                                label: 'Yes',
+                                className: 'btn-success'
+                               
+                            },
+                            cancel: {
+                                label: 'No',
+                                className: 'btn-danger'
+                            }
+                        },
+                        callback: function (result) {
+                     if(result == true){
+                                
+                                $.post('<?= site_url('purchase_v1/dashboard/del_item'); ?>', {pj: project,del: 1}, function(data) {
+                                    
+                                    $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/d2'); ?>");
+                                    
+                                });
 
-
-
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-}
-
-
-
-
-
-
-
-
-    var $container = $('.task-container');
-    var $task = $('.todo-task');
-
-$task.draggable({
-    addClasses: false,
-    connectToSortable: ".task-container",
-});
-
-$container.droppable({
-    accept: ".todo-task"
-});
+                            }
+                            
+                            
+                        }
+                    });
 
 
-$(".ui-droppable").sortable({
-    placeholder: "ui-state-highlight",
-    opacity: .5,
-    helper: 'original',
-    beforeStop: function (event, ui) {
-        newItem = ui.item;
-    },
-    receive: function (event, ui) {
-//get task-type and task id.
-            console.log($(this).closest('.task-header').html());
-            var tasktype = $(this).closest('.task-type').html();
-            var taskid = $(this).closest('.task-no').html();
-
-            dropElement = $(this).closest('.ui-droppable').attr('id');
-            // console.log($(this).closest('.ui-droppable').attr('id'));
-
-            //save the status and the order of the item.
-            if (dropElement == "backlog")
-            {
-                // save the status of the item
-            }
-            else if (dropElement == "pending")
-            {
-                // save the status of the 
-            }
-            else if (dropElement == "inProgress")
-            {
-            }
-            else if (dropElement == "completed")
-            {
-            }
-    }
-}).disableSelection().droppable({
-    over: ".ui-droppable",
-    activeClass: 'highlight',
-    drop: function (event, ui) {
-        $(this).addClass("ui-state-highlight");
-    }
-});
+                });
 
 
-
-</script>
-
+    });
+    </script>
 
 
 

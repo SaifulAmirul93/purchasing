@@ -98,13 +98,31 @@
                                         <div class=" col-md-4 pull-right">
                                          <div class="form-group">
                                             <label>Quantity Unit</label>
-                                            <select class="form-control" name="currency" id="currency">
+                                            <select class="form-control" name="unit" id="unit">
                                             <option value="0">--Select Unit--</option>
-                                            <option value="1" <?php if($arr['purchase']->unit == 1){echo "selected";} ?>>PCS</option>
-                                            <option value="2" <?php if($arr['purchase']->unit == 2){echo "selected";} ?>>KG</option>
+                                            <?php foreach ($unit as $key) {
+                                                                            ?>
+                                                                            <option value="<?= $key->un_id; ?>" <?php if($key->un_id == $arr['purchase']->unit){echo " selected ";} ?>> <?= $key->un_desc; ?>
+                                                                                
+                                                                            </option>
+                                                                            <?php
+                                                                        } ?>
                                             </select>
                                             
                                         </div>
+                                        </div>
+                                    </div>
+
+                                     <div class="row">
+                                        <div class=" col-md-4 pull-right">
+                                                 <div class="form-group">
+                                                    <label>GST :</label>
+                                                    <input type="radio" name="gst" value="1" required="" <?php if($arr['purchase']->gst == 1){echo "checked";} ?>>
+                                                    <label>Yes</label>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <input type="radio" name="gst" value="0" <?php if($arr['purchase']->gst == 0){echo "checked";} ?>>
+                                                    <label>No</label>
+                                                </div>
                                         </div>
                                     </div>
                                         <div class="row">
@@ -122,7 +140,7 @@
                                                                         <thead>
                                                                             <tr>
                                                                                 
-                                                                                <th>Item Detial</th>
+                                                                                <th>Item Detail</th>
                                                                                 <th>Quantity</th>
                                                                                 <th>Unit Price</th>
                                                                                 <!-- <th>GST</th> -->
@@ -140,17 +158,16 @@
                                                                     } else {
                                                                         foreach ($arr['item'] as $key) {
                                                                             ?>
-                                                                            <tr>
+                                                                            <tr id="delBtn_<?= $key->pi_id;?>">
                                                                               <td style="width: 500px;"><?= $key->item_name; ?>
                                                                                 <br/>
                                                                                 <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span></td>
                                                                                                                            
-                                                                                <td><input type="number" name="qty[]" id="inputPrice" min="0" step="any" class="quantity form-control" value="<?= $key->pi_qty; ?>" required="required"></td>
-                                                                                <td><input type="text" name="price[]" id="inputQty" min="0" class="price form-control" required="required" value="<?= $key->pi_price; ?>"></td>
-                                                                                <!-- <td><input type="number" name="gst[]" id="inputGst" min="0" class="price form-control" required="required"  value="<?= $key->pi_gst; ?>"></td> -->
-                                                                                <td><span><button type="button" class="btn btn-danger btn-xs delBtn"><i class="fa fa-trash" ></i></button></span>
-                                                                               <!--  <input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="<?= $key->it_id; ?>>"> -->
-                                                                              <!--  <input type="hidden" name="cattId[]" id="cattId[]" class="form-control" value="<?= $key->cat_id; ?>"> -->
+                                                                                <td><input type="number" name="qty1[]" id="inputPrice" min="0" step="any" class="quantity form-control" value="<?= $key->pi_qty; ?>" required="required"></td>
+                                                                                <td><input type="text" name="price1[]" id="inputQty" min="0" class="price form-control" required="required" value="<?= $key->pi_price; ?>"></td>
+                                                                                
+                                                                                <td><span><button type="button" class="btn btn-danger btn-xs delBtn" id="<?= $key->pi_id;?>"><i class="fa fa-trash" ></i></button></span>
+                                                                               
                                                                                 <input type="hidden" name="idE[]" id="inputIdE" class="form-control" value="<?= $key->pi_id;?>">
                                                                                 </td>
                                                                                 </tr>
@@ -261,7 +278,9 @@
 
                                         <div class="clear" style="height: 20px;"></div>
                                         <button type="submit" class="btn btn-success">Update</button>
-                                        <button type="reset" class="btn btn-danger">Reset</button> 
+                                        <a href="<?= site_url('purchase_v1/dashboard/page/a29'); ?>" name="c5">  
+                                        <button type="button" class="btn btn-danger">Back</button> 
+                                        </a>
                                         <div class="clear" style="height: 20px;"></div>                   
                     </form>
                 
@@ -334,6 +353,53 @@ $(document).ready(function() {
                 });
             });     
         });
+
+        $('.delBtn').click(function() {
+                pi_id = $(this).prop('id');
+            //     if(confirm("Are you sure? This will auto delete permanently in the database!!!")){
+            //     $.post('<?= site_url("purchase_v1/dashboard/getAjaxDelItem") ?>', {pi_id: pi_id}, function(data) {
+            //         if (data == '0') {
+            //             alert("Ops!! Something Wrong... Contact Mr.Pool.");
+            //         } else {
+            //             $("#delBtn_"+pi_id).remove();
+            //         }
+            //     });             
+            // }
+
+            bootbox.confirm({
+                        message: "Are you sure? This will auto delete permanently in the database!!!",
+                        buttons: {
+                            confirm: {
+                                label: 'Delete This Item',
+                                className: 'btn-success'
+                               
+                            },
+                            cancel: {
+                                label: 'No',
+                                className: 'btn-danger'
+                            }
+                        },
+                        callback: function (result) {
+                            if(result == true){
+                                
+                                $.post('<?= site_url("purchase_v1/dashboard/getAjaxDelItem") ?>', {pi_id: pi_id}, function(data) {
+                                    
+                                    if (data == '0') {
+                                            bootbox.alert("Ops!! Something Wrong... Contact Mr.Pool.");
+                                        } else {
+                                            $("#delBtn_"+pi_id).remove();
+                                        }
+                                    
+                                });
+
+                            }
+                            
+                            
+                        }
+                    });
+            }); 
+
+        
 
 
 

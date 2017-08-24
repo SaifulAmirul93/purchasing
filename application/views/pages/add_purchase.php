@@ -17,7 +17,7 @@
                         <h1 class="page-header">Add Purchase</h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                  
+                  <!-- action="<?= site_url('purchase_v1/dashboard/page/z11'); ?>" method="post" -->
                        <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z11'); ?>" method="post">
                        <input type="hidden" name="pro_id" id="pro_id" class="form-control" value="1">
                                         <div class="row">
@@ -25,7 +25,7 @@
                                             <label class="col-md-2">Supplier Name :</label>
                                             <div class=" col-md-2">
                                             <select class="form-control" name="Supplier" id="Supplier" required>
-                                            <option value="">--New Client--</option>
+                                            <option value="-1">--New Client--</option>
                                                 <?php foreach ($lvl as $key) {
                                                                 ?>
                                                                 <option value="<?= $key->supplier_id; ?>" > <?= $key->supplier_name; ?>
@@ -42,7 +42,7 @@
                                             <label class="col-md-2">Project Code :</label>
                                             <div class=" col-md-2">
                                             <select class="form-control" name="prjk_id" id="prjk_id" required="required">
-                                            <option value="">--New Client--</option>
+                                            <option value="">--Project--</option>
                                                 <?php foreach ($prjk as $key) {
                                                                 ?>
                                                                 <option value="<?= $key->projek_id; ?>" > <?= $key->project_code; ?>
@@ -102,7 +102,7 @@
                                              <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Purchase Date</label>
-                                            <input class="form-control" value="<?= date("Y-m-d"); ?>" name="pur_date" id="pur_date" required>
+                                            <input class="form-control" value="<?= date("Y-m-d"); ?>" name="date" id="date" required>
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
@@ -130,15 +130,32 @@
 </div>
                                     <div class="row">
                                         <div class=" col-md-4 pull-right">
-                                         <div class="form-group">
-                                            <label>Quantity Unit</label>
-                                            <select class="form-control" name="unit" id="unit" required>
-                                            <option value="">--Select Unit--</option>
-                                            <option value="1">PCS</option>
-                                            <option value="2">KG</option>
-                                            </select>
-                                            
+                                                 <div class="form-group">
+                                                    <label>Quantity Unit</label>
+                                                    <select class="form-control" name="unit" id="unit" required>
+                                                    <option value="">--Select Unit--</option>
+                                                      <?php foreach ($unit as $key) {
+                                                                ?>
+                                                                <option value="<?= $key->un_id; ?>" > <?= $key->un_desc; ?>
+                                                                    
+                                                                </option>
+                                                                <?php
+                                                            } ?>
+                                                    </select>
+                                                    
+                                                </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col-md-4 pull-right">
+                                                 <div class="form-group">
+                                                    <label>GST :</label>
+                                                    <input type="radio" name="gst" value="1" required="">
+                                                    <label>Yes</label>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <input type="radio" name="gst" value="0">
+                                                    <label>No</label>
+                                                </div>
                                         </div>
                                     </div>
                                         <div class="row">
@@ -152,12 +169,12 @@
                                             <div class="panel-body">
 
                                              <div class="table-responsive">
-                                                                    <table class="table table-striped table-bordered table-hover">
+                                                                    <table class="tbl table table-striped table-bordered table-hover">
                                                                         <thead>
                                                                             <tr>
                                                                                 
-                                                                                <th>Item Detial</th>
-                                                                                <th>Quantitty</th>
+                                                                                <th>Item Detail</th>
+                                                                                <th>Quantity</th>
                                                                                 <th>Unit Price</th>
                                                                                 <!-- <th>GST</th> -->
                                                                                 <th>Action</th>
@@ -267,8 +284,10 @@
                                         </div>
 
                                         <div class="clear" style="height: 20px;"></div>
-                                        <button type="submit" class="btn btn-success">Submit</button>
-                                        <button type="reset" class="btn btn-danger">Reset</button> 
+                                        <button type="submit" class="btn btn-success" id="subBtn">Submit</button>
+                                        <a href="<?= site_url('purchase_v1/dashboard/page/a1'); ?>" name="c5">    
+                                                    <button type="button" class="btn btn-warning">Back</button>
+                                                </a>
                                         <div class="clear" style="height: 20px;"></div>                   
                     </form>
                 
@@ -326,6 +345,8 @@ $(document).ready(function() {
             });
         });
 
+    
+
         $("#addBtn").click(function() {
             $.when($('#loadingItem').show()).then(function(){
                 type = $("#itemType").val();
@@ -342,10 +363,16 @@ $(document).ready(function() {
             });     
         });
 
-
+                
 
         
-     });    
+     }); 
+
+
+    
+
+
+
 </script>
 
 

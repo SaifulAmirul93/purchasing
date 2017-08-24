@@ -96,6 +96,36 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <?php } ?>
+                        <?php if($us_lvl != 4){?>
+                          <li>
+                            <a href="#"><i class="fa fa-industry fa-fw"></i> Project<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                            <li>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/d1'); ?>">Add Project</a>
+                                </li>
+                                <li>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/d2'); ?>">Project List</a>
+                                </li>
+                                
+                            
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                         <li>
+                            <a href="#"><i class="fa fa-balance-scale fa-fw"></i> Quantity Unit<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                            <li>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/u1'); ?>">Add Unit</a>
+                                </li>
+                                <li>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/u2'); ?>">Unit List</a>
+                                </li>
+                                
+                            
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <?php } ?>
                         <?php if($us_lvl != 2 && $us_lvl != 3 && $us_lvl != 4){?>
                              <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i> User<span class="fa arrow"></span></a>

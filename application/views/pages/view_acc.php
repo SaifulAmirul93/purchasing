@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">View Purchase (Account)</h1>
+                        <h1 class="page-header">Purchase List (Account)</h1>
                     </div>
                  </div>
 
@@ -131,10 +131,11 @@
                                             <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pur_id; ?>">
                                             </a>
                                             <?php } else if ($pur->pay == 1) { ?>
-                                               <a class="uc" id="up<?= $n; ?>">
+                                               <div title="Bayaran" id="gmbrn<?= $n ?>" class="bayaran" >
                                             <img src="<?= base_url(); ?>dist/img/50paid_tag.png" width="38" height="63">
+                                            </div>
                                             <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pur_id; ?>">
-                                            </a>
+                                            
                                             
                                             <?php } else if ($pur->pay == 2) { ?>
                                                <div title="Bayaran" id="gmbrn<?= $n ?>" class="bayaran" >
@@ -176,7 +177,8 @@
                                              <input type="hidden" class="form-control <?= $n.'btn1' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             &nbsp;&nbsp;
                                             <?php } else if ($pur->pay == 1) {  ?>
-
+                                            <button type="button" class="btn btn-info btn-xs upPic" style="background-color: #2B74C2" title="Upload Payment" id="up<?= $n; ?>"><i class="fa fa-upload"></i></button>
+                                            &nbsp;&nbsp;
                                              <button onclick = "" type="button" class="btn100 btn btn-xs" title="100% Payment" style="background-color: #2BC22D;color: #FFFFFF" id="<?= $n.'btn1' ?>" name="<?= $n.'btn1' ?>">100 %</button>
                                              <input type="hidden" class="form-control <?= $n.'btn1' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             &nbsp;&nbsp;

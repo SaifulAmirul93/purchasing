@@ -11,7 +11,7 @@
 
     <title>NASTY Purchasing System v 1.0</title>
 
-
+    <link rel="icon" type="image/png" href="<?php echo base_url();?>dist/img/icons8-Shopping Cart-48.png">
 
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url(); ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

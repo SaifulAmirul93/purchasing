@@ -21,7 +21,7 @@
 
                                         <div class="row">
                                             <div class=" col-md-4">
-                                                <h3 class="page-header">User Detial</h3>
+                                                <h3 class="page-header">User Details</h3>
                                             </div>
                                         </div>
 
@@ -141,7 +141,9 @@
                                         <div class="clear" style="height: 50px;"></div>
                                          <div class="row">
                                             <button type="submit" class="btn btn-success">Add User</button>
-                                            <button type="reset" class="btn btn-danger">Cancel</button>  
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/a1'); ?>" name="c5">    
+                                                    <button type="button" class="btn btn-warning">Back</button>
+                                                </a>
                                         </div>                  
                     </form>
                     <div class="clear" style="height: 50px;"></div>

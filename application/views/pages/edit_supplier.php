@@ -20,7 +20,7 @@
 
                                         <div class="row">
                                             <div class=" col-md-4">
-                                                <h3 class="page-header">Supplier Detial</h3>
+                                                <h3 class="page-header">Supplier Details</h3>
                                             </div>
                                         </div>
 
@@ -93,7 +93,7 @@
                                                     
                                                      <div class=" col-md-5">  
                                                         
-                                                <textarea type="text" name="supplier_address" id="supplier_address" class="form-control"><?= $arr->supplier_address; ?></textarea>
+                                                <textarea type="text" name="supplier_address" id="supplier_address" class="form-control" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $arr->supplier_address; ?></textarea>
                                                         
                                             
                                                        </div>
@@ -110,7 +110,7 @@
                                                         <div class="clear" style="height:30px;"></div>
                                                      <div class=" col-md-12">  
    
-                                                <textarea name="supplier_note" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $arr->supplier_note; ?></textarea>
+                                                <textarea name="supplier_note" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $arr->supplier_note; ?></textarea>
                                             
                                                        </div>
                                                     </div>

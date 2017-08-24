@@ -1,17 +1,17 @@
 <?php
 	if (!defined('BASEPATH')) exit('No direct script access allowed');
 	
-	class M_project extends CI_Model {
+	class M_department extends CI_Model {
 	
 	    /**
 	     * @name string TABLE_NAME Holds the name of the table in use by this model
 	     */
-	    const TABLE_NAME = 'project';
+	    const TABLE_NAME = 'department';
 	
 	    /**
 	     * @name string PRI_INDEX Holds the name of the tables' primary index used in this model
 	     */
-	    const PRI_INDEX = 'projek_id';
+	    const PRI_INDEX = 'dp_id';
 	
 	    /**
 	     * Retrieves record(s) from the database
@@ -32,9 +32,7 @@
 	            } else {
 	                $this->db->where(self::PRI_INDEX, $where);
 	            }
-
 	        }
-	        
 	        $result = $this->db->get()->result();
 	        if ($result) {
 	            if ($where !== NULL) {
@@ -46,57 +44,7 @@
 	            return false;
 	        }
 	    }
-	    public function getPaid($where = NULL) {
-	        $this->db->select('*');
-	        $this->db->from(self::TABLE_NAME);
-	        if ($where !== NULL) {
-	            if (is_array($where)) {
-	                foreach ($where as $field=>$value) {
-	                    $this->db->where($field, $value);
-	                }
-	            } else {
-	                $this->db->where(self::PRI_INDEX, $where);
-	            }
-	        }
-	        $result = $this->db->get()->result();
-	        if ($result) {
-	            	return $result;	            
-	        } else {
-	            return false;
-	        }
-	    }
-
-	    public function getAll($where = null , $all = false)
-        {
-            $this->db->select('*');
-            $this->db->from(self::TABLE_NAME);
-            if ($where !== NULL) {
-                if (is_array($where)) {
-                    foreach ($where as $field=>$value) {
-                        $this->db->where($field, $value);
-                    }
-                } else {
-                    $this->db->where(self::PRI_INDEX, $where);
-                }
-            }
-            if (!$all) {
-                $this->db->where('dt_id >', 0);
-            }   
-
-            $this->db->where('del_id', 0);
-
-            $this->db->join('department', 'dt_id = dp_id', 'left');
-            $result = $this->db->get()->result();
-            if ($result) {
-                if ($where !== NULL) {
-                    return array_shift($result);
-                } else {
-                    return $result;
-                }
-            } else {
-                return false;
-            }
-        }
+	 
 	
 	    /**
 	     * Inserts new data into database
@@ -127,6 +75,15 @@
 	        return $this->db->affected_rows();
 	    }
 	
+		 public function getLvl(){
+            $this->db->select("*");
+            $this->db->from('department');
+            $result = $this->db->get()->result();
+            return $result;
+        }
+
+
+
 	    /**
 	     * Deletes specified record from the database
 	     *
@@ -140,16 +97,6 @@
 	        $this->db->delete(self::TABLE_NAME, $where);
 	        return $this->db->affected_rows();
 	    }
-
-
-	    public function del($data = array(), $where = array()) {
-            if (!is_array($where)) {
-                $where =array(self::PRI_INDEX => $where);
-                $del_id =array('del_id' => $data);
-            }
-          $this->db->update(self::TABLE_NAME, $del_id, $where);
-          return $this->db->affected_rows();
-      }
 	}
 	        
 ?>

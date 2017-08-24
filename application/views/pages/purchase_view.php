@@ -101,20 +101,37 @@
                                             </div>
                                         </div>
                                         </div>
- <?php if ($arr['purchase']->unit ==1){
-          $unit="PCS";
+ <?php
+          if($arr['purchase']->unit!=null){
+                  foreach ($unit as $key) 
+                  {
 
-         }
-         else if ($arr['purchase']->unit ==2){
-          $unit="KG";
+                         if($key->un_id == $arr['purchase']->unit)
+                          {
+                            $unit=$key->un_desc;
+                          }
+                  }
+          }
+          else{
+           $unit="Error";  
+          }
 
-         }
-           else {
-          $unit="Error";
 
+  // if ($arr['purchase']->unit ==1){
+  //         $unit="PCS";
 
-              
-         } 
+  //        }
+  //        else if ($arr['purchase']->unit ==2){
+  //         $unit="KG";
+
+  //        }
+  //         else if ($arr['purchase']->unit ==3){
+  //         $unit="ROLL";
+
+  //        }
+  //          else {
+  //         $unit="Error";      
+  //        } 
            if($arr['purchase']->currency == 1){
                   $curr="MYR";
               }else if($arr['purchase']->currency == 2){
@@ -151,7 +168,7 @@
                                                                                                 <thead>
                                                                                                     <tr>
                                                                                                         
-                                                                                                        <th>Item Detial</th>
+                                                                                                        <th>Item Detail</th>
                                                                                                         <th>Quantitty</th>
                                                                                                         <th>Unit Price</th>
                                                                                                         

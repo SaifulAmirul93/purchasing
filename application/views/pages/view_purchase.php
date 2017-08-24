@@ -72,6 +72,7 @@
                                             <th>#</th>
                                             <th>Supplier Name</th>
                                             <th>Purchase No</th>
+                                            <th>Request By</th>
                                             <th>Project Code</th>
                                             <th>Purchase Date</th>
                                             <th>Delivery Date</th>
@@ -86,11 +87,12 @@
                                 $n = 0; 
                                 
                                     foreach ($arr as $pur){
+                                        if($pur->pr_id!=7){
                                         $n++;
                                         ?>
                                         <tr>
                                             <td><?= $n; ?></td>
-                                            <td><?= $pur->supplier_name; ?> </td>
+                                            <td><b><?= $pur->supplier_name; ?></b></td>
                                             <td>
                                             <?php 
                                             if ($pur->pur_id) {
@@ -103,6 +105,7 @@
 
 
                                             </td>
+                                            <td><b><?= $pur->us_username; ?></b></td>
                                             <td>
                                               <?php
                                               if($pur->prjk_id != -1){
@@ -158,14 +161,11 @@
                                             <button type="button" class="btn btn-success btn-xs" title="View"><i class="fa fa-print"></i></button></a>
                                             &nbsp;&nbsp;&nbsp; -->
                                            
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$pur->pur_id; ?>" name="c5" title="View Purchase">
-                                            <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
-
-                                            &nbsp;&nbsp;
                                            
+                                           &nbsp;&nbsp;
                                         <?php if($pur->pr_id == 1){?>
                                             
-                                            <button type="button" class="negBtn btn btn-info btn-xs" title="Negotiate" style="background-color: #5CFE3F" id="<?= $n.'neg' ?>" name="<?= $n.'neg' ?>">NEGO</button>
+                                            <button type="button" class="negBtn btn btn-info btn-xs" title="Send Approval" style="background-color: #5CFE3F" id="<?= $n.'neg' ?>" name="<?= $n.'neg' ?>"><i class="fa fa-check"></i></button>
                                             <input type="hidden" class="form-control <?= $n.'neg' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                              &nbsp;&nbsp;
                                             <?php }else if($pur->pr_id == 2){?>
@@ -192,24 +192,32 @@
                                             <input type="hidden" class="form-control <?= $n.'eta' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             &nbsp;&nbsp;
                                             <?php } ?>
+                                            <button onclick = "window.open('<?= site_url('purchase_v1/dashboard/page/P01?edit=').$pur->pur_id; ?>');" type="button" class="btn btn-success btn-xs" title="Purchase Order"><i class="fa fa-file-text"></i></button>
+                                            &nbsp;&nbsp;
+                                            <br><br>
+                                             <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$pur->pur_id; ?>" name="c5" title="View Purchase">
+                                            <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
+
+                                            &nbsp;&nbsp;
                                             <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$pur->pur_id; ?>" name="c5" title="Edit Purchase">
                                             <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button></a>
                                              &nbsp;&nbsp;
-                                             <br><br>
-                                            <button onclick = "window.open('<?= site_url('purchase_v1/dashboard/page/P01?edit=').$pur->pur_id; ?>');" type="button" class="btn btn-success btn-xs" title="Purchase Order"><i class="fa fa-file-text"></i></button>
-                                            &nbsp;&nbsp;
+                                             
+                                            
                                             <?php if($pur->pr_id >= 3){?>
                                             <button type="button" class="btn btn-info btn-xs upPic" style="background-color: #AD3089" title="Upload Invoice" id="up<?= $n; ?>"><i class="fa fa-upload"></i></button>
                                             <input type="hidden" class="form-control up<?= $n; ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                              &nbsp;&nbsp;
                                              <?php } ?>
                                              
-                                             <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a15?delete=').$pur->pur_id; ?>" name="c5" title="Delete Purchase">
-                                             <button type="button" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-close"></i></button></a>
+                                             <!-- <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a15?delete=').$pur->pur_id; ?>" name="c5" title="Delete Purchase"> -->
+                                             <button type="button" class="delBtn btn btn-danger btn-xs" title="Delete" id="<?= $n.'del' ?>" name="<?= $n.'del' ?>"><i class="fa fa-close"></i></button>
+                                             <input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             </td>
                                         </tr>
                                           <?php
                                            }
+                                       }
                                 
                     
                                         ?>
@@ -275,6 +283,60 @@
                                     $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
                                     
                                 });
+
+                            }
+                            
+                            
+                        }
+                    });
+
+
+                });
+
+        $(".delBtn").click(function() {
+
+                    id = $(this).prop('id');
+                    
+                    purid = $("."+id).val();
+                       
+                    bootbox.confirm({
+                        message: "Are you sure that you want to delete this purchase?",
+                        buttons: {
+                            confirm: {
+                                label: 'Yes',
+                                className: 'btn-success'
+                               
+                            },
+                            cancel: {
+                                label: 'No',
+                                className: 'btn-danger'
+                            }
+                        },
+                        callback: function (result) {
+                            if(result == true){
+                                
+
+                                  // $.post('<?= site_url('purchase_v1/dashboard/del_purchase'); ?>', {del: purid}, function(data) {
+                                    
+                                  //       $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
+                                    
+                                  //       });
+
+                                bootbox.prompt({
+                                    title: "Please state the reason!",
+                                    inputType: 'textarea',
+                                    callback: function (result) {
+
+                                        // alert(result);
+                                        if(result!=null)
+                                        $.post('<?= site_url('purchase_v1/dashboard/del_email'); ?>', {reason: result,pur_id: purid,cancel: 1}, function(data) {
+                                    
+                                        $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
+                                    
+                                        });
+                                    }
+                                });
+    
 
                             }
                             

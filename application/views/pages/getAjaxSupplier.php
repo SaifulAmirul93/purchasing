@@ -1,20 +1,19 @@
 
 
-
 <?php 
     $pur_person = $this->session->userdata('us_username');
-    if (isset($supplier)) {
+    if ($supplier!=null) {
         ?>
 <div class=" col-md-4">
     <div class="form-group">
         <label>Name</label>
-        <input class="form-control" name="supplier_name" id="supplier_name" value = "<?= $supplier->supplier_name; ?>">                                     
+        <input class="form-control" name="supplier_name" id="supplier_name" disabled="" value = "<?= $supplier->supplier_name; ?>">                                     
     </div>
 </div>
 <div class=" col-md-4">
     <div class="form-group">
         <label>Company</label>
-        <input class="form-control"  name="supplier_company" id="supplier_company" value = "<?= $supplier->supplier_company; ?>">
+        <input class="form-control"  name="supplier_company" id="supplier_company" disabled="" value = "<?= $supplier->supplier_company; ?>">
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -28,7 +27,7 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Contact Number</label>
-        <input class="form-control" name="supplier_contact" id="supplier_contact" value = "<?= $supplier->supplier_contact; ?>">
+        <input class="form-control" name="supplier_contact" id="supplier_contact" disabled="" value = "<?= $supplier->supplier_contact; ?>">
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -36,7 +35,7 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Email</label>
-        <input class="form-control" name="supplier_email" id="supplier_email" value = "<?= $supplier->supplier_email; ?>">
+        <input class="form-control" name="supplier_email" id="supplier_email" disabled="" value = "<?= $supplier->supplier_email; ?>">
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -44,7 +43,7 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Purchase Date</label>
-        <input class="form-control" value="<?= date("Y-m-d"); ?>" name="pur_date" id="pur_date">
+        <input class="form-control" value="<?= date("Y-m-d"); ?>" name="date" id="date"  disabled="" >
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -52,7 +51,7 @@
 <div class=" col-md-8">
     <div class="form-group">
         <label>Address</label>
-        <textarea class="form-control"  name="supplier_address" id="supplier_address"><?= $supplier->supplier_address; ?></textarea> 
+        <textarea class="form-control"  disabled=""  name="supplier_address" id="supplier_address"><?= $supplier->supplier_address; ?></textarea> 
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -76,27 +75,27 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Name</label>
-        <input class="form-control" name="supplier_name" id="supplier_name">                                     
+        <input class="form-control" name="supplier_name" id="supplier_name" disabled="">                                     
     </div>
 </div>
 <div class=" col-md-4">
     <div class="form-group">
         <label>Company</label>
-        <input class="form-control"  name="supplier_company" id="supplier_company">
+        <input class="form-control"  name="supplier_company" id="supplier_company" disabled="">
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
 <div class=" col-md-4">
     <div class="form-group">
         <label>Delivery Date</label>
-        <input class="form-control" id="deli_date" name="deli_date">
+        <input class="form-control" id="deli_date" name="deli_date" disabled="">
     </div>
 </div>
 
 <div class=" col-md-4">
     <div class="form-group">
         <label>Contact Number</label>
-        <input class="form-control" name="supplier_contact" id="supplier_contact">
+        <input class="form-control" name="supplier_contact" id="supplier_contact" disabled="">
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -104,7 +103,7 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Email</label>
-        <input class="form-control" name="supplier_email" id="supplier_email">
+        <input class="form-control" name="supplier_email" id="supplier_email" disabled="">
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -112,7 +111,7 @@
 <div class=" col-md-4">
     <div class="form-group">
         <label>Purchase Date</label>
-        <input class="form-control" value="<?= date("Y-m-d"); ?>" name="pur_date" id="pur_date">
+        <input class="form-control" value="<?= date("Y-m-d"); ?>" name="date" id="date" disabled="">
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>
@@ -120,7 +119,7 @@
 <div class=" col-md-8">
     <div class="form-group">
         <label>Address</label>
-        <textarea class="form-control"  name="supplier_address" id="supplier_address"></textarea> 
+        <textarea class="form-control"  name="supplier_address" id="supplier_address" disabled=""></textarea> 
         <!-- <p class="help-block">Example block-level help text here.</p> -->
     </div>
 </div>

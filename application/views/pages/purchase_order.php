@@ -1,255 +1,159 @@
-<style>
-
-header {
-    padding: 1em;
-   background-color: #F0F6F9;
-    clear: left;
-    text-align: center;
-}
-footer{
-  text-align: center;
-}
-.verticalLine {
-    border-left: thin solid #d6d9db;
-}
-
-.pdf-export #NextContemporary, .read-only-view #NextContemporary {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    width: 860px;
-    margin: auto;
-    background-color: #FFFFFF;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    padding: 16px 30px 20px 30px;
-    position: relative;
-    min-height: 1024px;
-}
-user agent stylesheet
-div {
-    display: block;
-}
-
-input, input:hover, input:focus, input:active {
-  background: transparent;
-  border: none;
-  border-style: none;
-  border-color: transparent;
-  outline: none;
-  outline-offset: 0;
-  box-shadow: none;
-}
-.readonly-payment-information__nav-actions {
-    margin: 0 auto;
-    width: 820px;
-    position: relative;
-}
-.readonly-payment-information__details {
-    background: #FFF;
-    border-top: 1px solid #D0DBE1;
-    border-bottom: 1px solid #D0DBE1;
-    line-height: 50px;
-    text-align: center;
-    margin-bottom: 30px;
-}
-.sc-heading--title, .sc-generated-content h1:not([class*="wv-"]) {
-    font-size: 31px;
-    line-height: 40px;
-    font-weight: 200;
-}
-.sc-heading--title, .sc-generated-content h1:not([class*="wv-"]), .sc-heading--subtitle, .sc-heading--section-title, .sc-generated-content h2:not([class*="wv-"]), .sc-heading--subsection-title, .sc-generated-content h3:not([class*="wv-"]), .sc-form-legend {
-    display: block;
-    margin: 32px 0 16px;
-    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: #4c5357;
-    font-weight: 400;
-}
-.readonly-payment-information__title {
-    background: #E9EEF1;
-    padding: 50px 0;
-    text-align: center;
-    margin: 0!important;
-}
-.readonly-payment-information__details__items {
-    font-size: 18px;
-    color: #6C90A2;
-    display: inline-block;
-    vertical-align: middle;
-}
-.readonly-payment-information__title {
-    background: #E9EEF1;
-    padding: 50px 0;
-    text-align: center;
-    margin: 0!important;
-}
-
-#ReadOnlyMain.payments-disabled:not(.ghost-form) .ReadOnlyExtrasStatus {
-    display: inline-block;
-    right: 30px;
-}
-
-.readonly-payment-information__nav-actions .ReadOnlyExtrasStatus {
-    right: 0!important;
-}
-.ReadOnlyExtrasStatus.paid {
-    background: #74aa00;
-}
-body .ReadOnlyExtrasStatus {
-    display: block;
-    right: 30px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
-.ReadOnlyExtrasStatus {
-    display: none;
-    right: 0;
-    top: 0;
-    position: absolute;
-    color: #fff;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 2em;
-    font-weight: 500;
-    padding: 10px 20px;
-}
-
-#ReadOnlyMain {
-    font-family: "Open Sans",sans-serif;
-    margin-right: 400px;
-}
-
-
-@media print {
-    .readonly-payment-information__nav-actions{
-      display: none;
-
-
-
-}
-</style>
-
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NASTY Purchasing System</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  </head>
-  <body style="background-color:#EAEDED">
-
-
-
-
-
-<div class="readonly-payment-information__nav-actions">
-                  
-<!--   <?php
-  if ($arr['order']->or_paid) { ?>
-    <div class="ReadOnlyExtrasStatus paid">
-    PAID
-  </div>
-  <?php }else{ ?>
-    <div class="ReadOnlyExtrasStatus paid" style="background-color: orange;">
-    UnPaid
-  </div>
-  <?php }
-  ?> -->
-  
-</div> 
-<div class="clear" style="height: 30px;"></div>
-
-
-     <div class="row-fluid">
-              <div id="ReadOnlyView" class="span12 read-only-view">
-                
-
-
-<!-- invoice start -->
-<div class="clear" style="height: 40px;"></div>
-<div id="NextContemporary" class="export-template">
+<head>
  
-   
-          
-        <img class="contemporary-template__business-logo" src="<?= base_url(); ?>dist/img/formlogo.jpg" width="400" height="157"/>
-      
-   
-    <div class="pull-right" style="text-align: right;">
-      <h3>PURCHASE ORDER</h3>
-      <!-- <strong>NSTY WORLDWIDE SDN BHD</strong> -->
-      
- <!--        <div class="contemporary-template__header__info__address">
-          
-      Lot 139, 1st Floor, Jalan Besar Tampin,<br>
-      Tampin,
-      Negeri Sembilan  73000<br>
-      Malaysia<br>
+  <title>NASTY Purchasing System</title>
+<style type="text/css">
+@import url('https://themes.googleusercontent.com/fonts/css?kit=E1iBXfCva5173tFRkvwk2lyabY_jbmqjansnXrN915Q');
+/*ol.lst-kix_kokap4dg7s1l-8.start{counter-reset:lst-ctn-kix_kokap4dg7s1l-8 0}
+ol.lst-kix_kokap4dg7s1l-3.start{counter-reset:lst-ctn-kix_kokap4dg7s1l-3 0}
+ol.lst-kix_kokap4dg7s1l-1.start{counter-reset:lst-ctn-kix_kokap4dg7s1l-1 0}
+ol.lst-kix_kokap4dg7s1l-6.start{counter-reset:lst-ctn-kix_kokap4dg7s1l-6 0}*/
+.lst-kix_kokap4dg7s1l-1>
+li
+{
+  counter-increment:lst-ctn-kix_kokap4dg7s1l-1
+  }
+  ol.lst-kix_kokap4dg7s1l-5.start
+  {
+    counter-reset:lst-ctn-kix_kokap4dg7s1l-5 0
+    }
+    .lst-kix_kokap4dg7s1l-3>li:before
+    {
+      content:"(" counter(lst-ctn-kix_kokap4dg7s1l-3,decimal) ") "
+      }
+      .lst-kix_kokap4dg7s1l-4>li:before
+      {content:"(" counter(lst-ctn-kix_kokap4dg7s1l-4,lower-latin) ") "}
+      .lst-kix_kokap4dg7s1l-0>li:before
+      {content:"" counter(lst-ctn-kix_kokap4dg7s1l-0,decimal) ") "
+    }
+      .lst-kix_kokap4dg7s1l-2>li
+      {counter-increment:lst-ctn-kix_kokap4dg7s1l-2
+      }
+      .lst-kix_kokap4dg7s1l-8>li
+      {
 
-    <br>
+        counter-increment:lst-ctn-kix_kokap4dg7s1l-8
+        }
+        .lst-kix_kokap4dg7s1l-1>li:before
+        {
+          content:"" counter(lst-ctn-kix_kokap4dg7s1l-1,lower-latin) ") "
+          }
+          .lst-kix_kokap4dg7s1l-2>li:before
+          {
+            content:"" counter(lst-ctn-kix_kokap4dg7s1l-2,lower-roman) ") "}
+            ol.lst-kix_kokap4dg7s1l-0.start
+            {
+              counter-reset:lst-ctn-kix_kokap4dg7s1l-0 0}
+              .lst-kix_kokap4dg7s1l-5>li
+              {counter-increment:lst-ctn-kix_kokap4dg7s1l-5}
+              ol.lst-kix_kokap4dg7s1l-2.start
+              {counter-reset:lst-ctn-kix_kokap4dg7s1l-2 0}
+              .lst-kix_kokap4dg7s1l-6>li{counter-increment:lst-ctn-kix_kokap4dg7s1l-6}
+              .lst-kix_kokap4dg7s1l-3>li{counter-increment:lst-ctn-kix_kokap4dg7s1l-3}
+              .lst-kix_kokap4dg7s1l-7>li:before{content:"" counter(lst-ctn-kix_kokap4dg7s1l-7,lower-latin) ". "}
+              ol.lst-kix_kokap4dg7s1l-7.start{counter-reset:lst-ctn-kix_kokap4dg7s1l-7 0}
+              .lst-kix_kokap4dg7s1l-5>li:before{content:"(" counter(lst-ctn-kix_kokap4dg7s1l-5,lower-roman) ") "}
+              .lst-kix_kokap4dg7s1l-6>li:before{content:"" counter(lst-ctn-kix_kokap4dg7s1l-6,decimal) ". "}.lst-kix_kokap4dg7s1l-4>li{counter-increment:lst-ctn-kix_kokap4dg7s1l-4}ol.lst-kix_kokap4dg7s1l-8{list-style-type:none}ol.lst-kix_kokap4dg7s1l-7{list-style-type:none}.lst-kix_kokap4dg7s1l-7>li{counter-increment:lst-ctn-kix_kokap4dg7s1l-7}ol.lst-kix_kokap4dg7s1l-6{list-style-type:none}ol.lst-kix_kokap4dg7s1l-5{list-style-type:none}.lst-kix_kokap4dg7s1l-8>li:before{content:"" counter(lst-ctn-kix_kokap4dg7s1l-8,lower-roman) ". "}.lst-kix_kokap4dg7s1l-0>li{counter-increment:lst-ctn-kix_kokap4dg7s1l-0}ol.lst-kix_kokap4dg7s1l-4{list-style-type:none}ol.lst-kix_kokap4dg7s1l-4.start{counter-reset:lst-ctn-kix_kokap4dg7s1l-4 0}ol.lst-kix_kokap4dg7s1l-3{list-style-type:none}ol.lst-kix_kokap4dg7s1l-2{list-style-type:none}ol.lst-kix_kokap4dg7s1l-1{list-style-type:none}ol.lst-kix_kokap4dg7s1l-0{list-style-type:none}ol{margin:0;padding:0}table td,table th{}.c9{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:54pt;border-top-color:#000000;border-bottom-style:solid}.c23{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:75pt;border-top-color:#000000;border-bottom-style:solid}.c12{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:84pt;border-top-color:#000000;border-bottom-style:solid}.c8{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:21pt;border-top-color:#000000;border-bottom-style:solid}.c18{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:246pt;border-top-color:#000000;border-bottom-style:solid}.c7{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:62.2pt;border-top-color:#000000;border-bottom-style:solid}.c10{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:558pt;border-top-color:#000000;border-bottom-style:solid}.c17{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:90.8pt;border-top-color:#000000;border-bottom-style:solid}.{margin-left:-22.5pt;padding-top:0pt;text-indent:-9pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c14{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c0{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:10pt;font-family:"Bree Serif";font-style:normal}.c15{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:8pt;font-family:"Bree Serif";font-style:normal}.c20{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:justify}.c2{padding-top:0pt;padding-bottom:0pt;line-height:1.0;text-align:center;height:11pt}.c1{padding-top:0pt;padding-bottom:0pt;line-height:1.0;text-align:left;height:11pt}.c24{margin-left:-48pt;border-spacing:0;border-collapse:collapse;margin-right:auto}.c4{padding-top:0pt;padding-bottom:0pt;line-height:1.0;text-align:left}.c13{padding-top:0pt;padding-bottom:0pt;line-height:1.0;text-align:center}.c3{font-size:10pt;font-family:"Bree Serif";font-weight:400}.c22{font-size:10pt;font-family:"Bree Serif";font-weight:700}.c16{background-color:#ffffff;max-width:468pt;padding:72pt 72pt 72pt 72pt}.c19{font-size:8pt;font-family:"Bree Serif";font-weight:400}.c11{height:11pt}.c25{height:26pt}.c21{height:72pt}.c6{height:20pt}.title{padding-top:0pt;color:#000000;font-size:26pt;padding-bottom:3pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:11pt;font-family:"Arial"}p{margin:0;color:#000000;font-size:11pt;font-family:"Arial"}h1{padding-top:20pt;color:#000000;font-size:20pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}
+  body {
+  background: rgb(204,204,204); 
+}
+page {
+  background: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+page[size="A4"] {  
+  width: 22.8cm;
+  max-width:22.8cm;
+  height: 100%;
+  /*max-height: 89.7cm;*/
+  padding-left: 2%; 
+  padding-right: 2%;  
+}
+page[size="A4"][layout="portrait"] {
+  width: 29.7cm;
+  height: 21cm; 
+  padding-left: 50%; 
+}
+page[size="A3"] {
+  width: 29.7cm;
+  height: 42cm;
+}
+page[size="A3"][layout="portrait"] {
+  width: 42cm;
+  height: 29.7cm;  
+}
+page[size="A5"] {
+  width: 14.8cm;
+  height: 21cm;
+}
+page[size="A5"][layout="portrait"] {
+  width: 21cm;
+  height: 14.8cm;  
+}
+.firstLine td{
+  border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+.payslip_border td{
+background-color: black !important;
+color: white !important;
 
-     Phone:  +6012 3437638<br>
-
-     Mobile: +6013 6777791<br>
-        <span class="wrappable">www.nastyjuice.com<br></span>
-        </div> -->
-        </div>
-      
-    
-    <div class="clear" style="height: 10px;"></div>
-<hr>
+@media print {
+  body, page {
+    margin: 0;
+    box-shadow: 0;
+  }
+}
 
 
-  <div class="contemporary-template__divider contemporary-template__divider--full-width"></div>
 
-<!--   <?php switch ($arr['order']->cu_id) {
-    case '1':
-      $duit = "MYR";
-      break;
-    case '2':
-      $duit = "USD";
-      break;
-    case '3':
-      $duit = "GBP";
-      break;
-    
-    default:
-      $duit = "Currency Error!!!<br>";
-      break;
-  } ?> -->
-  <section class="contemporary-template__metadata">
-    <div class="pull-left">
-      <div class="contemporary-template__metadata__customer--billing">
-        <div class="contemporary-template__metadata__customer__address-header"><strong>TO </strong></div>
-        <div class="clearfix" style="height: 10px"></div>
-        <strong>NAME : <?= $arr['purchase']->supplier_name; ?></strong>
-
-        <br>
-        <strong>COMPANY : <?= $arr['purchase']->supplier_company; ?></strong>
-
-       
-          
-    
-
-          <br>
-        <strong>ADDRESS : <?= $arr['purchase']->supplier_address; ?></strong>
-        <br>
-        <strong>PHONE : <?= $arr['purchase']->supplier_contact; ?></strong>
-        
-        
-      </div>
-      
-    </div>
-
-    <div class="pull-right">
-    <br>
-     <div class="contemporary-template__metadata__customer--billing">
-        <!-- <div class="contemporary-template__metadata__customer__address-header"><strong>TO </strong></div> -->
-        <strong>PURCHASE NO. :
-              <?php 
+ 
+</style>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<link rel="Stylesheet" href="<?php echo base_url();?>/dist/css/stylesheet.css"/>
+ </head> 
+<body>
+<page size="A4">
+              <div class="clearfix" height="100px"></div>
+            
+              <img src="<?= base_url(); ?>dist/img/formlogo.jpg" width="400" height="157" />
+              
+              <h1 style="float: right;padding-right: 4%; ">PURCHASE ORDER</h1>
+              <div>
+              <p class="c11 c20">
+              <span class="c14">
+                
+              </span>
+              </p>
+              </div>
+              
+              <div style="width: 400px;float: left;">
+              <p class="">
+              <span class="c0">TO &nbsp;</span>
+              </p>
+              <p class="">
+              <span class="c0">NAME: <?= $arr['purchase']->supplier_name; ?></span>
+              </p>
+              <p class="">
+              <span class="c3">
+              COMPANY: <?= $arr['purchase']->supplier_company; ?></span>
+              
+              </p>
+              <p class="">
+              <span class="c0">ADDRESS: <?= $arr['purchase']->supplier_address; ?></span>
+              </p>
+              
+              <p class="">
+              <span class="c0">PHONE: <?= $arr['purchase']->supplier_contact; ?></span>
+              </p>
+              </div>
+              <div style="width: 200px;float: right;padding-right: 4%; ">
+              <span class="c0">ORDER #: 
+                <?php 
                                             if ($arr['purchase']->pur_id) {
                                                 $id = '#'.(110000+$arr['purchase']->pur_id);
                                                 echo $id;
@@ -257,69 +161,74 @@ body .ReadOnlyExtrasStatus {
                                                 echo "--Not Set--";
                                             }
                                             ?>
+              </span><br>
+              <span class="c0">PROJECT CODE: <?= $arr['purchase']->project_code; ; ?></span><br>
+              <span class="c0">P.O.DATE: <?= $arr['purchase']->pur_date; ; ?></span><br>
+              <span class="c0">REQUISITIONER:<?= $arr['purchase']->us_username; ?></span><br>
+              <span class="c0">SHIPPED VIA: </span><br>
+              <span class="c0">TERMS: </span>
+              </div>
+              
+              <p class=" c11">
+              <span class="c0">
+                
+              </span>
+              </p>
+              <div class="clearfix" style="height: 150px"></div>
+              <table>
+              <tbody>
+              <tr class="c25">
+              <td class="c23" colspan="1" rowspan="1">
+              <p class="c13">
+              <span class="c15">MODEL </span>
+              </p>
+              </td>
+              <td class="c18" colspan="1" rowspan="1">
+              <p class="c13">
+              <span class="c15">DESCRIPTIONS</span>
+              </p>
+              </td>
+              <td class="c7" colspan="1" rowspan="1">
+              <p class="c13">
+              <span class="c15">QUANTITY</span>
+              </p>
+              </td>
+              <td class="c17" colspan="1" rowspan="1">
+              <p class="c13">
+              <span class="c15">UNIT PRICE &nbsp;(RM)</span>
+              </p>
+              </td>
+              <td class="c12" colspan="1" rowspan="1">
+              <p class="c13">
+              <span class="c15">TOTAL PRICE</span>
+              </p>
+              <p class="c13">
+              <span class="c15">INCL GST (RM)</span>
+              </p>
+              </td>
+              </tr>
+              <?php 
 
+         if($arr['purchase']->unit!=null){
+                  foreach ($unit as $key) 
+                  {
 
-
-             </strong>
-             <br>
-        <strong>PROJECT CODE : <?= $arr['purchase']->project_code; ; ?></strong>
-
-        <br>
-        <strong>P.O DATE : <?= $arr['purchase']->pur_date; ?></strong>
-
-       
-          
-    
-
-          <br>
-        <strong>REQUESTIONER : <?= $arr['purchase']->us_username; ?></strong>
-        <br>
-        <strong>PHONE : <?= $arr['purchase']->supplier_contact; ?></strong>
-        <br>
-        <strong>SHIPPED VIA : </strong>
-        <br>
-        <strong>TERMS : </strong>
-        
-      </div>
-   </div>
-  </section>
-<div class="clear" style="height: 100px;"></div>
-<div class="clear" style="height: 100px;"></div>
-<div class="clear" style="height: 100px;"></div>
-  <div class="contemporary-template__items">
-    <table class="table table-bordered">
-      <thead style="background-color: #FFFFFF;">
-        <tr>
-        <th style="color: #000000;" align="center">Item Code</th>
-          <th colspan="8" style="color: #000000;" align="center">Description</th>
-          <th style="color: #000000;" align="center">Quantity</th>
-          <th style="color: #000000;" align="center">Unit Price</th>
-          
-          <th style="color: #000000;" align="center">Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-         <?php 
-
-         if ($arr['purchase']->unit ==1){
-          $unit="PCS";
-
-         }
-         else if ($arr['purchase']->unit ==2){
-          $unit="KG";
-
-         }
-           else {
-          $unit="Error";
-
-         }
+                         if($key->un_id == $arr['purchase']->unit)
+                          {
+                            $unit=$key->un_desc;
+                          }
+                  }
+          }
+          else{
+           $unit="Error";  
+          }
 
 
 
 
           if (!isset($arr)) {
           ?>
-         <tr>
+          <tr>
           <td colspan="11" align="center">-- No Data--</td>
           </tr>
           <?php
@@ -342,51 +251,82 @@ body .ReadOnlyExtrasStatus {
               $n++;
              
             ?>
+              <tr class="c6">
+              <td class="c23">
+              <p class="c4"><span class="c0">
+              <?php if(($key->sku_code==null) && ($key->sku_no==null))
+              {
+                  echo $n;
+              } 
+              else {
+                ?>
+                <?= $key->sku_code; ?>-<?= $key->sku_no; ?>
 
-         <tr>
-         <td colspan="1" style="color: #000000;" style="width:20px;"><?= $key->sku_code; ?>-<?= $key->sku_no; ?></td>
-          <td colspan="8" style="color: #000000;">
-          <strong><?= $key->item_name; ?></strong><br>
-          <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span>
-          </td>
-          <td colspan="1" style="color: #000000;" style="width:60px;"><?= $key->pi_qty; ?> <?= $unit; ?></td>
-          <td colspan="1" style="color: #000000;" style="width:60px;"><?= $curr; ?> <?= number_format((float)$key->pi_price, 2, '.', '');?></td>
-          <?php 
+                <?php
+              } ?>
+
+              </span>
+              </p>
+              </td>
+              <td class="c18">
+              <p class="c4">
+              <span class="c0"><?= $key->item_name; ?></span>
+              </p>
+              <p class="c4">
+              <span class="c0"><?= $key->cat_name; ?></span>
+              </p>
+              <br>
+               <p class="c4">
+              <span class="c0"><?= $key->item_desc; ?></span>
+              </p>
+              
+              
+              </td>
+              <td class="c7">
+              <p class="c13">
+              <span class="c0"><?= $key->pi_qty; ?> <?= $unit; ?></span>
+              </p>
+              
+              </td>
+              <td class="c17">
+              <p class="c13">
+              <span class="c0"><?= $curr; ?> <?= $key->pi_price; ?></span>
+              </p>
+              </td>
+              <?php 
           $qty=$key->pi_qty;
-          $price=number_format((float)$key->pi_price, 2, '.', '');
+          $price=$key->pi_price;
           $amount=$qty*$price;
            ?>
-          <td colspan="1" style="color: #000000;" style="width:60px;"><?= $curr; ?> <?= number_format((float)$amount, 2, '.', '');?></td>
-        
-
-        </tr>
-      <?php 
+              <td class="c12">
+              <p class="c13">
+              <span class="c0"><?= $curr; ?> <?= number_format((float)$amount, 2, '.', '');?></span>
+              </p>
+              </td>
+              </tr>
+                 <?php 
           $sub_total=$sub_total+$amount; 
 
           } 
 
       }?>
       
-      
-         <tr>
-        <td style="color: #000000;text-align: right;" colspan="11"><strong>SUB TOTAL : </strong></td>
-          <td style="color: #000000;"><?= $curr; ?> <?= number_format((float)$sub_total, 2, '.', '');?> </td>
-        </tr>
-         <tr>
-            
-               <?php 
+             
+              
+              <tr class="c6">
+              <td class="c10" colspan="6" rowspan="1">
+              <p class="c4"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUB TOTAL &nbsp; &nbsp; &nbsp;<?= $curr; ?> <?= number_format((float)$sub_total, 2, '.', '');?> &nbsp; &nbsp; &nbsp;</span></p>
+              <?php 
 
 
-          if($arr['purchase']->currency == 1){
+          if($arr['purchase']->gst == 1){
             $gst=$sub_total*0.06; 
 
           $grand=$sub_total+$gst; ?>
-          <tr>
-          <td style="color: #000000;text-align: right;" colspan="11"><strong>6% GST:</strong></td>
-          <td style="color: #000000;"><?= $curr; ?> <?= number_format((float)$gst, 2, '.', '');?> </td>
-          </tr>
-          <?php
-          }else if($arr['purchase']->currency == 2){
+
+              <p class="c4"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6% GST &nbsp; &nbsp; &nbsp;<?= $curr; ?> <?= number_format((float)$gst, 2, '.', '');?> </span></p>
+<?php
+          }else if($arr['purchase']->gst == 0){
             //$gst=$sub_total*0.06; 
 
           $grand=$sub_total;
@@ -395,28 +335,21 @@ body .ReadOnlyExtrasStatus {
           
 
       ?>
-        
-        
-          <td style="color: #000000;text-align: right;" colspan="11"> <strong>GRAND TOTAL :</strong></td>
-          <td style="color: #000000;"><?= $curr; ?> <?= number_format((float)$grand, 2, '.', '');?></td>
-        </tr>      
-      </tbody>
-    </table>
-  </div>
-</div>
-<!-- invoice end -->
-<footer>
-<div class="clear" style="height: 100px;"></div>
-    <!-- jQuery 
-    <script src="//code.jquery.com/jquery.js"></script>-->
-    <!-- Bootstrap JavaScript 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
-  </body>
-</html>
+              </td></tr><tr class="c6"><td class="c10" colspan="6" rowspan="1"><p class="c4"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GRAND TOTAL&nbsp; &nbsp; &nbsp;<?= $curr; ?> <?= number_format((float)$grand, 2, '.', '');?></span></p></td></tr></tbody></table>
+
+              <br><br>
+
+              <p class=" c11"><span class="c0"></span></p><p class=" c11"><span class="c0"></span></p><p class=""><span class="c0">MADE BY:_____________________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class=""><span class="c3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="c15">&nbsp;PURCHASING ORDER MANAGER (POM)</span></p><p class=" c11"><span class="c15"></span></p><p class=" c11"><span class="c15"></span></p><p class=" c11"><span class="c15"></span></p><p class=" c11"><span class="c15"></span></p><p class=""><span class="c0">APPROVED BY::_____________________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CHECKED BY:________________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class=""><span class="c3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="c19">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CHIEF OPERATING OFFICER (COO) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CHIEF FINANCE OFFICER (CFO)</span></p>
+              <br>
+              <div class="clearfix" style="height: 100px"></div>
+ </page>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-
-    
-    window.print();
-
   
+   // window.print();
+
   </script>
+
+              </body>
+
+</html>

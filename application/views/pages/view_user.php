@@ -21,7 +21,7 @@
 
                                         <div class="row">
                                             <div class=" col-md-4">
-                                                <h3 class="page-header">User Detial</h3>
+                                                <h3 class="page-header">User Details</h3>
                                             </div>
                                         </div>
 

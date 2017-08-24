@@ -70,7 +70,7 @@
 
                                                                <div class="row">
                                             <div class=" col-md-4">
-                                                <h3 class="page-header">Item Detial</h3>
+                                                <h3 class="page-header">Item Details</h3>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -123,7 +123,7 @@
                                                         <label class="col-md-2" >Description</label> 
                                                         <div class="clear" style="height:20px;"></div>
                                                      <div class=" col-md-12">  
-                                                <textarea name="item_desc" id="item_desc" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                <textarea name="item_desc" id="item_desc" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                                        </div>
                                                     </div>
                                                 </div>
@@ -138,7 +138,9 @@
                                          <div class="row">
                                             <div class=" col-md-5">
                                                 <button type="submit" class="btn btn-success">Add Item</button>
-                                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                                <a href="<?= site_url('purchase_v1/dashboard/page/a1'); ?>" name="c5">    
+                                                    <button type="button" class="btn btn-warning">Back</button>
+                                                </a>
                                             </div> 
                                         </div>  
                                         <div class="clear" style="height: 50px;"></div>                

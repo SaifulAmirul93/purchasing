@@ -31,10 +31,12 @@ if ($cat == -1) { ?>
 
 				
 				if (temp == -1 || temp2 == -1) {
-				$("#addBtn").prop('disabled' , 'disabled');
+				
 				} else {
 					document.getElementById("addBtn").disabled = false;
-					//$("#addBtn").removeProp('disabled');
+					$("#addBtn").removeProp('disabled');
+
+
 				}
 			});
 			// $('#inputNico').change(function() {
@@ -46,7 +48,8 @@ if ($cat == -1) { ?>
 			// 	} else {
 			// 		$("#addBtn").removeProp('disabled');
 			// 	}
-			// });			
+			// });	
+					
 		});
 	</script>	
 

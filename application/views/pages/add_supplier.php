@@ -20,7 +20,7 @@
 
                                         <div class="row">
                                             <div class=" col-md-4">
-                                                <h3 class="page-header">Supplier Detial</h3>
+                                                <h3 class="page-header">Supplier Details</h3>
                                             </div>
                                         </div>
 
@@ -93,7 +93,7 @@
                                                     
                                                      <div class=" col-md-5">  
                                                         
-                                                <textarea type="text" name="supplier_address" id="supplier_address" class="form-control"></textarea>
+                                                <textarea type="text" name="supplier_address" id="supplier_address" class="form-control" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                                         
                                             
                                                        </div>
@@ -110,7 +110,7 @@
                                                         <div class="clear" style="height:30px;"></div>
                                                      <div class=" col-md-12">  
    
-                                                <textarea name="supplier_note" id="supplier_note" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                <textarea name="supplier_note" id="supplier_note" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                             
                                                        </div>
                                                     </div>
@@ -123,7 +123,7 @@
                                               <div class=" col-md-5">
                                                 <button type="submit" class="btn btn-success">Add Supplier</button>
                                                 <button type="reset" class="btn btn-danger">Reset</button> 
-                                                <a href="<?= site_url('purchase_v1/dashboard/page/a6'); ?>" name="c5">    
+                                                <a href="<?= site_url('purchase_v1/dashboard/page/a1'); ?>" name="c5">    
                                                     <button type="button" class="btn btn-warning">Back</button>
                                                 </a>
                                                 </div> 

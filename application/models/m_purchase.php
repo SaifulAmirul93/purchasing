@@ -216,6 +216,7 @@ class M_purchase extends CI_Model {
         public function getPro(){
             $this->db->select("*");
             $this->db->from('project');
+            $this->db->where('del_id', 0);
             $result = $this->db->get()->result();
             return $result;
         }
@@ -236,6 +237,7 @@ class M_purchase extends CI_Model {
           $this->db->update(self::TABLE_NAME, $pr_id, $where);
           return $this->db->affected_rows();
       }
+       
 
        public function updatePay($data = array(), $where = array()) {
             if (!is_array($where)) {
@@ -284,10 +286,8 @@ class M_purchase extends CI_Model {
             }           
             $this->db->join('process', 'pr_id = pro_id', 'left');
 
-            // if (!$all) {
-            //     $this->db->where('projek_id >', 0);
-            // }           
-            // $this->db->join('project', 'prjk_id = projek_id', 'left');
+            $this->db->order_by('pur_id', 'desc');
+       
 
             $result = $this->db->get()->result();
             if ($result) {

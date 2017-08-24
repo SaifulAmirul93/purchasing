@@ -67,7 +67,7 @@
 
                                         <div class="row">
                                             <div class=" col-md-4">
-                                                <h3 class="page-header">Item Detail</h3>
+                                                <h3 class="page-header">Item Details</h3>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -130,7 +130,7 @@
                                                         <div class="clear" style="height:20px;"></div>
                                                      <div class=" col-md-12">  
    
-                                                <textarea name="item_desc" id="item_desc" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $arr->item_desc; ?></textarea>
+                                                <textarea name="item_desc" id="item_desc" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $arr->item_desc; ?></textarea>
                                             
                                                        </div>
                                                     </div>
@@ -169,13 +169,13 @@
 
 
 <script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
+  // $(function () {
+  //   // Replace the <textarea id="editor1"> with a CKEditor
+  //   // instance, using default configuration.
     
-    //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5();
-  });
+  //   //bootstrap WYSIHTML5 - text editor
+  //   $(".textarea").wysihtml5();
+  // });
 
 function allowDrop(ev) {
     ev.preventDefault();

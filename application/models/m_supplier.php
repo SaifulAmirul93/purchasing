@@ -129,6 +129,18 @@ class M_supplier extends CI_Model {
                 return false;
             }
         }
+         public function getName($where = NULL) 
+         {
+        
+
+                $this->db->select("supplier_name");
+                $this->db->from(self::TABLE_NAME);
+                $this->db->where('supplier_id', $where);
+                $result = $this->db->get()->result();
+
+                return array_shift($result);
+
+        }
 
     /**
      * Deletes specified record from the database

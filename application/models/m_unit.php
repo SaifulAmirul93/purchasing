@@ -1,17 +1,17 @@
 <?php 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class M_category extends CI_Model {
+class M_unit extends CI_Model {
 
     /**
      * @name string TABLE_NAME Holds the name of the table in use by this model
      */
-    const TABLE_NAME = 'category_item';
+    const TABLE_NAME = 'unit';
 
     /**
      * @name string PRI_INDEX Holds the name of the tables' primary index used in this model
      */
-    const PRI_INDEX = 'catt_id';
+    const PRI_INDEX = 'un_id';
 
     /**
      * Retrieves record(s) from the database
@@ -22,7 +22,6 @@ class M_category extends CI_Model {
      * @return mixed Single record if ID is given, or array of results
      */
     public function get($where = NULL) {
-       
         $this->db->select('*');
         $this->db->from(self::TABLE_NAME);
         if ($where !== NULL) {
@@ -34,8 +33,8 @@ class M_category extends CI_Model {
                 $this->db->where(self::PRI_INDEX, $where);
             }
         }
+        $this->db->where('un_del', 0);
         $result = $this->db->get()->result();
-
         if ($result) {
             if ($where !== NULL) {
                 return array_shift($result);
@@ -45,42 +44,6 @@ class M_category extends CI_Model {
         } else {
             return false;
         }
-    }
-     public function getList($where = NULL) {
-        // echo "<script>alert($where);</script>";
-
-        $this->db->select("*");
-        $this->db->from(self::TABLE_NAME);
-        $this->db->where('cat_id', $where);
-        $result = $this->db->get()->result();
-
-        return $result;
-
-
-
-
-        // $this->db->select('*');
-        // $this->db->from(self::TABLE_NAME);
-        // if ($where !== NULL) {
-        //     if (is_array($where)) {
-        //         foreach ($where as $field=>$value) {
-        //             $this->db->where($field, $value);
-        //         }
-        //     } else {
-        //         $this->db->where('cat_id', $where);
-        //     }
-        // }
-        // $result = $this->db->get()->result();
-        // echo "<script>alert($result);</script>";
-        // if ($result) {
-        //     if ($where !== NULL) {
-        //         return array_shift($result);
-        //     } else {
-        //         return $result;
-        //     }
-        // } else {
-        //     return false;
-        // }
     }
 
     /**
@@ -113,11 +76,11 @@ class M_category extends CI_Model {
     }
 
 
-      // public function getList()
-      //   {
+      public function getList()
+        {
 
 
-      //       $arr = $this->db->select('*')->from(self::TABLE_NAME)->get();
+            $arr = $this->db->select('*')->from(self::TABLE_NAME)->get();
             
             /*$this->db->select('*');
             $this->db->from(self::TABLE_NAME);*/
@@ -136,8 +99,8 @@ class M_category extends CI_Model {
            /* for ($i=0; $i < sizeof($result); $i++) { 
                 $result[$i]->supplier = $this->db->get()->result();
             }*/
-        //     return $arr->result();
-        // }
+            return $arr->result();
+        }
 
          public function getLvl(){
             $this->db->select("*");
@@ -159,10 +122,7 @@ class M_category extends CI_Model {
                     $this->db->where(self::PRI_INDEX, $where);
                 }
             }
-            if (!$all) {
-                $this->db->where('cat_id >', 0);
-            }           
-            $this->db->join('category_item', 'cat_id = catt_id', 'left');
+          
             $result = $this->db->get()->result();
             if ($result) {
                 if ($where !== NULL) {
@@ -174,19 +134,6 @@ class M_category extends CI_Model {
                 return false;
             }
         }
-        public function getName($where = NULL) 
-        {
-        
-
-              $this->db->select("cat_name");
-              $this->db->from(self::TABLE_NAME);
-              $this->db->where('catt_id', $where);
-              $result = $this->db->get()->result();
-
-              return array_shift($result);
-
-        }
-
 
     /**
      * Deletes specified record from the database
@@ -201,6 +148,15 @@ class M_category extends CI_Model {
         $this->db->delete(self::TABLE_NAME, $where);
         return $this->db->affected_rows();
     }
+
+    public function del($data = array(), $where = array()) {
+            if (!is_array($where)) {
+                $where =array(self::PRI_INDEX => $where);
+                $del_id =array('un_del' => $data);
+            }
+          $this->db->update(self::TABLE_NAME, $del_id, $where);
+          return $this->db->affected_rows();
+      }
 }
         
 ?>
