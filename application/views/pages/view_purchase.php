@@ -97,7 +97,7 @@
                                             <?php 
                                             if ($pur->pur_id) {
                                                 $id = '#'.(110000+$pur->pur_id);
-                                                echo '<span style = "color : #3F6AFE;"><strong>'.$id.'</strong></span>';
+                                                echo '<span style = "color : #3F6AFE;"><p style=" font-size:20px"><strong>'.$id.'</strong></p>?</span>';
                                             } else {
                                                 echo "--Not Set--";
                                             }
@@ -126,7 +126,7 @@
                                             </td>
                                             <td><?= $pur->pur_date; ?></td>
                                             <td><?= $pur->deli_date; ?></td>
-                                            <td><span class="label" style = "background-color : <?= $pur->pro_color; ?>"><strong><?= $pur->pro_desc; ?></strong></span></td>
+                                            <td><span class="label" style = "background-color : <?= $pur->pro_color; ?>;font-size:15px"><strong><?= $pur->pro_desc; ?></strong></span></td>
                                             <td align="center">
                                             <?php if($pur->pay == 0){ ?>
                                             <a class="uc" id="up<?= $n; ?>">
@@ -134,11 +134,11 @@
                                             <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pur_id; ?>">
                                             </a>
                                             <?php } else if ($pur->pay == 1) { ?>
-                                               <a class="uc" id="up<?= $n; ?>">
+                                               <div title="Bayaran" id="gmbrn<?= $n ?>" class="bayaran" >
                                             <img src="<?= base_url(); ?>dist/img/50paid_tag.png" width="38" height="63">
-                                            <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pur_id; ?>">
-                                            </a>
-                                            
+                                        
+                                            </div>
+                                            <input type="hidden" class="form-control gmbrn<?= $n ?>" value="<?= $pur->pur_id; ?>">
                                             <?php } else if ($pur->pay == 2) { ?>
                                                <div title="Bayaran" id="gmbrn<?= $n ?>" class="bayaran" >
                                             <img src="<?= base_url(); ?>dist/img/paid_tag.png" width="38" height="63">
@@ -165,21 +165,14 @@
                                            &nbsp;&nbsp;
                                         <?php if($pur->pr_id == 1){?>
                                             
-                                            <button type="button" class="negBtn btn btn-info btn-xs" title="Send Approval" style="background-color: #5CFE3F" id="<?= $n.'neg' ?>" name="<?= $n.'neg' ?>"><i class="fa fa-check"></i></button>
-                                            <input type="hidden" class="form-control <?= $n.'neg' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            <button type="button" class="appBtn btn btn-info btn-xs" title="Send Approval" style="background-color: #5CFE3F" id="<?= $n.'app' ?>" name="<?= $n.'app' ?>"><i class="fa fa-envelope"></i></button>
+                                            <input type="hidden" class="form-control <?= $n.'app' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                              &nbsp;&nbsp;
-                                            <?php }else if($pur->pr_id == 2){?>
-                                           
-
-                                            
-                                            <button type="button" class="invBtn btn btn-info btn-xs" title="Invoice" style="background-color: #FE9F3F" id="<?= $n.'inv' ?>" name="<?= $n.'inv' ?>">INV</button>
-                                            <input type="hidden" class="form-control <?= $n.'inv' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
-
-                                            &nbsp;&nbsp;
+                                   
                                             <?php }else if($pur->pr_id == 3){?>
                                             
-                                            <button type="button" class="hapBtn btn btn-info btn-xs" title="Happy Hour" style="background-color: #5F9CC1" id="<?= $n.'hap' ?>" name="<?= $n.'hap' ?>">HAPPY</button>
-                                            <input type="hidden" class="form-control <?= $n.'hap' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            <button type="button" class="accBtn btn btn-info btn-xs" title="Send to Account" style="background-color: #5F9CC1" id="<?= $n.'acc' ?>" name="<?= $n.'acc' ?>"><i class="fa fa-calculator"></i></button>
+                                            <input type="hidden" class="form-control <?= $n.'acc' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             &nbsp;&nbsp;
                                             <?php }else if($pur->pr_id == 4){?>
                                             
@@ -257,7 +250,7 @@
 
 
 
-        $(".negBtn").click(function() {
+        $(".appBtn").click(function() {
 
                     id = $(this).prop('id');
                     purid = $("."+id).val();
@@ -278,7 +271,7 @@
                         callback: function (result) {
                             if(result == true){
                                 
-                                $.post('<?= site_url('purchase_v1/dashboard/change_pr_id'); ?>', {pur_id: purid,pr_id: 2}, function(data) {
+                                $.post('<?= site_url('purchase_v1/dashboard/app_email'); ?>', {pur_id: purid,pr_id: 2}, function(data) {
                                     
                                     $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
                                     
@@ -384,7 +377,7 @@
 
                 });
 
-                $(".hapBtn").click(function() {
+                $(".accBtn").click(function() {
 
                     id = $(this).prop('id');
                     purid = $("."+id).val();
@@ -405,7 +398,7 @@
                         callback: function (result) {
                             if(result == true){
                                 
-                                $.post('<?= site_url('purchase_v1/dashboard/change_pr_id'); ?>', {pur_id: purid,pr_id: 4}, function(data) {
+                                $.post('<?= site_url('purchase_v1/dashboard/acc_email'); ?>', {pur_id: purid,pr_id: 4}, function(data) {
                                     
                                     $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
                                     

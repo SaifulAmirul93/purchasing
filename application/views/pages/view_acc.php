@@ -95,7 +95,7 @@
                                             <?php 
                                             if ($pur->pur_id) {
                                                 $id = '#'.(110000+$pur->pur_id);
-                                                echo '<span style = "color : #3F6AFE;"><strong>'.$id.'</strong></span>';
+                                                echo '<span style = "color : #3F6AFE;"><p style=" font-size:20px"><strong>'.$id.'</strong></span></p>';
                                             } else {
                                                 echo "--Not Set--";
                                             }
@@ -123,7 +123,7 @@
                                             </td>
                                             <td><?= $pur->pur_date; ?></td>
                                             <td><?= $pur->deli_date; ?></td>
-                                            <td><span class="label" style = "background-color : <?= $pur->pro_color; ?>"><strong><?= $pur->pro_desc; ?></strong></span></td>
+                                            <td><span class="label" style = "background-color : <?= $pur->pro_color;?>;;font-size:15px"><strong><?= $pur->pro_desc; ?></strong></span></td>
                                             <td align="center">
                                             <?php if($pur->pay == 0){ ?>
                                             <a class="uc" id="up<?= $n; ?>">
@@ -134,7 +134,7 @@
                                                <div title="Bayaran" id="gmbrn<?= $n ?>" class="bayaran" >
                                             <img src="<?= base_url(); ?>dist/img/50paid_tag.png" width="38" height="63">
                                             </div>
-                                            <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pur_id; ?>">
+                                            <input type="hidden" class="form-control gmbrn<?= $n ?>" value="<?= $pur->pur_id; ?>">
                                             
                                             
                                             <?php } else if ($pur->pay == 2) { ?>
@@ -178,12 +178,14 @@
                                             &nbsp;&nbsp;
                                             <?php } else if ($pur->pay == 1) {  ?>
                                             <button type="button" class="btn btn-info btn-xs upPic" style="background-color: #2B74C2" title="Upload Payment" id="up<?= $n; ?>"><i class="fa fa-upload"></i></button>
+                                            <input type="hidden" class="form-control up<?= $n; ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             &nbsp;&nbsp;
                                              <button onclick = "" type="button" class="btn100 btn btn-xs" title="100% Payment" style="background-color: #2BC22D;color: #FFFFFF" id="<?= $n.'btn1' ?>" name="<?= $n.'btn1' ?>">100 %</button>
                                              <input type="hidden" class="form-control <?= $n.'btn1' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             &nbsp;&nbsp;
                                             <?php } else if ($pur->pay == 2) { ?>
                                             <button type="button" class="btn btn-info btn-xs upPic" style="background-color: #2B74C2" title="Upload Payment" id="up<?= $n; ?>"><i class="fa fa-upload"></i></button>
+
                                             <input type="hidden" class="form-control up<?= $n; ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                              &nbsp;&nbsp;
                                             <?php } ?>
@@ -317,6 +319,7 @@
 $(".upPic").click(function() {
             hid = $(this).prop('id');
             purid = $('.'+hid).val();
+            alert(purid);
             $.post('<?= site_url('purchase_v1/dashboard/getAjaxUpload2'); ?>', {pur_id : purid}, function(data) {
                 $.when($(".tableL").fadeOut("slow")).then(function(){
                     $.when($("#fileUp").html(data)).then(function(){$("#fileUp").fadeIn("fast");});

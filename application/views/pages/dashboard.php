@@ -434,7 +434,7 @@
                         </div>
                         <div class="panel-body">
                
-                         </div> -->
+                         </div> 
                          <div class="clearfix" style="height: 50px "></div>
                             <div id="chartdiv3"></div>
                           <div class="clearfix" style="height: 100px "></div>

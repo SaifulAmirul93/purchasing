@@ -45,7 +45,7 @@
 	            	<div class="col-md-6">
 	            		<div class="panel panel-info">
 			            	<div class="panel-heading">
-		                            <i class="fa fa-image"></i> Image List 
+		                            <i class="fa fa-image"></i> Document List 
 
 		                             <div class="btn-group btn-group-devided pull-right" data-toggle="buttons">
 				                        <button type="button" class="btn btn-sm" id="tutupUpload">Back To List</button>
@@ -56,22 +56,36 @@
 					                           
 					        <br>
 					        <!-- <div class="portlet-body flip-scroll"> -->	
-					        <div class="row">				        
+					       			        
 						     <?php
 						        	if ($img) {
 						        	foreach ($img as $key) {
 						        		?>
-						        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 t<?= $key->pi_id; ?>" align="center">
+
+						        		 <div class="row">
+
+						        <div class="col-xs-5 col-sm-8 col-md-8 col-lg-8 col-md-offset-2 t<?= $key->py_id; ?>" align="center">
 						        	<a class="thumbnail" >
-						        		<img src="<?= base_url($key->img_url); ?>" class = "img">
-						        		<button type="button" class="btn red-pink btn-circle btn-sm delImg" id = "<?= $key->pi_id; ?>"><i class="fa fa-close"></i></button>
+						        		<!-- <img src="<?= base_url($key->image_url); ?>" class = "img"> -->
+						        		<!-- <a href="<?= base_url($key->image_url); ?>"><?= $key->image_url;?></a> -->
+						        		<!-- <iframe src="<?= base_url($key->image_url); ?>"></iframe> -->
+						        		<center>
+						        		<object width="400" height="500" type="application/pdf" data="<?= base_url($key->image_url); ?>" id="pdf_content">
+									    <p>Insert your error message here, if the PDF cannot be displayed.</p>
+									  </object>
+
+						        		<button type="button" class="btn red-pink btn-circle btn-sm delImg" id = "<?= $key->py_id; ?>"><i class="fa fa-close"></i></button>
+						        		</center>	
 						        	</a>
 						        </div>
+						        
+						        </div>
+
 						        <?php
 						        	}
 						        	}
 						         ?>
-            				</div>
+            				
             				<!-- </div>  -->  
             				</div>
             				</div>         			
@@ -92,12 +106,14 @@
 							});
 	            		});
 	            		$(".delImg").click(function(){
-	            			pi_id = $(this).prop('id');
+	            			py_id = $(this).prop('id');
+
+
 	            			if (confirm("Are you sure?")) {
-	            				$.when($(".t"+pi_id).html("<h2><i class='fa fa-refresh fa-spin'></i></h2>")).then(function(){
-	            					$.post('<?= site_url('purchase_v1/dashboard/getAjaxDelImg') ?>', {pi_id: pi_id}, function(data) {
+	            				$.when($(".t"+py_id).html("<h2><i class='fa fa-refresh fa-spin'></i></h2>")).then(function(){
+	            					$.post('<?= site_url('purchase_v1/dashboard/getAjaxDelImg2') ?>', {py_id: py_id}, function(data) {
 	            						if(data){
-            								$(".t"+pi_id).remove();           							
+            								$(".t"+py_id).remove();           							
 	            						}else{
 	            							bootbox.alert("Warning Error, Contact dark Epool....");
 	            						}

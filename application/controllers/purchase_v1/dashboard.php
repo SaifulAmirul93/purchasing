@@ -1050,7 +1050,7 @@
                 
                 $result=$this->m_purchase->updateInv(1, $pur_id);
                 $this->m_picture->insert($arr2);
-                $this->session->set_flashdata('success' , '<b>Well done!</b> You successfully send the picture.');
+                $this->session->set_flashdata('success' , '<b>Well done!</b> You successfully send the document.');
                 redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
             }else{
                 $this->session->set_flashdata('warning' , '<b>Uh Crap!</b> You got Error. The image size is to big');
@@ -1115,7 +1115,7 @@
                 
                //$result=$this->m_purchase->updateInv(1, $pur_id);
                 $this->m_payment->insert($arr2);
-                $this->session->set_flashdata('success' , '<b>Well done!</b> You successfully send the picture.');
+                $this->session->set_flashdata('success' , '<b>Well done!</b> You successfully send the document.');
                 redirect(site_url('purchase_v1/dashboard/page/acc1'),'refresh');
             }else{
                 $this->session->set_flashdata('warning' , '<b>Uh Crap!</b> You got Error. The image size is to big');
@@ -1151,10 +1151,7 @@
                         $this->session->set_flashdata('error', 'Your order status are not updated');
                     redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
                     }
-
-               
-
-                    
+          
         }
 
         public function getAjaxSearch()
@@ -1204,6 +1201,12 @@
         {
               
                    $this->load->view('/mail/del_email');
+                    
+        }
+        public function testmail2()
+        {
+              
+                   $this->load->view('/mail/app_email');
                     
         }
          public function del_email()
@@ -1290,6 +1293,113 @@
 
                         
         }
+               public function app_email()
+        {
+                
+                $pur_id = $this->input->post('pur_id');
+                $pr_id = $this->input->post('pr_id');
+                $this->load->database();
+                $this->load->model('m_purchase');
+                $this->load->library('email');
+                $this->email->set_newline("\r\n");
+
+                          $config['protocol'] = 'smtp';
+                          $config['smtp_host'] = 'ssl://moon.sfdns.net';
+                          $config['smtp_port'] = '465';
+                          $config['smtp_user'] = 'epul@nastyjuice.com';
+                          $config['smtp_from_name'] = 'epul@nastyjuice.com';
+                          $config['smtp_pass'] = 'selasih2014';
+                          $config['charset'] = 'utf-8';
+                          $config['wordwrap'] = TRUE;
+                          $config['newline'] = "\r\n";
+                          $config['mailtype'] = 'html'; 
+                          
+                          $this->email->initialize($config);
+                          $this->email->from($config['smtp_user'],$config['smtp_from_name']);
+                          $this->email->to('epul@nastyjuice.com');
+
+                          $arr['arr'] = array(
+                            
+                            "id" => $this->input->post('pur_id'),
+                             "username" => $this->session->userdata('us_username')   
+                           
+                        );   
+
+                          $this->email->subject('Request For Approval Purchase Order #'.(110000+$pur_id));
+                          $content=$this->load->view('/mail/app_email',$arr,true);
+
+                          $this->email->message($content);
+                          $this->email->send();
+               
+
+                 
+                    $result=$this->m_purchase->updatePR($pr_id, $pur_id);
+                    if($result){
+                    $this->session->set_flashdata('info', 'Your request are successfully send to the administrator');
+                    $this->session->set_flashdata('success', 'Your order status are updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'Your order status are not updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+                    }
+          
+        }
+
+        public function acc_email()
+        {
+                
+                $pur_id = $this->input->post('pur_id');
+                $pr_id = $this->input->post('pr_id');
+                $this->load->database();
+                $this->load->model('m_purchase');
+                $this->load->library('email');
+                $this->email->set_newline("\r\n");
+
+                          $config['protocol'] = 'smtp';
+                          $config['smtp_host'] = 'ssl://moon.sfdns.net';
+                          $config['smtp_port'] = '465';
+                          $config['smtp_user'] = 'epul@nastyjuice.com';
+                          $config['smtp_from_name'] = 'epul@nastyjuice.com';
+                          $config['smtp_pass'] = 'selasih2014';
+                          $config['charset'] = 'utf-8';
+                          $config['wordwrap'] = TRUE;
+                          $config['newline'] = "\r\n";
+                          $config['mailtype'] = 'html'; 
+                          
+                          $this->email->initialize($config);
+                          $this->email->from($config['smtp_user'],$config['smtp_from_name']);
+                          $this->email->to('epul@nastyjuice.com');
+
+                          $arr['arr'] = array(
+                            
+                            "id" => $this->input->post('pur_id'),
+                             "username" => $this->session->userdata('us_username')   
+                           
+                        );   
+
+                          $this->email->subject('Request For Payment Purchase Order #'.(110000+$pur_id));
+                          $content=$this->load->view('/mail/acc_email',$arr,true);
+
+                          $this->email->message($content);
+                          $this->email->send();
+               
+
+                 
+                    $result=$this->m_purchase->updatePR($pr_id, $pur_id);
+                    if($result){
+                    $this->session->set_flashdata('info', 'Your request are successfully send to the account department');
+                    $this->session->set_flashdata('success', 'Your order status are updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'Your order status are not updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
+                    }
+          
+        }
 
         public function sendEmail($email = null){            
             if ($email != null && is_array($email)) {
@@ -1366,7 +1476,30 @@
                     redirect(site_url(''),'refresh');
                     }           
         }
-// http://localhost/purchase/purchase_v1/dashboard/del_purchase?del=8
+
+         public function app_purchase()
+        {
+                
+                
+                $id = $this->input->get('app');
+               
+                $this->load->database();
+                $this->load->model('m_purchase');
+
+                    $result=$this->m_purchase->updatePR(3, $id);
+                    if($result)
+                    {
+                    $this->session->set_flashdata('success', 'Purchase order are successfully approved.');
+                    redirect(site_url(''),'refresh');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'Purchase order are not approved.');
+                    redirect(site_url(''),'refresh');
+                    }           
+        }
+
+
          public function del_item()
                 { 
                       
@@ -1745,6 +1878,20 @@
             }else{
                 echo "false";
             }            
+        }
+        public function getAjaxDelImg2()
+        {
+            $py_id = $this->input->post("py_id");            
+            $this->load->database();
+            $this->load->model("m_payment");
+            $img = $this->m_payment->get($py_id);
+            $this->load->helper('file');            
+            // if (unlink('./'.$img->image_url)) {
+                $this->m_payment->delete($py_id);
+            //     echo "true";
+            // }else{
+            //     echo "false";
+            // }            
         }
         public function getAjaxDelItem()
         {
