@@ -61,7 +61,7 @@
                           <tr>
                           <th>Purhcase No. </th>
                           <th>:</th>
-                          <td><a href="<?= site_url('purchase_v1/dashboard/page/P01?edit=').$pur_id; ?>">#<?= $id ?></a></td>
+                          <td><a href="<?= site_url('purchase_v1/dashboard/PO?po=').$pur_id; ?>">#<?= $id ?></a></td>
                           </tr>
                           <tr>
                           <th>Purchase Status</th>

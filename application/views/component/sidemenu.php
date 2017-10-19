@@ -15,7 +15,7 @@
                         <li>
                             <a href="<?= site_url('purchase_v1/dashboard/page/a1'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <?php $us_lvl = $this->session->userdata('ul_id');?>
+                        <?php $us_lvl = $this->my_func->scpro_decrypt($this->session->userdata('ul_id'));?>
                         <?php if($us_lvl != 4 ){?>
                          <li>
                             <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Purchase<span class="fa arrow"></span></a>
@@ -23,23 +23,21 @@
                                 <li>
                                     <a href="<?= site_url('purchase_v1/dashboard/page/a22'); ?>">Add Purchase</a>
                                 </li>
+                                <?php if($us_lvl != 3 ){?>
                                 <li>
                                     <a href="<?= site_url('purchase_v1/dashboard/page/a29'); ?>">Purchase List</a>
                                 </li>
+                                <?php }?>
+                                <?php if($us_lvl != 1 && $us_lvl != 2 && $us_lvl != 4){?>
+                                <li>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/a30'); ?>">Your Purchase</a>
+                                </li>
+                                <?php }?>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <?php }?>
-                         <!-- <li>
-                            <a href="#"><i class="fa fa-list fa-fw"></i> Purchasing<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                    
-                                <li>
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a21'); ?>">Purchase Action</a>
-                                </li>
-                            </ul>
-                            
-                        </li> -->
+                         
                         
                         <?php if($us_lvl != 2 && $us_lvl != 3 ){?>
                          <li>

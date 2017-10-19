@@ -18,7 +18,7 @@
                     </div>
                     <!-- /.col-lg-12 -->
                   
-                       <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z121?key=').$arr['purchase']->pur_id; ?>" method="post">
+                       <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z121?key=').$this->my_func->scpro_encrypt($arr['purchase']->pur_id); ?>" method="post">
                        <input type="hidden" name="pr_id" id="pr_id" class="form-control" value="<?= $arr['purchase']->pr_id; ?>">
                                         
                                         <div class="row">

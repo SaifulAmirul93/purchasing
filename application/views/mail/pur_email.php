@@ -2,7 +2,7 @@
 <!-- saved from url=(0110)http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/v1_templates/template_01.html -->
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
-  <title>Nasty Juice Vape n Win Contest</title>
+  <title>Nasty Juice Purchasing System v2.0</title>
 
 
   <!-- Latest compiled and minified CSS -->
@@ -47,8 +47,8 @@
                   <tr>
 											<td valign="top" class="bodyContent" mc:edit="body_content">
                         <p>
-                          Dear Mr. Fadtan,<br><br>
-                          Herewith in this email is a Purchase Order information that need to be delete from the system.
+                          Hi Purchasing Dept,<br><br>
+                          Your purchase order has been confirmed by management. Please proceed to the payment process.
                         </p>  
 
 												<h2>Puchase Details</h2>
@@ -61,28 +61,24 @@
                           <tr>
                           <th>Purhcase No. </th>
                           <th>:</th>
-                          <td><a href="<?= site_url('purchase_v1/dashboard/PO?po=').$this->my_func->scpro_encrypt($pur_id); ?>">#<?= $id ?></a></td>
+                          <td><a href="<?= site_url('purchase_v1/dashboard/PO?po=').$pur_id; ?>">#<?= $id ?></a></td>
                           </tr>
                           <tr>
                           <th>Purchase Status</th>
                           <th>:</th>
-                          <td>Request for Cancel</td>
+                          <td>P.O Approved</td>
                           </tr> 
                           <tr>
-                          <th>Request By</th>
+                          <th>Approved By</th>
                           <th>:</th> 
                           <td><?= $arr['username']; ?></td>
                           </tr>
-                          <tr>
-                          <th>Reason</th>
-                          <th>:</th> 
-                          <td><?= $arr['reason']; ?></td>
-                          </tr>
+                         
                           <tr>
                           <th colspan=3><center>
                           
-                          <a href="<?= site_url('purchase_v1/dashboard/del_purchase?del=').$this->my_func->scpro_encrypt($pur_id); ?>" title="Delete Purchase">
-                          <button type="button" class="btn btn-warning btn-lg" title="Edit">Approve Delete</button></a>
+                          <a href="<?= site_url('login'); ?>" title="Login">
+                          <button type="button" class="btn btn-primary btn-lg">Login</button></a>
                           </center></th>
                           </tr>
                           </tbody>
@@ -92,21 +88,8 @@
 
                           *Click the above button to proceed.
 
-                          <br><br>
-                          Sincerely,
-                       
                           <br>
-                          ------------
-                          <br>
-
-                          Nurul Syakirah Mohd Yusof<br>
-                          Purchasing Department<br>
-                          Nsty Worldwide Sdn Bhd,73000 Malaysia<br>
-                          Office: +606-441 0519<br>
-                          Mobile: +01116955561<br>
-                          Operating Hours:<br>
-                          GMT+08.00 Malaysia (5.00pm - 2.00am)<br>
-                          GMT+00.00 London   (9.00am - 6.00pm)<br> 
+                        
                         </p>
 											</td>
 									</tr>

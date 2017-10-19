@@ -28,10 +28,13 @@
 			$ci = $this->obj;
 			$ci->load->library("encrypt");
 			$val1 = $ci->encrypt->encode($text);
+
+			
+
 			$length = strlen($val1);
 			if ($length % 2 == 0) {
 				$arr = str_split($val1 , ($length/4));
-				$text = $arr[3].$arr[1].$arr[0].$arr[2];
+				$text = $arr[3].$arr[0].$arr[1].$arr[2];
 			}else{
 				$val1 .= "{_}";
 				$length ++;
@@ -55,7 +58,7 @@
 			//$this->load->library("encrypt");
 			if (strpos($text, "{_}") === false) {
 				$arr = str_split( $text , ($length/4));
-				$val1 = $arr[2].$arr[1].$arr[3].$arr[0];
+				$val1 = $arr[1].$arr[2].$arr[3].$arr[0];
 			}else{
 				$arr = explode('{_}', $text);
 				$val1 = $arr[1].$arr[0];
@@ -66,7 +69,29 @@
 			return $val2;
 		}
 
-		function do_upload($path = './assets/uploads/files/', $config = null , $type = 'gif|jpg|png')
+		public function en($text , $mode = 0)
+		{
+			if ($mode === 0) {
+				return bin2hex($text);
+			}
+			$ci = $this->obj;
+			$ci->load->library("encrypt");
+			$defaultKey = "jauhmerahAini";
+			return $ci->encrypt->encode($text , $defaultKey);
+		}
+		public function de($text , $mode = 0)
+		{
+			if ($mode === 0) {
+				return pack("H*" , $text);
+			}			
+			$ci = $this->obj;
+			$ci->load->library("encrypt");
+			$defaultKey = "jauhmerahAini";
+			return $ci->encrypt->decode($text , $defaultKey);
+			
+		}
+
+		function do_upload($path = './assets/uploads/files/', $config = null , $type = 'gif|jpg|png|jpeg')
 		{	
 			$ci = $this->obj;	
 			$config['upload_path'] = $path;
@@ -77,31 +102,26 @@
 			$config['remove_spaces'] = true;
 			$config['encrypt_name'] = true;
 			$ci->load->library('upload', $config);
-			$files = (isset($_FILES['tmp_name'])) ? $_FILES : array_shift($_FILES) ;
-			//$files = array_shift($_FILES);
-			$fileSize = sizeof($files['name']);
 			$error = null;
 			$success = null;
-			for ($i=0; $i < $fileSize; $i++) { 
-				$_FILES['uploadedimage']['name'] = $files['name'][$i];
-		        $_FILES['uploadedimage']['type'] = $files['type'][$i];
-		        $_FILES['uploadedimage']['tmp_name'] = $files['tmp_name'][$i];
-		        $_FILES['uploadedimage']['error'] = $files['error'][$i];
-		        $_FILES['uploadedimage']['size'] = $files['size'][$i];
-
-		        if ( ! $ci->upload->do_upload('uploadedimage'))
+			foreach ($_FILES as $fileImg) {
+				$_FILES['uploadedimage']['name'] = $fileImg['name'];
+		        $_FILES['uploadedimage']['type'] = $fileImg['type'];
+		        $_FILES['uploadedimage']['tmp_name'] = $fileImg['tmp_name'];
+		        $_FILES['uploadedimage']['error'] = $fileImg['error'];
+		        $_FILES['uploadedimage']['size'] = $fileImg['size'];
+		        if (!$ci->upload->do_upload('uploadedimage'))
 				{
-					$error[$files['name'][$i]] = $ci->upload->display_errors();
+					$error[$fileImg['name']] = $ci->upload->display_errors();
 				}
 				else
 				{
-					$success[$files['name'][$i]] =  $ci->upload->data();
+					$success[$fileImg['name']] =  $ci->upload->data();
 				}
 			}
 			$temp['success'] = $success;
 			$temp['error'] = $error;
 			return $temp;
-			
 		}
 
 		function errorMsgcrypt($text = null)
@@ -141,41 +161,7 @@
 					break;					
 			}
 			return $text;
-		}
-		public function itemIcon($ty_id = 1)
-			{
-				switch ($ty_id) {
-					case 1:
-						$text = base_url().'/assets/nasty/pro1.jpg';
-						break;
-					case 2:
-						$text = base_url().'/assets/nasty/pro2.jpg';
-						break;
-					case 3:
-						$text = base_url().'/assets/nasty/pro3.jpg';
-						break;
-					case 4:
-						$text = base_url().'/assets/nasty/pro4.jpg';
-						break;
-					case 5:
-						$text = base_url().'/assets/nasty/pro5.jpg';
-						break;
-					case 6:
-						$text = base_url().'/assets/nasty/pro6.jpg';
-						break;
-					case 7:
-						$text = base_url().'/assets/nasty/pro7.jpg';
-						break;
-					case 8:
-						$text = base_url().'/assets/nasty/pro8.jpg';
-						break;
-					
-					default:
-						$text = "error";
-						break;
-				}
-				return $text;
-			}	
+		}		
 	}
 	
 	/* End of file my_func.php */

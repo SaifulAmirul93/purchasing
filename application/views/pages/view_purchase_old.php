@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Purchase List (Version 2.0)</h1>
+                        <h1 class="page-header">Purchase List (Version 1.0)</h1>
                     </div>
                  </div>
 
@@ -52,9 +52,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
 
-                                            
-                                                         
-                           <div class="row">
+                            <div class="row">
 
                            <div class="col-md-12">
                                 <div class="col-md-2">
@@ -66,13 +64,14 @@
                                     
                                 </div>
                                 <div class="col-md-2 ">
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a29old'); ?>">                             
-                                <button type="button" class="btn btn-info">Old Version 1.0</button>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/a29'); ?>">                             
+                                <button type="button" class="btn btn-primary">New Version 2.0</button>
                                 </a>
                                 </div>
                             </div>
                                  
                             </div>
+                       
 
 
                         </div>
@@ -83,7 +82,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th style="width: 50px">Supplier Name</th>
+                                            <th>Supplier Name</th>
                                             <th>Purchase No</th>
                                             <th>Request By</th>
                                             <th>Project Code</th>
@@ -98,7 +97,7 @@
                                     <tbody>
                                      <?php
                                 $n = 0; 
-                                    if($arr){
+                                
                                     foreach ($arr as $pur){
                                         if($pur->pr_id!=7){
                                         $n++;
@@ -139,7 +138,7 @@
                                             </td>
                                             <td><?= $pur->pur_date; ?></td>
                                             <td><?= $pur->deli_date; ?></td>
-                                            <td><span class="label" style = "background-color : <?= $pur->pro_color; ?>;font-size:15px"><strong><?= $pur->pro_desc; ?></strong></span></td>
+                                            <td><span class="label" style = "background-color : <?= $pur->pro_color; ?>"><strong><?= $pur->pro_desc; ?></strong></span></td>
                                             <td align="center">
                                             <?php if($pur->pay == 0){ ?>
                                             <a class="uc" id="up<?= $n; ?>">
@@ -147,11 +146,11 @@
                                             <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pur_id; ?>">
                                             </a>
                                             <?php } else if ($pur->pay == 1) { ?>
-                                               <div title="Bayaran" id="gmbrn<?= $n ?>" class="bayaran" >
+                                               <a class="uc" id="up<?= $n; ?>">
                                             <img src="<?= base_url(); ?>dist/img/50paid_tag.png" width="38" height="63">
-                                        
-                                            </div>
-                                            <input type="hidden" class="form-control gmbrn<?= $n ?>" value="<?= $pur->pur_id; ?>">
+                                            <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pur_id; ?>">
+                                            </a>
+                                            
                                             <?php } else if ($pur->pay == 2) { ?>
                                                <div title="Bayaran" id="gmbrn<?= $n ?>" class="bayaran" >
                                             <img src="<?= base_url(); ?>dist/img/paid_tag.png" width="38" height="63">
@@ -170,65 +169,69 @@
                                             <?php }?>
                                             </td>
                                             <td align="center"></a>
-                                            <!-- <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$pur->pur_id; ?>" name="c5" title="Edit Purchase">
-                                            <button type="button" class="btn btn-success btn-xs" title="View"><i class="fa fa-print"></i></button></a>
-                                            &nbsp;&nbsp;&nbsp; -->
                                            
-                                           
-                                            <center>
-                                            <?php if($pur->pr_id == 1){?>
-                                            
-                                            <button type="button" class="appBtn btn btn-info btn-xs" title="Send Approval" style="background-color: #5CFE3F" id="<?= $n.'app' ?>" name="<?= $n.'app' ?>"><i class="fa fa-envelope"></i></button>
-                                            <input type="hidden" class="form-control <?= $n.'app' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
-                                             &nbsp;&nbsp;
-                                   
-                                            <?php }else if($pur->pr_id == 3){?>
-                                            
-                                            <button type="button" class="accBtn btn btn-info btn-xs" title="Send to Account" style="background-color: #5F9CC1" id="<?= $n.'acc' ?>" name="<?= $n.'acc' ?>"><i class="fa fa-calculator"></i></button>
-                                            <input type="hidden" class="form-control <?= $n.'acc' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$pur->pur_id; ?>" name="c5" title="View Purchase">
+                                            <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
+
                                             &nbsp;&nbsp;
                                             
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$pur->pur_id; ?>" name="c5" title="Edit Purchase">
+                                            <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button></a>
+                                             &nbsp;&nbsp;
+                                           <?php $us_lvl = $this->session->userdata('ul_id');?>
+                                           <?php if($us_lvl!=3){?>
+                                        <?php if($pur->pr_id == 1){?>
+                                            
+                                            <button type="button" class="negBtn btn btn-info btn-xs" title="Negotiate" style="background-color: #5CFE3F" id="<?= $n.'neg' ?>" name="<?= $n.'neg' ?>">NEGO</button>
+                                            <input type="hidden" class="form-control <?= $n.'neg' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                             &nbsp;&nbsp;
+                                            <?php }else if($pur->pr_id == 2){?>
+                                           
+
+                                            
+                                            <button type="button" class="invBtn btn btn-info btn-xs" title="Invoice" style="background-color: #FE9F3F" id="<?= $n.'inv' ?>" name="<?= $n.'inv' ?>">INV</button>
+                                            <input type="hidden" class="form-control <?= $n.'inv' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+
+                                            &nbsp;&nbsp;
+                                            <?php }else if($pur->pr_id == 3){?>
+                                            
+                                            <button type="button" class="hapBtn btn btn-info btn-xs" title="Happy Hour" style="background-color: #5F9CC1" id="<?= $n.'hap' ?>" name="<?= $n.'hap' ?>">HAPPY</button>
+                                            <input type="hidden" class="form-control <?= $n.'hap' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            &nbsp;&nbsp;
                                             <?php }else if($pur->pr_id == 4){?>
-                                            <?php if($pur->pay == 1 || $pur->pay == 2){?>
+                                            
                                             <button type="button" class="etdBtn btn btn-info btn-xs" title="ETD" style="background-color: #BD5FC1" id="<?= $n.'etd' ?>" name="<?= $n.'etd' ?>">ETD</button>
                                             <input type="hidden" class="form-control <?= $n.'etd' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             &nbsp;&nbsp;
-                                            <?php }?>
                                             <?php }else if($pur->pr_id == 5){?>
                                             
                                             <button type="button" class="etaBtn btn btn-info btn-xs" title="ETA" style="background-color: #5FC17E" id="<?= $n.'eta' ?>" name="<?= $n.'eta' ?>">Arrived</button>
                                             <input type="hidden" class="form-control <?= $n.'eta' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             &nbsp;&nbsp;
                                             <?php } ?>
-                                            <?php if(($pur->pr_id != 1) && ($pur->pr_id != 2)){?>
+                                            
+                                             <br><br>
                                             <button onclick = "window.open('<?= site_url('purchase_v1/dashboard/page/P01?edit=').$pur->pur_id; ?>');" type="button" class="btn btn-success btn-xs" title="Purchase Order"><i class="fa fa-file-text"></i></button>
                                             &nbsp;&nbsp;
-                                            <?php } ?>
                                             <?php if($pur->pr_id >= 3){?>
                                             <button type="button" class="btn btn-info btn-xs upPic" style="background-color: #AD3089" title="Upload Invoice" id="up<?= $n; ?>"><i class="fa fa-upload"></i></button>
                                             <input type="hidden" class="form-control up<?= $n; ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                              &nbsp;&nbsp;
                                              <?php } ?>
-                                            </center>
-                                            <br>
-                                            <center>
-                                             <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$this->my_func->scpro_encrypt($pur->pur_id); ?>" name="c5" title="View Purchase">
-                                            <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
-
-                                            &nbsp;&nbsp;
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$this->my_func->scpro_encrypt($pur->pur_id); ?>" name="c5" title="Edit Purchase">
-                                            <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button></a>
-                                             &nbsp;&nbsp;
-
+                                             <?php } ?>
+                                             
+                                             
+                                             <!-- <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a15?delete=').$pur->pur_id; ?>" name="c5" title="Delete Purchase"> -->
+                                             <!--<button type="button" class="delBtn btn btn-danger btn-xs" title="Delete" id="<?= $n.'del' ?>" name="<?= $n.'del' ?>"><i class="fa fa-close"></i></button>-->
+                                             <!--<input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">-->
+                                             
                                              <button type="button" class="delBtn btn btn-danger btn-xs" title="Delete" id="<?= $n.'del' ?>" name="<?= $n.'del' ?>"><i class="fa fa-close"></i></button>
-                                             <input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $this->my_func->scpro_encrypt($pur->pur_id) ?>">
-                                             </center>
+                                             <input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                             </td>
                                         </tr>
                                           <?php
                                            }
                                        }
-                                   }
                                 
                     
                                         ?>
@@ -268,7 +271,7 @@
 
 
 
-        $(".appBtn").click(function() {
+        $(".negBtn").click(function() {
 
                     id = $(this).prop('id');
                     purid = $("."+id).val();
@@ -289,7 +292,7 @@
                         callback: function (result) {
                             if(result == true){
                                 
-                                $.post('<?= site_url('purchase_v1/dashboard/app_email'); ?>', {pur_id: purid,pr_id: 2}, function(data) {
+                                $.post('<?= site_url('purchase_v1/dashboard/change_pr_id'); ?>', {pur_id: purid,pr_id: 2}, function(data) {
                                     
                                     $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
                                     
@@ -303,6 +306,43 @@
 
 
                 });
+
+        // $(".delBtn").click(function() {
+
+        //             id = $(this).prop('id');
+        //             purid = $("."+id).val();
+                        
+        //             bootbox.confirm({
+        //                 message: "Are you sure that you want to delete this purchase?",
+        //                 buttons: {
+        //                     confirm: {
+        //                         label: 'Yes',
+        //                         className: 'btn-success'
+                               
+        //                     },
+        //                     cancel: {
+        //                         label: 'No',
+        //                         className: 'btn-danger'
+        //                     }
+        //                 },
+        //                 callback: function (result) {
+        //                     if(result == true){
+                                
+        //                         $.post('<?= site_url('purchase_v1/dashboard/del_purchase'); ?>', {pur_id: purid,pr_id: 7}, function(data) {
+                                    
+        //                             $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
+                                    
+        //                         });
+
+        //                     }
+                            
+                            
+        //                 }
+        //             });
+
+
+        //         });
+
 
         $(".delBtn").click(function() {
 
@@ -325,6 +365,13 @@
                         },
                         callback: function (result) {
                             if(result == true){
+                                
+
+                                  // $.post('<?= site_url('purchase_v1/dashboard/del_purchase'); ?>', {del: purid}, function(data) {
+                                    
+                                  //       $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
+                                    
+                                  //       });
 
                                 bootbox.prompt({
                                     title: "Please state the reason!",
@@ -388,7 +435,7 @@
 
                 });
 
-                $(".accBtn").click(function() {
+                $(".hapBtn").click(function() {
 
                     id = $(this).prop('id');
                     purid = $("."+id).val();
@@ -409,7 +456,7 @@
                         callback: function (result) {
                             if(result == true){
                                 
-                                $.post('<?= site_url('purchase_v1/dashboard/acc_email'); ?>', {pur_id: purid,pr_id: 4}, function(data) {
+                                $.post('<?= site_url('purchase_v1/dashboard/change_pr_id'); ?>', {pur_id: purid,pr_id: 4}, function(data) {
                                     
                                     $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
                                     

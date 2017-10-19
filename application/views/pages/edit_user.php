@@ -83,7 +83,7 @@
                                               <div class="form-group">
                                                         <label class="col-md-2" >Membership</label> 
                                                         <div class=" col-md-3">  
-                                                                  <select class="form-control" name="us_pass" id="us_pass">
+                                                                  <select class="form-control" name="ul_id" id="ul_id">
                                                             <?php foreach ($lvl as $key) {
                                                                 ?>
                                                                 <option value="<?= $key->ull_id; ?>" <?php if($key->ull_id == $arr->ul_id){echo " selected ";} ?>> <?= $key->ul_desc; ?></option>
@@ -111,9 +111,6 @@
                                         <div class="row">
                                                  <div class="form-group" id="p1">
                                                    
-
-                                             
-                                                   
                                                     
                                                         <label class="col-md-2" >Password</label> 
                                                          
@@ -133,13 +130,13 @@
                                                          
                                                           <div class=" col-md-3">  
                                                       
-                                                            <input type="password" class="form-control" id = "pass2" name="us_pass">
+                                                            <input type="password" class="form-control" id = "pass2">
                                             
                                                     </div>
                                             </div>
                                         </div>
 
-                                        <input type="hidden" name="id" id="inputId" class="form-control" value="<?= $arr->us_id; ?>">
+                                        <input type="hidden" name="id" id="inputId" class="form-control" value="<?= $this->my_func->scpro_encrypt($arr->us_id); ?>">
                                         <div class="clear" style="height: 50px;"></div>
                                          <div class="row">
                                             <div class=" col-md-5">
@@ -170,27 +167,27 @@
 
 $(document).ready(function() {
 
-                $('#user-form').validate({
-        rules: {
-            us_username: {
-                required: true
-            },
-            us_pass: {
+    //             $('#user-form').validate({
+    //     rules: {
+    //         us_username: {
+    //             required: true
+    //         },
+    //         us_pass: {
         
-                required: true
-            },
-            pass2: {
-                required: true
-            }
-        },
-        highlight: function (element) {
-            $(element).closest('.control-group').removeClass('has-success').addClass('has-error');
-        }/*,
-        success: function (element) {
-            element.addClass('valid')
-                .closest('.control-group').removeClass('has-error').addClass('has-success');
-        }*/
-    });
+    //             required: true
+    //         },
+    //         pass2: {
+    //             required: true
+    //         }
+    //     },
+    //     highlight: function (element) {
+    //         $(element).closest('.control-group').removeClass('has-success').addClass('has-error');
+    //     }/*,
+    //     success: function (element) {
+    //         element.addClass('valid')
+    //             .closest('.control-group').removeClass('has-error').addClass('has-success');
+    //     }*/
+    // });
 
 
 

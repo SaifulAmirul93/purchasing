@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Purchase List (Version 2.0)</h1>
+                        <h1 class="page-header">Your Purchase </h1>
                     </div>
                  </div>
 
@@ -62,14 +62,7 @@
                                     <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add Purchase</button>
                                     </a>
                                 </div>
-                                 <div class="col-md-8">
-                                    
-                                </div>
-                                <div class="col-md-2 ">
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a29old'); ?>">                             
-                                <button type="button" class="btn btn-info">Old Version 1.0</button>
-                                </a>
-                                </div>
+                             
                             </div>
                                  
                             </div>
@@ -212,16 +205,16 @@
                                             </center>
                                             <br>
                                             <center>
-                                             <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$this->my_func->scpro_encrypt($pur->pur_id); ?>" name="c5" title="View Purchase">
+                                             <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$pur->pur_id; ?>" name="c5" title="View Purchase">
                                             <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
 
                                             &nbsp;&nbsp;
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$this->my_func->scpro_encrypt($pur->pur_id); ?>" name="c5" title="Edit Purchase">
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$pur->pur_id; ?>" name="c5" title="Edit Purchase">
                                             <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button></a>
                                              &nbsp;&nbsp;
 
                                              <button type="button" class="delBtn btn btn-danger btn-xs" title="Delete" id="<?= $n.'del' ?>" name="<?= $n.'del' ?>"><i class="fa fa-close"></i></button>
-                                             <input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $this->my_func->scpro_encrypt($pur->pur_id) ?>">
+                                             <input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                              </center>
                                             </td>
                                         </tr>
@@ -325,6 +318,13 @@
                         },
                         callback: function (result) {
                             if(result == true){
+                                
+
+                                  // $.post('<?= site_url('purchase_v1/dashboard/del_purchase'); ?>', {del: purid}, function(data) {
+                                    
+                                  //       $(window).attr("location", "<?= site_url('purchase_v1/dashboard/page/a29'); ?>");
+                                    
+                                  //       });
 
                                 bootbox.prompt({
                                     title: "Please state the reason!",

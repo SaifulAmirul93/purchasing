@@ -19,16 +19,8 @@
 
 
 	      private function _show($page = 'display' , $key = 'a1'){
-           /* $link['link'] = $key;
-	    	$link['admin'] = $this->_checkLvl();
-	    	if (!$link['admin']) {
-	    		$link['link'] = 'a2';
-	    	}
-	    	if (isset($data['title'])) {
-	    		$T['title'] = $data['title'];
-	    	}else{
-	    		$T = null;
-	    	}*/
+        $this->load->library('my_func');
+        
 	    	$this->load->view($this->component_parent.'/head', '', FALSE);
 	    	$this->load->view($this->component_parent.'/header', '', FALSE);
 	    	$this->load->view($this->component_parent.'/sidemenu', '', FALSE);
@@ -48,10 +40,12 @@
             //$lvl =$this->my_func->scpro_decrypt($this->session->userdata('us_lvl'));
         switch ($key) {
                 case "a1" :// dashboard
-                        //start added
+                      
+
                        $this->load->database();
                         $this->load->model('m_purchase');
                         $this->load->model('m_category');
+                        $this->load->library('my_func');
                         $arr['enquiry'] = $this->m_purchase->countPurType(1);
                          $arr['nego'] = $this->m_purchase->countPurType(2);
                          $arr['inv'] = $this->m_purchase->countPurType(3);
@@ -300,13 +294,46 @@
                         $this->load->database();
                         $this->load->model('m_purchase');
                         $this->load->model('m_project');
+
+
+
                         $arr['lvl'] = $this->m_project->get();
-                        $arr['arr'] = $this->m_purchase->getAll();
+
+                        $arr['arr'] = $this->m_purchase->getAll2(null, 1);
                         $this->_show('display', $key);
                         $this->load->view($this->parent_page.'/view_purchase',$arr);
                         
                    break;
 
+                   case "a29old" :
+                        $this->load->database();
+                        $this->load->model('m_purchase');
+                        $this->load->model('m_project');
+
+
+
+                        $arr['lvl'] = $this->m_project->get();
+
+                        $arr['arr'] = $this->m_purchase->getAll(null, 0);
+                        $this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/view_purchase_old',$arr);
+                        
+                   break;
+
+                   case "a30" :
+                        $this->load->database();
+                        $this->load->model('m_purchase');
+                        $this->load->model('m_project');
+
+                        $us_id = $this->session->userdata('us_id');
+
+                        $arr['lvl'] = $this->m_project->get();
+
+                        $arr['arr'] = $this->m_purchase->getAll2(null, 1, $us_id);
+                        $this->_show('display', $key);
+                        $this->load->view($this->parent_page.'/your_purchase',$arr);
+                        
+                   break;
 
                     case "a13" :// delete
                     if ($this->input->get('delete')) {
@@ -400,41 +427,42 @@
                           } 
 
                            case "c24" :
-                          //edit
-                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                          //edit User
+                      
                       if ($this->input->get('edit')) {
-                         $UserId = $this->input->get('edit');
-                        //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
-                        //echo $staffId;
+                        $this->load->library('my_func');
+                        
+                        $UserId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                        
                         $this->load->database();
                         $this->load->model('m_user');
                         $arr['id'] = $this->input->get('edit');
                         $arr['lvl'] = $this->m_user->getLvl();
                         $arr['arr'] = $this->m_user->getAll($UserId);
-                        /*$data['display'] = $this->load->view($this->parent_page.'/editStaff' , $arr , true);
-                        $this->_show('display' , $data , $key); */
-
-                      }       
-                       $this->_show('display', $key);
+                      
+                        $this->_show('display', $key);
                         $this->load->view($this->parent_page.'/edit_user',$arr);
+                      }       
+                       
                         
 
                         break;
 
                          case "c25" :
-                          //view
-                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                          //view User
+                      
                       if ($this->input->get('view')) {
-                         $UserId = $this->input->get('view');
-                        //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
-                        //echo $staffId;
+                        
+                        $this->load->library('my_func');
+
+                        $UserId = $this->my_func->scpro_decrypt($this->input->get('view'));
+                       
                         $this->load->database();
                         $this->load->model('m_user');
                         $arr['id'] = $this->input->get('view');
                         $arr['lvl'] = $this->m_user->getLvl();
                         $arr['arr'] = $this->m_user->getAll($UserId);
-                        /*$data['display'] = $this->load->view($this->parent_page.'/editStaff' , $arr , true);
-                        $this->_show('display' , $data , $key); */
+                       
 
                       }       
                        $this->_show('display', $key);
@@ -444,12 +472,13 @@
                         break;
 
                          case "c29" :
-                          //edit
-                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                          //edit purchase
+                     
                        if ($this->input->get('edit')) {
-                            $PurId = $this->input->get('edit');
-                        //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
-                        //echo $staffId;
+                            
+                            $this->load->library('my_func');
+                            $PurId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                        
                             $this->load->database();
                             $this->load->model('m_purchase');
                             $this->load->model('m_item');
@@ -468,10 +497,11 @@
 
                            case "c30" :
                           //view
-                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                     
                        if ($this->input->get('view')) {
-                            $PurId = $this->input->get('view');
-                        //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
+                            // $PurId = $this->input->get('view');
+                            $this->load->library('my_func');
+                            $PurId = $this->my_func->scpro_decrypt($this->input->get('view'));
           
                             $this->load->database();
                             $this->load->model('m_purchase');
@@ -537,6 +567,7 @@
                         $arr = $this->input->post();
                         $this->load->database();
                         $this->load->model('m_purchase');
+                        $this->load->library('my_func');
 
                         if ($arr['Supplier'] == -1) {  
                             $sl = array(
@@ -554,15 +585,16 @@
                       
                         $purchase = array(
                             "supp_id" => $arr['Supplier'],
-                            "user_id" => $this->session->userdata('us_id'),                            
+                            "user_id" =>  $this->session->userdata('us_id'),                            
                             "pur_date" => $arr['deli_date'],
                             "deli_date" => $arr['deli_date'],
                             "pr_id" => $arr['pro_id'],
                             'currency' => $arr['currency'],
                             'pay' => $arr['pay'],
-                            ' prjk_id' => $arr['prjk_id'],
-                            ' unit' => $arr['unit'],
-                            ' gst' => $arr['gst'],
+                            'prjk_id' => $arr['prjk_id'],
+                            'unit' => $arr['unit'],
+                            'gst' => $arr['gst'],
+                            'ver' => 1
                         );
                         $pur_id = $this->m_purchase->insert($purchase);
                         $this->load->model('m_purchase_item');
@@ -651,8 +683,9 @@
                         $this->load->database();
                         $this->load->model('m_purchase');
                         $this->load->model('m_project');
+                        $ul_id=$this->session->userdata('ul_id');
                         $arr['lvl'] = $this->m_project->get();
-                        $arr['arr'] = $this->m_purchase->getAll();
+                        $arr['arr'] = $this->m_purchase->getAll($ul_id);
                         $this->_show('display', $key);
                         $this->load->view($this->parent_page.'/view_acc',$arr);
                         
@@ -1120,14 +1153,31 @@
             }else{
                 $this->session->set_flashdata('warning' , '<b>Uh Crap!</b> You got Error. The image size is to big');
                 redirect(site_url('purchase_v1/dashboard/page/acc1'),'refresh');
-            }
-        
-
-
-            
+            }   
     
         }
-
+        public function PO()
+        {
+              if ($this->input->get('po')) 
+                  {
+                    $this->load->library('my_func');
+                    
+                    $PurId = $this->my_func->scpro_decrypt($this->input->get('po'));
+                              
+                    $this->load->database();
+                    $this->load->model('m_purchase');
+                    $this->load->model('m_item');
+                    $this->load->model('m_cat');
+                    $this->load->model('m_unit');
+                    $arr['cat'] = $this->m_cat->get();
+                    $arr['item'] = $this->m_item->get();
+                    $arr['unit'] = $this->m_unit->get();
+                    $data=$this->m_purchase->getList($PurId);
+                    $arr['arr'] = array_shift($data);
+                                   
+                    $this->load->view($this->parent_page.'/purchase_order',$arr);
+                  }  
+        }   
 
 
 
@@ -1209,6 +1259,12 @@
                    $this->load->view('/mail/app_email');
                     
         }
+        public function testmail3()
+        {
+              
+                   $this->load->view('/mail/pur_email');
+                    
+        }
          public function del_email()
         {
                 
@@ -1216,66 +1272,59 @@
 
                 $this->load->database();
                 $this->load->model('m_purchase');
+                $this->load->library('my_func');
                 $cancel = $this->input->post('cancel');
-                $pur_id = $this->input->post('pur_id');
+                $pur_id = $this->my_func->scpro_decrypt($this->input->post('pur_id'));
                 $reason = $this->input->post('reason');
                     if($reason && $pur_id)
                     {
                         if($cancel == 1)
                         {
 
-                        //   $this->load->library('email');
-                        //   $this->email->set_newline("\r\n");
-                        //   $config['protocol'] = 'smtp';
-                        //   $config['smtp_host'] = 'ssl://moon.sfdns.net';
-                        //   $config['smtp_port'] = '465';
-                        //   $config['smtp_user'] = 'epul@nastyjuice.com';
-                        //   $config['smtp_from_name'] = 'epul@nastyjuice.com';
-                        //   $config['smtp_pass'] = 'selasih2014';
-                        //   $config['charset'] = 'utf-8';
-                        //   $config['wordwrap'] = TRUE;
-                        //   $config['newline'] = "\r\n";
-                        //   $config['mailtype'] = 'html'; 
+                          $this->load->library('email');
+                          $this->email->set_newline("\r\n");
+                          $config['protocol'] = 'smtp';
+                          $config['smtp_host'] = 'ssl://moon.sfdns.net';
+                          $config['smtp_port'] = '465';
+                          $config['smtp_user'] = 'epul@nastyjuice.com';
+                          $config['smtp_from_name'] = 'epul@nastyjuice.com';
+                          $config['smtp_pass'] = 'selasih2014';
+                          $config['charset'] = 'utf-8';
+                          $config['wordwrap'] = TRUE;
+                          $config['newline'] = "\r\n";
+                          $config['mailtype'] = 'html'; 
                           
-                        //   $this->email->initialize($config);
-                        //   $this->email->from($config['smtp_user'],$config['smtp_from_name']);
-                        //   $this->email->to('epul@nastyjuice.com');
+                          $this->email->initialize($config);
+                          $this->email->from($config['smtp_user'],$config['smtp_from_name']);
+                          $this->email->to('epul@nastyjuice.com');
 
-                        //   $arr['arr'] = array(
+                          $arr['arr'] = array(
                             
-                        //     "id" => $this->input->post('pur_id'),
-                        //     "reason" => $this->input->post('reason'),
-                        //      "username" => $this->session->userdata('us_username'),
+                            "id" => $pur_id,
+                            "reason" => $this->input->post('reason'),
+                             "username" => $this->session->userdata('us_username'),
                             
                             
                            
-                        // );   
-                          $email['fromName'] = "Nasty Juice Purchasing Department";
-                          $email['fromEmail'] = "purchasing@nastyjuice.com";
-                          $email['toEmail'] = "epul@nastyjuice.com";
-                          $email['subject'] = 'Request For Cancel Purchase Order #'.(110000+$pur_id);
-                          $email['html'] = true;
-                          $email['msg']=$this->load->view('/mail/del_email',$arr,true);
+                        );   
+                          // $email['fromName'] = "Nasty Juice Purchasing Department";
+                          // $email['fromEmail'] = "purchasing@nastyjuice.com";
+                          // $email['toEmail'] = "epul@nastyjuice.com";
+                          // $email['subject'] = 'Request For Cancel Purchase Order #'.(110000+$pur_id);
+                          // $email['html'] = true;
+                          // $email['msg']=$this->load->view('/mail/del_email',$arr,true);
            
-                          // $this->email->subject('Request For Cancel Purchase Order #'.(110000+$pur_id));
-                          // $content=$this->load->view('/mail/del_email',$arr,true);
-                          // $msg = $content;
-
-
-
-
-
-
-                          // $this->email->message($msg);
-                          // //$this->email->send();
-                          // $result=$this->email->send();
+                          $this->email->subject('Request For Cancel Purchase Order #'.(110000+$pur_id));
+                          $content=$this->load->view('/mail/del_email',$arr,true);
+                          $this->email->message($content);
+                          $result=$this->email->send();
 
 
 
                           
 
 
-                           $result=$this->sendEmail($email);
+                           //$result=$this->sendEmail($email);
 
                             if($result)
                             {
@@ -1458,8 +1507,9 @@
          public function del_purchase()
         {
                 
-                
-                $id = $this->input->get('del');
+                $this->load->library('my_func');
+
+                $id = $this->my_func->scpro_decrypt($this->input->get('del'));
                
                 $this->load->database();
                 $this->load->model('m_purchase');
@@ -1489,6 +1539,43 @@
                     $result=$this->m_purchase->updatePR(3, $id);
                     if($result)
                     {
+
+
+                    $this->load->library('email');
+                    $this->email->set_newline("\r\n");
+
+                          $config['protocol'] = 'smtp';
+                          $config['smtp_host'] = 'ssl://moon.sfdns.net';
+                          $config['smtp_port'] = '465';
+                          $config['smtp_user'] = 'epul@nastyjuice.com';
+                          $config['smtp_from_name'] = 'epul@nastyjuice.com';
+                          $config['smtp_pass'] = 'selasih2014';
+                          $config['charset'] = 'utf-8';
+                          $config['wordwrap'] = TRUE;
+                          $config['newline'] = "\r\n";
+                          $config['mailtype'] = 'html'; 
+                          
+                          $this->email->initialize($config);
+                          $this->email->from($config['smtp_user'],$config['smtp_from_name']);
+                          $this->email->to('epul@nastyjuice.com');
+
+                          $arr['arr'] = array(
+                            
+                            "id" => $id,
+                             "username" => $this->session->userdata('us_username')   
+                           
+                        );   
+
+                          $this->email->subject('Your purchase order is already approved #'.(110000+$id));
+                          $content=$this->load->view('/mail/pur_email',$arr,true);
+
+                          $this->email->message($content);
+                          $this->email->send();
+
+
+
+
+
                     $this->session->set_flashdata('success', 'Purchase order are successfully approved.');
                     redirect(site_url(''),'refresh');
                     }
@@ -1604,33 +1691,31 @@
                       $arr = $this->input->post();          
                       $this->load->database();
                       $this->load->model('m_user');
-                      //$this->load->library('my_func');
+                      $this->load->library('my_func');
                       foreach ($arr as $key => $value) {
                         if ($value != null) {
-                         /* if ($key == 'pass') {
+                          if ($key == 'us_pass') {
                             $value = $this->my_func->scpro_encrypt($value);
-                          }*/
+                          }
                           if ($key == 'id') {
-                            $id = $value;
+                            $id = $this->my_func->scpro_decrypt($value);
                           }else{
                             $arr2[$key] = $value;
                           }             
                         }
                       }
+
                       $result = $this->m_user->update($arr2 , $id);
-                      
-                             echo "<script>
-                          alert('Successfully Updated!');  
-                      </script>";
-                      redirect(site_url('purchase_v1/dashboard/page/a25'),'refresh');
-                  /*    else{
-                        $this->session->set_flashdata("message","Record Not Updated!");
-                                  redirect(site_url('purchase_v1/dashboard/page/a25'),'refresh');
-                                  
-                      }*/
-                    
-                    }else{
-                      redirect(site_url('purchase_v1/dashboard/page/a25'),'refresh');
+                      if($result){
+                    $this->session->set_flashdata('success', 'User details are updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a25'),'refresh');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'User details are not updated');
+                    redirect(site_url('purchase_v1/dashboard/page/a25'),'refresh');
+                    }
+
                     }
             }
              public function updateItem()

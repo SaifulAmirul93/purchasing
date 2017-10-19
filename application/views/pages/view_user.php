@@ -34,7 +34,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-2" >First Name</label> 
                                                         <div class=" col-md-3">  
-                                                                <input class="form-control" name="us_fname" id="us_fname" value="<?= $arr->us_fname; ?>" disabled>
+                                                                <input class="form-control" name="fname" id="fname" value="<?= $arr->us_fname; ?>" disabled>
                                             
                                                     </div>
                                                 </div>
@@ -43,7 +43,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-2" >Last Name</label> 
                                                         <div class=" col-md-3">  
-                                                                <input class="form-control" name="us_lname" id="us_lname"  value="<?= $arr->us_lname; ?>" disabled>
+                                                                <input class="form-control" name="lname" id="lname"  value="<?= $arr->us_lname; ?>" disabled>
                                             
                                                     </div>
                                                 </div>
@@ -56,7 +56,7 @@
                                               <div class="form-group">
                                                         <label class="col-md-2" >Username</label> 
                                                         <div class=" col-md-3">  
-                                                                <input class="form-control" name="us_username" id="us_username"  value="<?= $arr->us_username; ?>" disabled>
+                                                                <input class="form-control" name="username" id="username"  value="<?= $arr->us_username; ?>" disabled>
                                             
                                                     </div>
                                                 </div>
@@ -67,7 +67,7 @@
                                                         <label class="col-md-2" >Email</label> 
                                                         <div class=" col-md-3">  
                                                       
-                                                            <input type="email" class="form-control" name="us_email" id="us_email" value="<?= $arr->us_email; ?>" disabled>
+                                                            <input type="email" class="form-control" name="email" id="email" value="<?= $arr->us_email; ?>" disabled>
                                             
                                                     </div>
                                                 </div>
@@ -107,50 +107,13 @@
                                         </div>
 
 
-                                        <div class="row">
-                                                <div class=" col-md-4">
-                                                    <h3 class="page-header">Password</h3>
-                                                </div>
-                                               
-                                        </div>
+                                    
 
-
-                                        <div class="row">
-                                                 <div class="form-group" id="p1">
-                                                   
-
-                                             
-                                                   
-                                                    
-                                                        <label class="col-md-2" >Password</label> 
-                                                         
-                                                         <div class=" col-md-3">  
-                                                            <div class="form-group input-group">
-                                                                <input type="password" class="form-control" id = "us_pass"  name="us_pass" disabled>
-                                                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                                            </div>
-                                                        </div>
-                                            </div>
-                                        </div>
-                              
-                                        <div class="row">
-                                                 <div class="form-group" id="p2">
-                                                                                                      
-                                                        <label class="col-md-2" >Re-Enter Password</label> 
-                                                         
-                                                          <div class=" col-md-3">  
-                                                      
-                                                            <input type="password" class="form-control" id = "pass2" name="us_pass" disabled>
-                                            
-                                                    </div>
-                                            </div>
-                                        </div>
-
-                                        <input type="hidden" name="id" id="inputId" class="form-control" value="<?= $arr->us_id; ?>">
+                                        
                                         <div class="clear" style="height: 50px;"></div>
                                          <div class="row">
                                             <div class=" col-md-5">
-                                              <a href="<?= site_url('purchase_v1/dashboard/page/c24?edit=').$arr->us_id; ?>" name="c5" title="Edit Supplier">
+                                              <a href="<?= site_url('purchase_v1/dashboard/page/c24?edit=').$this->my_func->scpro_encrypt($arr->us_id); ?>" name="c5" title="Edit Supplier">
                                                 <button type="button" class="btn btn-success">Edit</button></a>
                                               
                                                  <a href="<?= site_url('purchase_v1/dashboard/page/a25'); ?>" name="c5"> 

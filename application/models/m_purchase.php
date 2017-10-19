@@ -258,7 +258,7 @@ class M_purchase extends CI_Model {
       }
 
 
-        public function getAll($where = null , $all = false)
+        public function getAll($ul_id = null, $ver = null, $where = null , $all = false)
         {
             $this->db->select('*');
             $this->db->from(self::TABLE_NAME);
@@ -271,6 +271,83 @@ class M_purchase extends CI_Model {
                     $this->db->where(self::PRI_INDEX, $where);
                 }
             }
+             if ($ul_id != null) {
+             
+                $this->db->where('pr_id >', 3);
+             
+            }
+
+            
+            if($ver == 0)
+            {
+              $this->db->where('ver', 0);
+            }
+             
+           
+              
+            if (!$all) {
+                $this->db->where('supplier_id >', 0);
+            }           
+            $this->db->join('supplier', 'supp_id = supplier_id', 'left');
+
+            if (!$all) {
+                $this->db->where('us_id >', 0);
+            }           
+            $this->db->join('user', 'user_id = us_id', 'left');
+
+            if (!$all) {
+                $this->db->where('pro_id >', 0);
+            }           
+            $this->db->join('process', 'pr_id = pro_id', 'left');
+
+            $this->db->order_by('pur_id', 'desc');
+       
+
+            $result = $this->db->get()->result();
+            if ($result) {
+                if ($where !== NULL) {
+                    return array_shift($result);
+                } else {
+                    return $result;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        public function getAll2($ul_id = null, $ver = null,$us_id = null, $where = null , $all = false)
+        {
+            $this->db->select('*');
+            $this->db->from(self::TABLE_NAME);
+            if ($where !== NULL) {
+                if (is_array($where)) {
+                    foreach ($where as $field=>$value) {
+                        $this->db->where($field, $value);
+                    }
+                } else {
+                    $this->db->where(self::PRI_INDEX, $where);
+                }
+            }
+             if ($us_id) {
+             
+                $this->db->where('user_id', $us_id);
+             
+            }
+
+             if ($ul_id != null) {
+             
+                $this->db->where('pr_id >', 3);
+             
+            }
+
+            
+            if($ver == 1)
+            {
+              $this->db->where('ver', 1);
+            }
+             
+             
+              
             if (!$all) {
                 $this->db->where('supplier_id >', 0);
             }           
