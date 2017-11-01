@@ -1,6 +1,6 @@
 
 
- <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+ <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0">
 
 <!-- Navigation -->
         
@@ -25,11 +25,10 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <!-- <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        
+                        <li><a href="<?= site_url('purchase_v1/dashboard/page/a23'); ?>"><i class="fa fa-user-secret fa-fw"></i> User Information</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li> -->
+                        <li class="divider"></li>
                         <li><a href="<?= site_url('purchase_v1/dashboard/logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>

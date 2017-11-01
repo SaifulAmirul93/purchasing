@@ -111,10 +111,6 @@
                                         <div class="row">
                                                  <div class="form-group" id="p1">
                                                    
-
-                                             
-                                                   
-                                                    
                                                         <label class="col-md-2" >Password</label> 
                                                          
                                                          <div class=" col-md-3">  
@@ -133,7 +129,7 @@
                                                          
                                                           <div class=" col-md-3">  
                                                       
-                                                            <input type="password" class="form-control" id = "pass2" name="us_pass">
+                                                            <input type="password" class="form-control" id = "pass2" name="us_pass1">
                                             
                                                     </div>
                                             </div>

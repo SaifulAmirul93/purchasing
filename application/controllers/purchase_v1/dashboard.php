@@ -18,13 +18,20 @@
 	    }
 
 
-	      private function _show($page = 'display' , $key = 'a1'){
+	      private function _show($page = 'display' , $data = null , $key = 'a1'){
         $this->load->library('my_func');
+
+        $link['link'] = $key;
         
-	    	$this->load->view($this->component_parent.'/head', '', FALSE);
-	    	$this->load->view($this->component_parent.'/header', '', FALSE);
-	    	$this->load->view($this->component_parent.'/sidemenu', '', FALSE);
-	    	$this->load->view($this->component_parent.'/footer', '', FALSE);
+	    	$this->load->view($this->component_parent.'/head', FALSE);
+
+	    	$this->load->view($this->component_parent.'/header',$link, FALSE);
+
+        $this->load->view($this->component_parent.'/sidemenu',$link, FALSE);
+
+	    	$this->load->view($this->parent_page.'/'.$page, $data, FALSE);
+
+	    	$this->load->view($this->component_parent.'/footer', FALSE);
 
 		
 
@@ -35,9 +42,9 @@
 
 	    public function page($key)
     	{
-                  //$arr = $this->input->get();
+                 
       $this->_checkSession();
-            //$lvl =$this->my_func->scpro_decrypt($this->session->userdata('us_lvl'));
+            
         switch ($key) {
                 case "a1" :// dashboard
                       
@@ -55,15 +62,16 @@
 
                         $arr['lvl'] = $this->m_category->getLvl();
                         $arr['sup'] = $this->m_purchase->getLvl();
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/dashboard',$arr);
                         
+                        $data['display']=$this->load->view($this->parent_page.'/dashboard',$arr,true);
+                        $this->_show('display', $data , $key);
                         
                    break;   
 
                   case "a21" :
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/list_purchase', true);
+                        
+                        $data['display']=$this->load->view($this->parent_page.'/list_purchase','',true);
+                        $this->_show('display',  $data , $key);
                         
                    break;  
 
@@ -72,9 +80,9 @@
                    break;
 
                     case "p1" :
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/list_purchase', true);
                         
+                        $data['display']=$this->load->view($this->parent_page.'/list_purchase','',true);
+                        $this->_show('display',  $data , $key);
                    break;  
 
                    case "a22" :
@@ -91,11 +99,32 @@
                         $arr['item'] = $this->m_item->get();
                         $arr['supplier'] = $this->m_supplier->get(null , 'asc');
                         
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/add_purchase',$arr);
+                        
+                        $data['display']=$this->load->view($this->parent_page.'/add_purchase',$arr,true);
+                        $this->_show('display',  $data , $key);
                         
                    break; 
-                     break;  
+                    
+                     case "a22.1" :
+                         $this->load->database();
+                        $this->load->model('m_purchase');
+                        $this->load->model('m_item');
+                        $this->load->model('m_cat');
+                        $this->load->model('m_supplier');
+                        $this->load->model('m_unit');
+                        $arr['prjk'] = $this->m_purchase->getPro();
+                        $arr['lvl'] = $this->m_purchase->getLvl();
+                        $arr['unit'] = $this->m_unit->get();
+                        $arr['cat'] = $this->m_cat->get();
+                        $arr['item'] = $this->m_item->get();
+                        $arr['supplier'] = $this->m_supplier->get(null , 'asc');
+                        
+                       
+                        $data['display']=$this->load->view($this->parent_page.'/add_purchase_stf',$arr,true);
+                        $this->_show('display',  $data , $key);
+
+                        
+                   break; 
 
                    case "a23" :
                         $this->load->database();
@@ -105,8 +134,8 @@
 
 
 
-                         $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/user_info',$arr,  true);
+                        $data['display']=$this->load->view($this->parent_page.'/user_info',$arr,true);
+                        $this->_show('display',  $data , $key);
 
                        
                         
@@ -121,20 +150,21 @@
                      
 
 
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/add_user',$arr);
+                        $data['display']=$this->load->view($this->parent_page.'/add_user',$arr,true);
+                        $this->_show('display',  $data , $key);
                         
                    break; 
 
                      case "a25" :
                         $this->load->database();
                         $this->load->model('m_user');
+                        $this->load->library('my_func');
                         
-                       $arr['arr'] = $this->m_user->getAll();
+                        $arr['arr'] = $this->m_user->getAll();
                         
 
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/user_list', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/user_list', $arr,true);
+                        $this->_show('display',  $data , $key);
                         
                    break;   
 
@@ -144,15 +174,16 @@
                         $arr['lvl'] = $this->m_item->getLvl();
                      
                         
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/add_item',$arr);
+                        $data['display']=$this->load->view($this->parent_page.'/add_item',$arr,true);
+                        $this->_show('display',  $data ,  $key);
                         
                    break;
 
 
                    case "e26" :
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/add_cat');
+                        
+                        $data['display']=$this->load->view($this->parent_page.'/add_cat',$arr,true);
+                        $this->_show('display',  $data ,  $key);
                         
                    break;
                      case "a27" :
@@ -167,8 +198,8 @@
 
 
 
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/item_list', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/item_list',$arr,true);
+                        $this->_show('display',  $data ,  $key);
                         
                    break;
                    case "e27" :
@@ -183,8 +214,8 @@
 
 
 
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/cat_list', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/cat_list', $arr, true);
+                        $this->_show('display',  $data , $key);
                         
                    break;
 
@@ -201,8 +232,8 @@
                         
 
                       }       
-                       $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_item',$arr);
+                        $data['display']=$this->load->view($this->parent_page.'/view_item',$arr, true);
+                        $this->_show('display',  $data , $key);
 
                       break; 
 
@@ -219,8 +250,8 @@
                        
 
                       }       
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/edit_item',$arr);
+                        $data['display']=$this->load->view($this->parent_page.'/edit_item',$arr, true);
+                        $this->_show('display',  $data , $key);
                         
 
                         break;  
@@ -239,8 +270,8 @@
                         
 
                       }       
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/edit_cat',$arr);
+                        $this->load->view($this->parent_page.'/edit_cat',$arr, true);
+                        $this->_show('display',  $data , $key);
                         
 
                         break;  
@@ -281,42 +312,69 @@
 
 
 
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/supplier_list', $temp);
+                        $data['display']=$this->load->view($this->parent_page.'/supplier_list', $temp, true);
+                        $this->_show('display',  $data , $key);
                         
                    break; 
                      case "a62" :
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/add_supplier', true);
+                        $data['display']=$this->load->view($this->parent_page.'/add_supplier','', true);
+                        $this->_show('display',  $data , $key);
                         
                    break;
                      case "a29" :
+
+                        if ($this->input->get('page')) 
+                        {
+                            $p = $this->input->get('page');
+                        }else{
+                            $p = 0;
+                        }
+
+
                         $this->load->database();
                         $this->load->model('m_purchase');
                         $this->load->model('m_project');
+                        $this->load->library('my_func');
 
 
-
+                        $ver = $this->m_purchase->orderCount(1);
                         $arr['lvl'] = $this->m_project->get();
 
-                        $arr['arr'] = $this->m_purchase->getAll2(null, 1);
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_purchase',$arr);
+                        $arr['arr'] = $this->m_purchase->getAll3(10 , $p , 1);
+                        $result1 = sizeof($arr['arr']);
+                        $arr['page'] = $p;
+                        $arr['total'] = $ver;
+                        $arr['row'] = $result1;
+                        $data['display']=$this->load->view($this->parent_page.'/view_purchase',$arr, true);
+                        $this->_show('display',  $data , $key);
                         
                    break;
 
                    case "a29old" :
+                        if ($this->input->get('page')) 
+                        {
+                            $p = $this->input->get('page');
+                        }else{
+                            $p = 0;
+                        }
+
+
                         $this->load->database();
                         $this->load->model('m_purchase');
                         $this->load->model('m_project');
 
 
+                        $ver = $this->m_purchase->orderCount(0);
 
                         $arr['lvl'] = $this->m_project->get();
 
-                        $arr['arr'] = $this->m_purchase->getAll(null, 0);
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_purchase_old',$arr);
+                        $arr['arr'] = $this->m_purchase->getAll3(10 , $p , 0);
+                        $result1 = sizeof($arr['arr']);
+                        $arr['page'] = $p;
+                        $arr['total'] = $ver;
+                        $arr['row'] = $result1;
+                        $data['display']=$this->load->view($this->parent_page.'/view_purchase_old' , $arr , true);
+                        $this->_show('display',  $data , $key);
                         
                    break;
 
@@ -324,14 +382,14 @@
                         $this->load->database();
                         $this->load->model('m_purchase');
                         $this->load->model('m_project');
-
+                        $this->load->library('my_func');
                         $us_id = $this->session->userdata('us_id');
 
                         $arr['lvl'] = $this->m_project->get();
 
                         $arr['arr'] = $this->m_purchase->getAll2(null, 1, $us_id);
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/your_purchase',$arr);
+                        $data['display']=$this->load->view($this->parent_page.'/your_purchase',$arr , true);
+                        $this->_show('display', $data , $key);
                         
                    break;
 
@@ -371,8 +429,8 @@
                       }     
                    
                     case 'c11':
-                      //edit
-                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                      //edit supplier
+                      
                       if ($this->input->get('edit'))
                        {
                          $staffId = $this->input->get('edit');
@@ -381,21 +439,20 @@
                         $this->load->database();
                         $this->load->model('m_supplier');
                         $arr['id'] = $this->input->get('edit');
-                        //$arr['lvl'] = $this->m_user->getLvl();
+                      
                         $arr['arr'] = $this->m_supplier->getAll($staffId);
-                        /*$data['display'] = $this->load->view($this->parent_page.'/editStaff' , $arr , true);
-                        $this->_show('display' , $data , $key); */
+                       
 
                       }       
-                       $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/edit_supplier',$arr);
+                        $data['display']=$this->load->view($this->parent_page.'/edit_supplier',$arr, true);
+                        $this->_show('display', $data , $key);
                         
 
                         break;
 
                       case 'c12':
-                      //view
-                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                      //view supplier
+                      
                       if ($this->input->get('view')) {
                          $supplierId = $this->input->get('view');
                         //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
@@ -403,14 +460,12 @@
                         $this->load->database();
                         $this->load->model('m_supplier');
                         $arr['id'] = $this->input->get('view');
-                        //$arr['lvl'] = $this->m_user->getLvl();
                         $arr['arr'] = $this->m_supplier->getAll($supplierId);
-                        /*$data['display'] = $this->load->view($this->parent_page.'/editStaff' , $arr , true);
-                        $this->_show('display' , $data , $key); */
+                       
 
                       }       
-                       $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_supplier',$arr);
+                        $data['display']=$this->load->view($this->parent_page.'/view_supplier',$arr);
+                        $this->_show('display', $data , $key);
                         
 
                         break;
@@ -440,8 +495,9 @@
                         $arr['lvl'] = $this->m_user->getLvl();
                         $arr['arr'] = $this->m_user->getAll($UserId);
                       
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/edit_user',$arr);
+                        $data['display']=$this->load->view($this->parent_page.'/edit_user',$arr,true);
+                        $this->_show('display', $data ,$key);
+
                       }       
                        
                         
@@ -465,8 +521,8 @@
                        
 
                       }       
-                       $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_user',$arr);
+                        $data['display']=$this->load->view($this->parent_page.'/view_user',$arr,true);
+                        $this->_show('display', $data , $key);
                         
 
                         break;
@@ -484,18 +540,22 @@
                             $this->load->model('m_item');
                             $this->load->model('m_cat');
                             $this->load->model('m_unit');
+
+                            $arr['prjk'] = $this->m_purchase->getPro();
+                            $arr['lvl'] = $this->m_purchase->getLvl();
                             $arr['cat'] = $this->m_cat->get();
                             $arr['item'] = $this->m_item->get();
                             $arr['unit'] = $this->m_unit->get();
                             $data=$this->m_purchase->getList($PurId);
                             $arr['arr'] = array_shift($data);
-                            $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/edit_purchase',$arr);
+                            $data['display']=$this->load->view($this->parent_page.'/edit_purchase',$arr,true);
+                            $this->_show('display', $data , $key);
+
                       }       
 
                         break;
 
-                           case "c30" :
+                        case "c30" :
                           //view
                      
                        if ($this->input->get('view')) {
@@ -513,17 +573,42 @@
                             $arr['unit'] = $this->m_unit->get();
                             $data=$this->m_purchase->getList($PurId);
                             $arr['arr'] = array_shift($data);
+                            $data['display']=$this->load->view($this->parent_page.'/purchase_view',$arr,true);
+                            $this->_show('display', $data , $key);
+
+                      }   
+                      break;
+                      case "c30.1" :
+                          //view
+                     
+                       if ($this->input->get('view')) {
+                            
+                            $this->load->library('my_func');
+                            $PurId = $this->my_func->scpro_decrypt($this->input->get('view'));
+          
+                            $this->load->database();
+                            $this->load->model('m_purchase');
+                            $this->load->model('m_item');
+                            $this->load->model('m_cat');
+                            $this->load->model('m_unit');
+                            $arr['cat'] = $this->m_cat->get();
+                            $arr['item'] = $this->m_item->get();
+                            $arr['unit'] = $this->m_unit->get();
+                            $data=$this->m_purchase->getList($PurId);
+                            $arr['arr'] = array_shift($data);
                             $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/purchase_view',$arr);
+                            $data['display']=$this->load->view($this->parent_page.'/purchase_view',$arr,true);
+                            $this->_show('display', $data , $key);
+
                       }   
                       break;
                          case "s30" :
               
-                      //$data['title'] = '<i class="fa fa-file-text"></i> User Edit';
+                      
                        if ($this->input->get('view')) {
                             $PurId = $this->input->get('view');
                         //$staffId = $this->my_func->scpro_decrypt($this->input->get('edit'));
-                        //echo $staffId;
+                        
                             $this->load->database();
                             $this->load->model('m_purchase');
                             $this->load->model('m_item');
@@ -532,8 +617,10 @@
                             $arr['item'] = $this->m_item->get();
                             $data=$this->m_purchase->getList($PurId);
                             $arr['arr'] = array_shift($data);
-                            //$this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/pur_view',$arr);
+                           
+                            $data['display']=$this->load->view($this->parent_page.'/pur_view',$arr,true);
+                            $this->_show('display', $data , $key);
+
                       }       
 
                         break;
@@ -619,10 +706,72 @@
 
                       break;
 
+                      case 'z11.1':
+                      //add purchase
+
+                      if ($this->input->post()) {
+                        $arr = $this->input->post();
+                        $this->load->database();
+                        $this->load->model('m_purchase');
+                        $this->load->library('my_func');
+
+                        if ($arr['Supplier'] == -1) {  
+                            $sl = array(
+                                'supplier_name' => $arr['supplier_name'],
+                                'supplier_email' => $arr['supplier_email'],                              
+                                'supplier_contact' => $arr['supplier_contact'],
+                                'supplier_address' => $arr['supplier_address'],
+                                'supplier_company' => $arr['supplier_company'],
+
+                                
+                            );
+                            $this->load->model('m_supplier');
+                            $arr['Supplier'] = $this->m_supplier->insert($sl);
+                        }
+                      
+                        $purchase = array(
+                            "supp_id" => $arr['Supplier'],
+                            "user_id" =>  $this->session->userdata('us_id'),                            
+                            "pur_date" => $arr['deli_date'],
+                            "deli_date" => $arr['deli_date'],
+                            "pr_id" => $arr['pro_id'],
+                            'currency' => $arr['currency'],
+                            'pay' => $arr['pay'],
+                            'prjk_id' => $arr['prjk_id'],
+                            'unit' => $arr['unit'],
+                            'gst' => $arr['gst'],
+                            'ver' => 1
+                        );
+                        $pur_id = $this->m_purchase->insert($purchase);
+                        $this->load->model('m_purchase_item');
+                        $sizeArr = sizeof($arr['itemId']);
+
+                        for ($i=0; $i < $sizeArr ; $i++) { 
+                            $item = array(
+                                'purc_id' => $pur_id,
+                                'it_id' => $arr['itemId'][$i],
+                                'cat_id' => $arr['cattId'][$i],
+                                'pi_price' => $arr['price'][$i],
+                                'pi_qty' => $arr['qty'][$i],
+                                
+  
+                            );
+                            $this->m_purchase_item->insert($item);
+                        }
+                        $this->session->set_flashdata('success', 'New Purchase Order successfully added');
+                        redirect(site_url('purchase_v1/dashboard/page/a30'),'refresh');
+                      }
+
+
+                      break;
+
+
                       case 'z121':
                           if ($this->input->post() && $this->input->get('key')) {
+                              $this->load->library('my_func');
+
                               $arr = $this->input->post();
-                              $pur_id = $this->input->get('key');
+                              $pur_id = $this->my_func->scpro_decrypt($this->input->get('key'));
                               $this->load->database();
                               $this->load->model('m_purchase');
                               $this->load->model('m_purchase_item');
@@ -665,11 +814,13 @@
                         }
 
                              $order_ext = array(
+                            "supp_id" => $arr['Supplier'],
                             'currency' => $arr['currency'],                          
                             'deli_date' => $arr['deli_date'],
                             'pay' => $arr['pay'],
                             'unit' => $arr['unit'],
-                            'gst' => $arr['gst']
+                            'gst' => $arr['gst'],
+                            'prjk_id' => $arr['prjk_id']
                             );
                             $orex_id = $this->m_purchase->update($order_ext , array('pur_id' => $pur_id));
 
@@ -685,9 +836,21 @@
                         $this->load->model('m_project');
                         $ul_id=$this->session->userdata('ul_id');
                         $arr['lvl'] = $this->m_project->get();
-                        $arr['arr'] = $this->m_purchase->getAll($ul_id);
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_acc',$arr);
+                        $arr['arr'] = $this->m_purchase->getAll2($ul_id,1);
+                        $data['display']=$this->load->view($this->parent_page.'/view_acc',$arr,true);
+                        $this->_show('display', $data , $key);
+                        
+                   break;
+
+                   case "acc1Old" :
+                        $this->load->database();
+                        $this->load->model('m_purchase');
+                        $this->load->model('m_project');
+                        $ul_id=$this->session->userdata('ul_id');
+                        $arr['lvl'] = $this->m_project->get();
+                        $arr['arr'] = $this->m_purchase->getAll($ul_id,0);
+                        $data['display']=$this->load->view($this->parent_page.'/view_acc_old',$arr,true);
+                        $this->_show('display', $data , $key);
                         
                    break;
 
@@ -696,20 +859,21 @@
                         $this->load->model('m_purchase');
                         $this->load->model('m_department');
                         $arr['lvl'] = $this->m_department->getLvl();
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/add_project', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/add_project', $arr,true);
+                        $this->_show('display', $data , $key);
                         
                    break;
 
 
                    case "d2" :
+                        //project list
                         $this->load->database();
                         $this->load->model('m_project');
 
                          $arr['arr'] = $this->m_project->getAll();
         
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/project_list', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/project_list', $arr,true);
+                        $this->_show('display', $data , $key);
                         
                    break;
 
@@ -725,8 +889,8 @@
                         $arr['lvl'] = $this->m_department->getLvl();
                          $arr['arr'] = $this->m_project->getAll($Pj_Id);
         
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/edit_project', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/edit_project', $arr,true);
+                        $this->_show('display', $data , $key);
 
                     }
                    break;
@@ -742,16 +906,17 @@
                         $arr['lvl'] = $this->m_department->getLvl();
                          $arr['arr'] = $this->m_project->getAll($Pj_Id);
         
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_project', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/view_project', $arr,true);
+                        $this->_show('display', $data , $key);
+
                       } 
                    break;
 
                     case "u1" :
                         
                        
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/add_unit');
+                        $data['display']=$this->load->view($this->parent_page.'/add_unit','',true);
+                        $this->_show('display', $data , $key);
                         
                    break;
                    case "u2" :
@@ -760,8 +925,8 @@
 
                          $arr['arr'] = $this->m_unit->get();
         
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/unit_list', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/unit_list', $arr,true);
+                        $this->_show('display', $data , $key);
                         
                    break;
 
@@ -775,8 +940,8 @@
                         
                          $arr['arr'] = $this->m_unit->getAll($un_id);
         
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/edit_unit', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/edit_unit', $arr,true);
+                        $this->_show('display', $data , $key);
 
                     }
                    break;
@@ -790,12 +955,13 @@
                         
                          $arr['arr'] = $this->m_unit->getAll($un_id);
         
-                        $this->_show('display', $key);
-                        $this->load->view($this->parent_page.'/view_unit', $arr);
+                        $data['display']=$this->load->view($this->parent_page.'/view_unit', $arr,true);
+                        $this->_show('display', $data , $key);
+
                       } 
                    break;
                     default:
-                        //$this->_show();
+                        $this->_show();
                         break;
         
                     }
@@ -1350,6 +1516,7 @@
                 $this->load->database();
                 $this->load->model('m_purchase');
                 $this->load->library('email');
+                $this->load->library('my_func');
                 $this->email->set_newline("\r\n");
 
                           $config['protocol'] = 'smtp';
@@ -1385,7 +1552,7 @@
                     $result=$this->m_purchase->updatePR($pr_id, $pur_id);
                     if($result){
                     $this->session->set_flashdata('info', 'Your request are successfully send to the administrator');
-                    $this->session->set_flashdata('success', 'Your order status are updated');
+                    // $this->session->set_flashdata('success', 'Your order status are updated');
                     redirect(site_url('purchase_v1/dashboard/page/a29'),'refresh');
                     }
                     else
@@ -1529,9 +1696,9 @@
 
          public function app_purchase()
         {
+                $this->load->library('my_func');
                 
-                
-                $id = $this->input->get('app');
+                $id = $this->my_func->scpro_decrypt($this->input->get('app'));
                
                 $this->load->database();
                 $this->load->model('m_purchase');
@@ -1807,7 +1974,28 @@
                 }     
               }
 
+              public function getAjaxSupplier2()
+              {
+                if ($this->input->post('key')) {
 
+                  $this->load->library('my_func');
+
+                  $arr = $this->input->post('key');
+
+                  $id= $this->input->post('i');
+                  $this->load->database();
+                  $this->load->model('m_supplier');
+                  $this->load->model('m_purchase');
+                  
+                    $arr1=$this->m_purchase->getList($id);
+                    $data['arr'] = array_shift($arr1);
+
+                    $data['supplier'] = $this->m_supplier->get($arr);
+                    echo $this->load->view('pages/getAjaxSupplier2', $data, TRUE);
+                 
+                  
+                }     
+              }
               public function getAjaxItem()
               {
                  
@@ -1816,6 +2004,9 @@
                   
                    $this->load->database();
                   $this->load->model('m_item');
+                  
+
+
                   if ($catt_id == -1) {
                       $type['cat'] = $catt_id;
                   } else {
@@ -1824,7 +2015,7 @@
                       
 
                       $type['cat'] = $catt_id;
-                      //echo "<script>alert($catt_id);</script>";
+                     
                   }         
                   
                   $this->load->view($this->parent_page."/getAjaxType", $type );
@@ -1833,17 +2024,23 @@
 
               public function getAjaxItemList()
               {
-                  $catt_id = $this->input->post('cat');
-                  $item_id = $this->input->post('type');
+                $this->load->database();
+                $this->load->model('m_unit');
                 
-                 
-                  $this->load->database();
-                  $this->load->model('m_item');
-                  $this->load->model('m_cat');
-                  $temp['cat'] = $this->m_cat->get($catt_id);
-                  $temp['item'] = $this->m_item->get($item_id);
-                  $temp['num'] = $this->input->post('num');
-                  $this->load->view($this->parent_page."/getAjaxItem", $temp);
+                $catt_id = $this->input->post('cat');
+                $item_id = $this->input->post('type');
+
+                
+
+                $temp['unit'] = $this->m_unit->get(); 
+                  
+                $this->load->database(); 
+                $this->load->model('m_item');
+                $this->load->model('m_cat');
+                $temp['cat'] = $this->m_cat->get($catt_id);
+                $temp['item'] = $this->m_item->get($item_id);
+                $temp['num'] = $this->input->post('num');
+                $this->load->view($this->parent_page."/getAjaxItem", $temp);
               }
 
             
@@ -1854,17 +2051,27 @@
                   $arr = $this->input->post();          
                   $this->load->database();
                   $this->load->model('m_user');
-                  //$this->load->library('my_func');
-                  
-                  foreach ($arr as $key => $value) {
-                    if ($value != null) {
-                    /*  if ($key == 'pass') {
-                        $value = $this->my_func->scpro_encrypt($value);
-                      }*/
+                  $this->load->library('my_func');
+
+                  $arr2 = array(
+                            "us_fname" => $arr['us_fname'],
+                            "us_lname" => $arr['us_lname'],                            
+                            "us_username" => $arr['us_username'],
+                            "us_email" => $arr['us_email'],
+                            "us_pass" => $this->my_func->scpro_encrypt($arr['us_pass']),
+                            "ul_id" => $arr['ul_id']
+                            
+                        );
+
+                  // foreach ($arr as $key => $value) {
+                  //   if ($value != null) {
+                  //     if ($key == 'pass') {
+                  //       $value = $this->my_func->scpro_encrypt($value);
+                  //     }
                      
-                      $arr2[$key] = $value;             
-                    }
-                  }
+                  //     $arr2[$key] = $value;             
+                  //   }
+                  // }
                   $result = $this->m_user->insert($arr2);
 
                     if(!$result)

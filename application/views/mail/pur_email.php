@@ -68,11 +68,11 @@
                           <th>:</th>
                           <td>P.O Approved</td>
                           </tr> 
-                          <tr>
+                        <!--   <tr>
                           <th>Approved By</th>
                           <th>:</th> 
                           <td><?= $arr['username']; ?></td>
-                          </tr>
+                          </tr> -->
                          
                           <tr>
                           <th colspan=3><center>

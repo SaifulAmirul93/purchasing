@@ -129,7 +129,7 @@ class M_item extends CI_Model {
 
      public function totalByItem($year = null , $month = -1 , $cat = -1 , $item = -1, $supp = -1)
     {
-        $this->db->select('pri.pi_id ,it.item_id as item_id, it.item_name as name, MONTH(pur.pur_date) as month , YEAR(pur.pur_date) as year , sum(pri.pi_qty) as total');
+        $this->db->select('pri.pi_id ,it.item_id as item_id, it.item_name as item_name, MONTH(pur.pur_date) as month , YEAR(pur.pur_date) as year , sum(pri.pi_qty) as total');
         $this->db->from('purchase_item pri');
         $this->db->join('purchase pur', 'pri.purc_id = pur.pur_id', 'left');
         $this->db->join('item it' , 'it.item_id = pri.it_id' , 'left');

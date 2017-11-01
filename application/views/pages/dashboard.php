@@ -15,14 +15,7 @@
                                 
 </style>
 
-<!-- Resources -->
-<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-<script src="https://www.amcharts.com/lib/3/serial.js"></script>
-<script src="https://www.amcharts.com/lib/3/pie.js"></script>
-<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-<body>
+
 
     <div id="wrapper">
 
@@ -179,13 +172,13 @@
 
 
             </div>
-             
-                    <div class="row">
-            <div class="col-lg-12">
-            <div class="panel panel-default">
+        <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Purchasing Statistic for Each Item
-                            <!-- <div class="pull-right">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Job Order Dashboard
+                            <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                                         Actions
@@ -203,7 +196,36 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div> -->
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    
+                                </div>
+                            </div>
+                      
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    
+                
+                </div>
+                <!-- /.col-lg-8 -->
+                
+                 
+            </div>
+            <!-- /.row -->  
+        <div class="row">
+            <div class="col-lg-12">
+            <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Purchasing Statistic for Each Item
+                           
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -292,158 +314,7 @@
             
 
 
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Purchasing Index
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-
-                        <div class="row">
-                         <div class="col-lg-12">
-                            <div class="col-lg-2">
-                                            <input type="number" name="year" id="year" class="form-control" min="2016" placeholder="Year" required="">
-                            </div>
-                            <div class="col-lg-4">
-                                            <select id="month" class="form-control" required="">
-                                                <option value="-1">-- All Month --</option>
-                                                <option value="1">January</option>
-                                                <option value="2">February</option>
-                                                <option value="3">March</option>
-                                                <option value="4">April</option>
-                                                <option value="5">May</option>
-                                                <option value="6">June</option>
-                                                <option value="7">July</option>
-                                                <option value="8">August</option>
-                                                <option value="9">September</option>
-                                                <option value="10">October</option>
-                                                <option value="11">November</option>
-                                                <option value="12">December</option>
-                                            </select>
-                            </div>
-
-                            <div class="col-lg-4">
-                                            <select id="month" class="form-control" required="">
-                                                <option value="-1">-- Select Currency --</option>
-                                                <option value="1">MYR</option>
-                                                <option value="2">USD</option>
-                                                
-                                            </select>
-                            </div>
-                            <div class="col-lg-2">
-                                            <button type="button" id="itemBtn" name="itemBtn" class="btn btn-info">Generate</button>
-                            </div>   
-                            </div>
-                        </div>
-                      
-                            <div id="chartdiv2" ></div>
-                            <div id="gcode" ></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    
-                
-                </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <!-- <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>
-                        
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a>
-                            </div>
-                           
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                        </div>
-                        
-                    </div> -->
-                    
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart 
-                        </div>
-                        <div class="panel-body">
-               
-                         </div> 
-                         <div class="clearfix" style="height: 50px "></div>
-                            <div id="chartdiv3"></div>
-                          <div class="clearfix" style="height: 100px "></div>
-                        </div>
-                      
-                    </div>
-                 
-            </div>
-            <!-- /.row -->
+            
         </div>
 
         <!-- /#page-wrapper -->

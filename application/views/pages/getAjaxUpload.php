@@ -23,18 +23,18 @@
 					       
 					        <div class="portlet-body flip-scroll" align="center">
 					        <span style = "color : #b706d6;"><h2><strong>#<?= (110000+$pur_id); ?></strong></h2></span>
-					        <div class="form-group">
-	            				<div class="fileinput fileinput-new" align="center" data-provides="fileinput">
-	                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px; line-height: 150px;"></div>
-	                                <div>
-	                                    <span class="btn btn-outline btn-file" style="background-color: #FF5733">
-	                                        <span class="fileinput-new"> Select Document </span>
-	                                        <span class="fileinput-exists"> Change </span>
-	                                        <input type="hidden" value="" name="title"><input type="file" name="fileImg"> </span>
-	                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
-                                    </div><div class="clearfix">&nbsp;</div><button type="submit" class="btn btn-primary"><i class="fa fa-upload"> Submit</i></button>
-                                </div>
-                            </div>
+						        <div class="form-group">
+		            				<div class="fileinput fileinput-new" align="center" data-provides="fileinput">
+		                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px; line-height: 150px;"></div>
+		                                <div>
+		                                    <span class="btn btn-outline btn-file" style="background-color: #FF5733">
+		                                        <span class="fileinput-new"> Select Document </span>
+		                                        <span class="fileinput-exists"> Change </span>
+		                                        <input type="hidden" value="" name="title"><input type="file" name="fileImg"> </span>
+		                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+	                                    </div><div class="clearfix">&nbsp;</div><button type="submit" class="btn btn-primary"><i class="fa fa-upload"> Submit</i></button>
+	                                </div>
+	                            </div>
             				</div>
 	            			<input type="hidden" name="pur_id" id="pur_id" class="form-control" value="<?= $pur_id; ?>">					        
 	            		

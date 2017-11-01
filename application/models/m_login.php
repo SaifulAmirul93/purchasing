@@ -65,7 +65,7 @@
             if ($result) {
                
                 // $this->my_func->scpro_decrypt($result[0]->us_pass) 
-                if ($this->my_func->scpro_decrypt($result[0]->us_pass) === $pass) {
+                if ($this->my_func->scpro_decrypt($result[0]->us_pass) == $pass) {
                     return array_shift($result);
                 }               
             }

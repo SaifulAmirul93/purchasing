@@ -378,6 +378,64 @@ class M_purchase extends CI_Model {
             }
         }
 
+        public function getAll3($limit = null,$start = null, $ver = null,$ul_id = null , $us_id = null, $where = null , $all = false)
+        {
+            $this->db->select('*');
+            $this->db->from(self::TABLE_NAME);
+            if ($where !== NULL) {
+                if (is_array($where)) {
+                    foreach ($where as $field=>$value) {
+                        $this->db->where($field, $value);
+                    }
+                } else {
+                    $this->db->where(self::PRI_INDEX, $where);
+                }
+            }
+             if ($us_id) {
+             
+                $this->db->where('user_id', $us_id);
+             
+            }
+
+            if($ver != null)
+            {
+              $this->db->where('ver', $ver);
+            }
+            
+            $this->db->where('pr_id !=', 7);
+            
+            if (!$all) 
+            {
+                $this->db->where('pur_id >', 0);
+            }           
+            $this->db->join('supplier', 'supp_id = supplier_id', 'left');
+            $this->db->join('user', 'user_id = us_id', 'left');
+            $this->db->join('process', 'pr_id = pro_id', 'left');
+            $this->db->order_by('pur_id', 'desc');
+             if ($limit !== null && $start !== null) {
+                $this->db->limit($limit, $start);
+            }  
+            $result = $this->db->get()->result();
+            if ($result) {
+                if ($where !== NULL) {
+                    return array_shift($result);
+                } else {
+                    return $result;
+                }
+            } else {
+                return false;
+            }
+        }
+        public function orderCount($ver = null)
+        {
+            $this->db->where('pr_id !=', 0);
+            if ($ver != -1) {
+                $this->db->like('ver', $ver);
+            }           
+
+            $this->db->from('purchase');
+            return $this->db->count_all_results();
+        }
     /**
      * Deletes specified record from the database
      *

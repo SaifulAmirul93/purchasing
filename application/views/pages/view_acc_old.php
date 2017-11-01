@@ -54,7 +54,6 @@
 
                                             
                                                          
-                           
                         <div class="row">
 
                            <div class="col-md-12">
@@ -63,8 +62,8 @@
                                     
                                 </div>
                                 <div class="col-md-2 ">
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/acc1Old'); ?>">                             
-                                <button type="button" class="btn btn-info">Old Version 1.0</button>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/acc1'); ?>">                             
+                                <button type="button" class="btn btn-primary">New Version 2.0</button>
                                 </a>
                                 </div>
                             </div>

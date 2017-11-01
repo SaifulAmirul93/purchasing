@@ -61,7 +61,7 @@
                           <tr>
                           <th>Purhcase No. </th>
                           <th>:</th>
-                          <td><a href="<?= site_url('purchase_v1/dashboard/PO?po=').$pur_id; ?>">#<?= $id ?></a></td>
+                          <td><a href="<?= site_url('purchase_v1/dashboard/PO?po=').$this->my_func->scpro_encrypt($pur_id); ?>">#<?= $id ?></a></td>
                           </tr>
                           <tr>
                           <th>Purchase Status</th>
@@ -77,7 +77,7 @@
                           <tr>
                           <th colspan=3><center>
                           
-                          <a href="<?= site_url('purchase_v1/dashboard/app_purchase?app=').$pur_id; ?>" title="Approve Purchase">
+                          <a href="<?= site_url('purchase_v1/dashboard/app_purchase?app=').$this->my_func->scpro_encrypt($pur_id); ?>" title="Approve Purchase">
                           <button type="button" class="btn btn-success btn-lg" title="Edit">Approve P.O</button></a>
                           </center></th>
                           </tr>

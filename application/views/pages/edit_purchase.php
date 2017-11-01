@@ -19,7 +19,43 @@
                     <!-- /.col-lg-12 -->
                   
                        <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z121?key=').$this->my_func->scpro_encrypt($arr['purchase']->pur_id); ?>" method="post">
-                       <input type="hidden" name="pr_id" id="pr_id" class="form-control" value="<?= $arr['purchase']->pr_id; ?>">
+                       
+
+                       <div class="row">
+                                         <div class="form-group">
+                                            <label class="col-md-2">Supplier Name :</label>
+                                            <div class=" col-md-2">
+                                            <select class="form-control" name="Supplier" id="Supplier" required>
+                                            <option value="-1">--New Client--</option>
+                                                <?php foreach ($lvl as $key) {
+                                                                ?>
+                                                                <option value="<?= $key->supplier_id; ?>" <?php if($key->supplier_id == $arr['purchase']->supp_id){echo " selected ";} ?>> <?= $key->supplier_name; ?>
+                                                                    
+                                                                </option>
+                                                                <?php
+                                                            } ?>
+                                            </select>
+                                            </div>
+                                            <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2">Project Code :</label>
+                                            <div class=" col-md-2">
+                                            <select class="form-control" name="prjk_id" id="prjk_id" required>
+                                            <option value="">--Project--</option>
+                                                <?php foreach ($prjk as $key) {
+                                                                ?>
+                                                                <option value="<?= $key->projek_id; ?>" <?php if($key->projek_id == $arr['purchase']->prjk_id){echo " selected ";} ?>> <?= $key->project_code; ?>
+                                                                    
+                                                                </option>
+                                                                <?php
+                                                            } ?>
+                                            </select>
+                                            </div>
+                                            <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span>
+                                        </div>
+                                    </div>
                                         
                                         <div class="row">
                                             <div class=" col-md-4">
@@ -317,8 +353,9 @@ $(document).ready(function() {
 
         $('#Supplier').change(function() {
             temp = $(this).val();
+            
             $.when($('#loadingText').show()).then(function(){
-                $.post('<?= site_url('purchase_v1/dashboard/getAjaxSupplier'); ?>', {key : temp}, function(data) {
+                $.post('<?= site_url('purchase_v1/dashboard/getAjaxSupplier2'); ?>', {key : temp , i : <?= $arr['purchase']->pur_id; ?>}, function(data) {
                     $.when($('#supplierInfo').html(data)).then(function(){
                         $('#loadingText').hide();
                     });
@@ -356,15 +393,7 @@ $(document).ready(function() {
 
         $('.delBtn').click(function() {
                 pi_id = $(this).prop('id');
-            //     if(confirm("Are you sure? This will auto delete permanently in the database!!!")){
-            //     $.post('<?= site_url("purchase_v1/dashboard/getAjaxDelItem") ?>', {pi_id: pi_id}, function(data) {
-            //         if (data == '0') {
-            //             alert("Ops!! Something Wrong... Contact Mr.Pool.");
-            //         } else {
-            //             $("#delBtn_"+pi_id).remove();
-            //         }
-            //     });             
-            // }
+    
 
             bootbox.confirm({
                         message: "Are you sure? This will auto delete permanently in the database!!!",

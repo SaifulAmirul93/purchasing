@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Your Purchase </h1>
+                        <h1 class="page-header">Your Job Order </h1>
                     </div>
                  </div>
 
@@ -58,8 +58,8 @@
 
                            <div class="col-md-12">
                                 <div class="col-md-2">
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a22'); ?>">                             
-                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add Purchase</button>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/a22.1'); ?>">                             
+                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add Job Order</button>
                                     </a>
                                 </div>
                              
@@ -162,59 +162,14 @@
                                             <input type="hidden" class="form-control gmbr<?= $n ?>" value="<?= $pur->pur_id; ?>">
                                             <?php }?>
                                             </td>
-                                            <td align="center"></a>
-                                            <!-- <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$pur->pur_id; ?>" name="c5" title="Edit Purchase">
-                                            <button type="button" class="btn btn-success btn-xs" title="View"><i class="fa fa-print"></i></button></a>
-                                            &nbsp;&nbsp;&nbsp; -->
+                                            <td align="center">
                                            
-                                           
-                                            <center>
-                                            <?php if($pur->pr_id == 1){?>
-                                            
-                                            <button type="button" class="appBtn btn btn-info btn-xs" title="Send Approval" style="background-color: #5CFE3F" id="<?= $n.'app' ?>" name="<?= $n.'app' ?>"><i class="fa fa-envelope"></i></button>
-                                            <input type="hidden" class="form-control <?= $n.'app' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
-                                             &nbsp;&nbsp;
-                                   
-                                            <?php }else if($pur->pr_id == 3){?>
-                                            
-                                            <button type="button" class="accBtn btn btn-info btn-xs" title="Send to Account" style="background-color: #5F9CC1" id="<?= $n.'acc' ?>" name="<?= $n.'acc' ?>"><i class="fa fa-calculator"></i></button>
-                                            <input type="hidden" class="form-control <?= $n.'acc' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
-                                            &nbsp;&nbsp;
-                                            
-                                            <?php }else if($pur->pr_id == 4){?>
-                                            <?php if($pur->pay == 1 || $pur->pay == 2){?>
-                                            <button type="button" class="etdBtn btn btn-info btn-xs" title="ETD" style="background-color: #BD5FC1" id="<?= $n.'etd' ?>" name="<?= $n.'etd' ?>">ETD</button>
-                                            <input type="hidden" class="form-control <?= $n.'etd' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
-                                            &nbsp;&nbsp;
-                                            <?php }?>
-                                            <?php }else if($pur->pr_id == 5){?>
-                                            
-                                            <button type="button" class="etaBtn btn btn-info btn-xs" title="ETA" style="background-color: #5FC17E" id="<?= $n.'eta' ?>" name="<?= $n.'eta' ?>">Arrived</button>
-                                            <input type="hidden" class="form-control <?= $n.'eta' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
-                                            &nbsp;&nbsp;
-                                            <?php } ?>
-                                            <?php if(($pur->pr_id != 1) && ($pur->pr_id != 2)){?>
-                                            <button onclick = "window.open('<?= site_url('purchase_v1/dashboard/page/P01?edit=').$pur->pur_id; ?>');" type="button" class="btn btn-success btn-xs" title="Purchase Order"><i class="fa fa-file-text"></i></button>
-                                            &nbsp;&nbsp;
-                                            <?php } ?>
-                                            <?php if($pur->pr_id >= 3){?>
-                                            <button type="button" class="btn btn-info btn-xs upPic" style="background-color: #AD3089" title="Upload Invoice" id="up<?= $n; ?>"><i class="fa fa-upload"></i></button>
-                                            <input type="hidden" class="form-control up<?= $n; ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
-                                             &nbsp;&nbsp;
-                                             <?php } ?>
-                                            </center>
+                                    
                                             <br>
                                             <center>
-                                             <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$pur->pur_id; ?>" name="c5" title="View Purchase">
+                                             <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$this->my_func->scpro_encrypt($pur->pur_id); ?>" name="c5" title="View Purchase">
                                             <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
 
-                                            &nbsp;&nbsp;
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$pur->pur_id; ?>" name="c5" title="Edit Purchase">
-                                            <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button></a>
-                                             &nbsp;&nbsp;
-
-                                             <button type="button" class="delBtn btn btn-danger btn-xs" title="Delete" id="<?= $n.'del' ?>" name="<?= $n.'del' ?>"><i class="fa fa-close"></i></button>
-                                             <input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
                                              </center>
                                             </td>
                                         </tr>

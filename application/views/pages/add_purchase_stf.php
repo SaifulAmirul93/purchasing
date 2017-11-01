@@ -14,17 +14,17 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Add Purchase</h1>
+                        <h1 class="page-header">Add Job Order</h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                 
-                       <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z11'); ?>" method="post">
+                  <!-- action="<?= site_url('purchase_v1/dashboard/page/z11'); ?>" method="post" -->
+                       <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z11.1'); ?>" method="post">
                        <input type="hidden" name="pro_id" id="pro_id" class="form-control" value="1">
                                         <div class="row">
                                          <div class="form-group">
                                             <label class="col-md-2">Supplier Name :</label>
                                             <div class=" col-md-2">
-                                            <select class="form-control" name="Supplier" id="Supplier" required>
+                                            <select class="form-control" name="Supplier" id="Supplier">
                                             <option value="-1">--New Client--</option>
                                                 <?php foreach ($lvl as $key) {
                                                                 ?>
@@ -128,7 +128,7 @@
                                         </div>
 
 </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class=" col-md-4 pull-right">
                                                  <div class="form-group">
                                                     <label>Quantity Unit</label>
@@ -145,29 +145,37 @@
                                                     
                                                 </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class=" col-md-4 pull-right">
-                                                 <div class="form-group">
-                                                    <label>GST :</label>
-                                                    <input type="radio" name="gst" value="1" required="">
-                                                    <label>Yes</label>
-                                                    &nbsp;&nbsp;&nbsp;
-                                                    <input type="radio" name="gst" value="0">
-                                                    <label>No</label>
-                                                </div>
-                                        </div>
-                                    </div>
+                                    </div> -->
+                                    
                                         <div class="row">
 
                                         <div class="col-lg-12">
                                             <div class="panel panel-primary">
                                                     <div class="panel-heading">
-                                                     Purchase Note
+                                                    
+                                                    <div class="col-lg-9">
+                                                      Purchase Note  
+                                                    </div>
+                                                  
+                                                     <div class="col-lg-3">
+                                                            <div class="col-lg-3">
+                                                                <label>GST :</label>
+                                                            </div>
+                                                            <div class="col-lg-9">
+                                                                <div class="switch-field">
+                                                                    <input type="radio" id="switch_left" name="gst" value="1" checked required=""/>
+                                                                    <label for="switch_left">Yes</label>
+                                                                    <input type="radio" id="switch_right" name="gst" value="0" />
+                                                                    <label for="switch_right">No</label>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                      <div class="clearfix" style="height: 30px"></div>  
                                                     </div>
 
                                             <div class="panel-body">
 
+                                                    
                                              <div class="table-responsive">
                                                                     <table class="tbl table table-striped table-bordered table-hover">
                                                                         <thead>
@@ -175,8 +183,8 @@
                                                                                 
                                                                                 <th>Item Detail</th>
                                                                                 <th>Quantity</th>
+                                                                                <th>Quantity Unit</th>
                                                                                 <th>Unit Price</th>
-                                                                                <!-- <th>GST</th> -->
                                                                                 <th>Action</th>
                                                                             </tr>
                                                                         </thead>
@@ -237,50 +245,6 @@
                                             </div> -->
                                             </div>
                                         </div>
-                                        </div>
-
-
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">
-                                                     Payment Note
-                                                    </div>
-
-                                                    <div class="panel-body">
-                                                    <div class="row">
-                                                    <div class="form-group">
-                                                    <label class="col-sm-2">Payment Status :</label>
-                                                        <div class="mt-radio-inline">
-                                                        <label class="mt-radio">
-                                                            <input type="radio" name="pay" value="0" required>
-                                                                <strong>Unpaid</strong>
-                                                            <span></span>
-                                                        </label>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <label class="mt-radio">
-                                                            <input type="radio" name="pay" value="1">
-                                                                <strong>50% Payment</strong>
-                                                            <span></span>
-                                                        </label>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <label class="mt-radio">
-                                                            <input type="radio" name="pay" value="2">
-                                                                <strong>Full Payment</strong>
-                                                            <span></span>
-                                                        </label>
-                                                    </div>
-                                                    </div>
-                                                    </div>
-
-                                                   
-
-                                                 
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
 
                                         <div class="clear" style="height: 20px;"></div>
