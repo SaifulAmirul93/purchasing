@@ -1,21 +1,4 @@
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Edit Project</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                  
+               
                        <form role="form" action="<?= site_url('purchase_v1/dashboard/editProject'); ?>" method="post" id="supplier-form">
 
                                         <div class="row">
@@ -31,7 +14,7 @@
                                                         <label class="col-md-2" >Project Code</label> 
                                                         <div class=" col-md-3"> 
                                                         
-                                                                <input type="text" name="code" id="code" class="form-control" value="<?= $arr->project_code; ?>" required="">
+                                                                <input type="text" name="code" id="code" class="form-control" value="<?= $arr->pro_code; ?>" required="">
                                                 
                                             
                                                         </div>
@@ -46,7 +29,7 @@
                                                         <label class="col-md-2" >Project Name</label> 
                                                         <div class=" col-md-3"> 
                                                         
-                                                                <input type="text" name="name" id="name" class="form-control" value="<?= $arr->project_name; ?>" required="">
+                                                                <input type="text" name="name" id="name" class="form-control" value="<?= $arr->pro_name; ?>" required="">
                                                 
                                             
                                                         </div>
@@ -82,7 +65,7 @@
                                                         <label class="col-md-2" >Person-In Change</label> 
                                                         <div class=" col-md-3"> 
                                                         
-                                                                <input type="text" name="incharge" id="incharge" class="form-control" required="" value="<?= $arr->Incharge; ?>">
+                                                                <input type="text" name="incharge" id="incharge" class="form-control" required="" value="<?= $arr->pro_incharge; ?>">
                                                 
                                             
                                                         </div>
@@ -90,7 +73,7 @@
                                                 </div>
                                          </div>
                         
-                                        <input type="hidden" name="id" id="inputId" class="form-control" value="<?= $arr->projek_id; ?>">
+                                        <input type="hidden" name="id" id="inputId" class="form-control" value="<?= $arr->pro_id; ?>">
                                         <div class="clear" style="height: 50px;"></div>
                                              <div class="row">
                                               <div class=" col-md-5">
@@ -104,19 +87,6 @@
 
                                         <div class="clear" style="height: 50px;"></div>                 
                     </form>
-                
-                
-                    <!-- <div id="sprintcontainer"> -->
-
-                  
-            </div>
-            <!-- /.container-fluid -->
-         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    </div>
-    <!-- /#wrapper -->
 
 
 <script>
@@ -151,13 +121,3 @@ function drop(ev) {
 
 </script>
 
-
-
-
-
-
-   
-
-</body>
-
-</html>

@@ -1,59 +1,53 @@
 
-
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Add Purchase</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                 
                        <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z11'); ?>" method="post">
                        <input type="hidden" name="pro_id" id="pro_id" class="form-control" value="1">
-                                        <div class="row">
+                                <div class="row">
                                          <div class="form-group">
                                             <label class="col-md-2">Supplier Name :</label>
                                             <div class=" col-md-2">
-                                            <select class="form-control" name="Supplier" id="Supplier" required>
+                                            <select class="form-control input-sm js-example-basic-single" name="Supplier" id="Supplier">
                                             <option value="-1">--New Client--</option>
                                                 <?php foreach ($lvl as $key) {
                                                                 ?>
-                                                                <option value="<?= $key->supplier_id; ?>" > <?= $key->supplier_name; ?>
+                                                                <option value="<?= $key->su_id; ?>" > <?= $key->su_name; ?>
                                                                     
                                                                 </option>
                                                                 <?php
                                                             } ?>
                                             </select>
                                             </div>
-                                            <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span>
-                                        </div>
-
-                                        <div class="form-group">
+                                            <!-- <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span> -->
+                                        
                                             <label class="col-md-2">Project Code :</label>
                                             <div class=" col-md-2">
-                                            <select class="form-control" name="prjk_id" id="prjk_id" required="required">
-                                            <option value="">--Project--</option>
+                                            <select class="form-control input-sm js-example-basic-single" name="prjk_id" id="prjk_id" required="required">
+                                            <option value="">--Select Project--</option>
                                                 <?php foreach ($prjk as $key) {
                                                                 ?>
-                                                                <option value="<?= $key->projek_id; ?>" > <?= $key->project_code; ?>
+                                                                <option value="<?= $key->pro_id; ?>" > <?= $key->pro_code; ?>
                                                                     
                                                                 </option>
                                                                 <?php
                                                             } ?>
                                             </select>
                                             </div>
-                                            <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span>
+
+                                            <label class="col-md-2">Company Code :</label>
+                                            <div class=" col-md-2">
+                                            <select class="form-control input-sm js-example-basic-single" name="nc" id="nc" required="required">
+                                            <option value="">--Select Company--</option>
+                                                <?php foreach ($nc as $key) {
+                                                                ?>
+                                                                <option value="<?= $key->nc_id; ?>" ><?= "#".(100+$key->nc_id); ?>&nbsp;&nbsp;&nbsp;<?= $key->nc_name; ?>
+                                                                    
+                                                                </option>
+                                                                <?php
+                                                            } ?>
+                                            </select>
+                                            </div>
+                                        
                                         </div>
+
                                     </div>
                                         <div class="row">
                                             <div class=" col-md-4">
@@ -118,7 +112,7 @@
                                         <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Currency</label>
-                                            <select class="form-control" name="currency" id="currency" required>
+                                            <select class="form-control" name="curr" id="curr" required>
                                             <option value="">--Select Currency--</option>
                                             <option value="1">MYR</option>
                                             <option value="2">USD</option>
@@ -128,24 +122,7 @@
                                         </div>
 
 </div>
-                                    <div class="row">
-                                        <div class=" col-md-4 pull-right">
-                                                 <div class="form-group">
-                                                    <label>Quantity Unit</label>
-                                                    <select class="form-control" name="unit" id="unit" required>
-                                                    <option value="">--Select Unit--</option>
-                                                      <?php foreach ($unit as $key) {
-                                                                ?>
-                                                                <option value="<?= $key->un_id; ?>" > <?= $key->un_desc; ?>
-                                                                    
-                                                                </option>
-                                                                <?php
-                                                            } ?>
-                                                    </select>
-                                                    
-                                                </div>
-                                        </div>
-                                    </div>
+                               <!--  -->
                                     <div class="row">
                                         <div class=" col-md-4 pull-right">
                                                  <div class="form-group">
@@ -175,8 +152,9 @@
                                                                                 
                                                                                 <th>Item Detail</th>
                                                                                 <th>Quantity</th>
-                                                                                <th>Unit Price</th>
-                                                                                <!-- <th>GST</th> -->
+                                                                                <th>Unit Qty</th>
+                                                                                <th>Price</th>
+                                                                                <th>Discount</th>
                                                                                 <th>Action</th>
                                                                             </tr>
                                                                         </thead>
@@ -190,7 +168,7 @@
                                                         <div class="form-group">
                                                                 <label class="col-sm-2">Category :</label>
                                                                 <div class="col-sm-4">
-                                                                <select class="form-control" id="cat_id" name="cat_id" required>
+                                                                <select class="form-control js-example-basic-single" id="cat_id" name="cat_id" required>
                                                                 <option value="-1">-- Select Category --</option>
                                                                     <?php foreach ($cat as $key) {
                                                                 ?>
@@ -209,7 +187,7 @@
                                                         <div class="form-group" id="divItem">
                                                                  <label class="col-sm-2">Item :</label>
                                                                   <div class=" col-sm-4">
-                                                                <select class="form-control" disabled="" id="itemType" required>
+                                                                <select class="form-control js-example-basic-single" disabled="" id="itemType" required>
                                                                     <option value="-1">-- Select Type --</option>
                                                                   </select>
                                                                 </div>
@@ -239,50 +217,6 @@
                                         </div>
                                         </div>
 
-
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">
-                                                     Payment Note
-                                                    </div>
-
-                                                    <div class="panel-body">
-                                                    <div class="row">
-                                                    <div class="form-group">
-                                                    <label class="col-sm-2">Payment Status :</label>
-                                                        <div class="mt-radio-inline">
-                                                        <label class="mt-radio">
-                                                            <input type="radio" name="pay" value="0" required>
-                                                                <strong>Unpaid</strong>
-                                                            <span></span>
-                                                        </label>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <label class="mt-radio">
-                                                            <input type="radio" name="pay" value="1">
-                                                                <strong>50% Payment</strong>
-                                                            <span></span>
-                                                        </label>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <label class="mt-radio">
-                                                            <input type="radio" name="pay" value="2">
-                                                                <strong>Full Payment</strong>
-                                                            <span></span>
-                                                        </label>
-                                                    </div>
-                                                    </div>
-                                                    </div>
-
-                                                   
-
-                                                 
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <div class="clear" style="height: 20px;"></div>
                                         <button type="submit" class="btn btn-success" id="subBtn">Submit</button>
                                         <a href="<?= site_url('purchase_v1/dashboard/page/a1'); ?>" name="c5">    
@@ -291,19 +225,7 @@
                                         <div class="clear" style="height: 20px;"></div>                   
                     </form>
                 
-                
-                    <!-- <div id="sprintcontainer"> -->
 
-                  
-            </div>
-            <!-- /.container-fluid -->
-         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    </div>
-    <!-- /#wrapper -->
-      <!-- /#wrapper -->
 
 
 
@@ -321,6 +243,8 @@
 <script>
 var num = 1;
 $(document).ready(function() {
+
+        $('.js-example-basic-single').select2();
 
         $('#Supplier').change(function() {
             temp = $(this).val();

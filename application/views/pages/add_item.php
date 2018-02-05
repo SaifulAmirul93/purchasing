@@ -1,67 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>NASTY Purchasing System v 1.0</title>
-
-
-
-    <!-- Bootstrap Core CSS -->
-    <link href="<?= base_url(); ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="<?= base_url(); ?>vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="<?= base_url(); ?>dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="<?= base_url(); ?>vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-     <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="<?= base_url(); ?>dist/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
-   
-
-
-
-
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Add Item</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
                   
                        <form role="form" method="post" action="<?= site_url('purchase_v1/dashboard/addItem'); ?>">
 
@@ -104,7 +41,7 @@
                                               <div class="form-group">
                                                         <label class="col-md-2" >Category</label> 
                                                         <div class=" col-md-4">  
-                                                                <select class="form-control" name="cat_id" id="cat_id">
+                                                                <select class="form-control js-example-basic-single" name="cat_id" id="cat_id">
                                                             <?php foreach ($lvl as $key) {
                                                                 ?>
                                                                 <option value="<?= $key->catt_id; ?>" > <?= $key->cat_name; ?></option>
@@ -138,7 +75,7 @@
                                          <div class="row">
                                             <div class=" col-md-5">
                                                 <button type="submit" class="btn btn-success">Add Item</button>
-                                                <a href="<?= site_url('purchase_v1/dashboard/page/a1'); ?>" name="c5">    
+                                                <a href="<?= site_url('purchase_v1/dashboard/page/a27'); ?>" name="c5">    
                                                     <button type="button" class="btn btn-warning">Back</button>
                                                 </a>
                                             </div> 
@@ -146,19 +83,7 @@
                                         <div class="clear" style="height: 50px;"></div>                
                     </form>
                 
-                
-                    <!-- <div id="sprintcontainer"> -->
-
-                  
-            </div>
-            <!-- /.container-fluid -->
-         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    </div>
-    <!-- /#wrapper -->
-
+ 
 
 
 
@@ -171,6 +96,8 @@
     //bootstrap WYSIHTML5 - text editor
     $(".textarea").wysihtml5();
   });
+
+    $('.js-example-basic-single').select2();
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -254,9 +181,3 @@ $(".ui-droppable").sortable({
 
 
 
-
-   
-
-</body>
-
-</html>

@@ -1,38 +1,9 @@
 
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">User List</h1>
-                    </div>
-                 </div>
-
-
-
-                    <!-- /.col-lg-12 -->
                   
                      <div class="row">
                 
-                    <div class="panel panel-default">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-
-                                            
-                                                         
-                             <div class=" col-md-3 pull-right">  
-                                <div class="form-group input-group">
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                </div>
-                            </div>
 
                             <a href="<?= site_url('purchase_v1/dashboard/page/a24'); ?>">                             
                             <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add User</button>
@@ -99,19 +70,7 @@
          
             </div>
                 
-                
-                    <!-- <div id="sprintcontainer"> -->
-
-                  
-         
-            <!-- /.container-fluid -->
-         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    </div>
-    <!-- /#wrapper -->
-
+        
     
   
 
@@ -198,13 +157,3 @@ $(".ui-droppable").sortable({
 
 </script>
 
-
-
-
-
-
-   
-
-</body>
-
-</html>

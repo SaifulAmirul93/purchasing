@@ -11,7 +11,7 @@ class M_purchase extends CI_Model {
     /**
      * @name string PRI_INDEX Holds the name of the tables' primary index used in this model
      */
-    const PRI_INDEX = 'pur_id';
+    const PRI_INDEX = 'pu_id';
 
     /**
      * Retrieves record(s) from the database
@@ -97,35 +97,39 @@ class M_purchase extends CI_Model {
         {
 
             $this->db->select('*');
-            $this->db->from(self::TABLE_NAME);
+            $this->db->from('purchase pu');
             if ($where !== NULL) {
                 if (is_array($where)) {
                     foreach ($where as $field=>$value) {
                         $this->db->where($field, $value);
                     }
                 } else {
-                    $this->db->where(self::PRI_INDEX, $where);
+                    $this->db->where('pu.pu_id', $where);
                 }
             }
 
             //$this->db->where(self::TABLE_NAME);
-            $this->db->join('user', 'user_id = us_id', 'left');            
-            $this->db->join('supplier','supp_id = supplier_id', 'left');
-            $this->db->join('purchase_item' , 'pur_id = purc_id' , 'left');            
-            $this->db->join('project' , 'prjk_id = projek_id' , 'left'); 
-              $result = $this->db->get()->result();
-              $data = array();
+            $this->db->join('user us', 'us.us_id = pu.us_id', 'left');            
+            $this->db->join('supplier su','su.su_id = pu.su_id', 'left');
+            $this->db->join('purchase_item pi' , 'pi.pu_id = pu.pu_id' , 'left');            
+            $this->db->join('project pr' , 'pr.pro_id = pu.pro_id' , 'left');
+            $this->db->join('nasty_company nc' , 'nc.nc_id = pu.nc_id' , 'left'); 
+             
+            $result = $this->db->get()->result();
+            $data = array();
 
 
-              foreach ($result as $key) {
+              foreach ($result as $key) 
+              {
                       $this->db->select('*');
                       
-                        $this->db->from('purchase_item');
-                        $this->db->join('category_item', 'catt_id = cat_id', 'left');
-                        $this->db->join('item', 'item_id = it_id', 'left');
+                        $this->db->from('purchase_item pi');
+                        $this->db->join('category_item ci', 'ci.catt_id = pi.cat_id', 'left');
+                        $this->db->join('item it', 'it.item_id = pi.it_id', 'left');
+                        $this->db->join('unit un', 'un.un_id = pi.un_id', 'left');
                         //$this->db->order_by('cat_id', 'asc');
                       
-                        $this->db->where('purc_id', $key->pur_id); 
+                        $this->db->where('pi.pu_id', $key->pu_id); 
                         $res2 = $this->db->get()->result();
                       $this->db->select("us_username");
                       $this->db->from('user');
@@ -137,20 +141,9 @@ class M_purchase extends CI_Model {
                         'purchase' => $key,
                         'item' => $res2
                       );
-                        }
-                        return $data;
+            }
+                    return $data;
 
-
-              
-            // if ($result) {
-            //     if ($where !== NULL) {
-            //         return array_shift($result);
-            //     } else {
-            //         return $result;
-            //     }
-            // } else {
-            //     return false;
-            // }
         }
         public function getSearch($where = null , $all=false )
         {
@@ -242,7 +235,7 @@ class M_purchase extends CI_Model {
        public function updatePay($data = array(), $where = array()) {
             if (!is_array($where)) {
                 $where =array(self::PRI_INDEX => $where);
-                $pay =array('pay' => $data);
+                $pay =array('pu_pay' => $data);
             }
           $this->db->update(self::TABLE_NAME, $pay, $where);
           return $this->db->affected_rows();
@@ -258,10 +251,10 @@ class M_purchase extends CI_Model {
       }
 
 
-        public function getAll($ul_id = null, $ver = null, $where = null , $all = false)
+        public function getAll($ul_id = null, $ver = null,$us_id = null, $where = null , $all = false)
         {
             $this->db->select('*');
-            $this->db->from(self::TABLE_NAME);
+            $this->db->from('purchase pu');
             if ($where !== NULL) {
                 if (is_array($where)) {
                     foreach ($where as $field=>$value) {
@@ -271,36 +264,36 @@ class M_purchase extends CI_Model {
                     $this->db->where(self::PRI_INDEX, $where);
                 }
             }
+             if ($us_id) {
+             
+                $this->db->where('pu.us_id', $us_id);
+             
+            }
+
              if ($ul_id != null) {
              
-                $this->db->where('pr_id >', 3);
+                $this->db->where('pu.pr_id >', 3);
              
             }
 
             
-            if($ver == 0)
+            if($ver == 1)
             {
-              $this->db->where('ver', 0);
+              $this->db->where('pu.ver', 0);
             }
              
-           
+             
               
-            if (!$all) {
-                $this->db->where('supplier_id >', 0);
-            }           
-            $this->db->join('supplier', 'supp_id = supplier_id', 'left');
+                  
+            $this->db->join('supplier su', 'pu.su_id = su.su_id', 'left');
+           
+            $this->db->join('user us', 'pu.us_id = us.us_id', 'left');
+       
+            $this->db->join('process pr', 'pu.pr_id = pr.pr_id', 'left');
 
-            if (!$all) {
-                $this->db->where('us_id >', 0);
-            }           
-            $this->db->join('user', 'user_id = us_id', 'left');
+            $this->db->join('project pro', 'pu.pro_id = pro.pro_id', 'left');
 
-            if (!$all) {
-                $this->db->where('pro_id >', 0);
-            }           
-            $this->db->join('process', 'pr_id = pro_id', 'left');
-
-            $this->db->order_by('pur_id', 'desc');
+            $this->db->order_by('pu_id', 'desc');
        
 
             $result = $this->db->get()->result();
@@ -315,10 +308,10 @@ class M_purchase extends CI_Model {
             }
         }
 
-        public function getAll2($ul_id = null, $ver = null,$us_id = null, $where = null , $all = false)
+        public function getAll2($limit = null,$start = null,$pr_id = null, $ver = null,$us_id = null, $where = null , $all = false)
         {
             $this->db->select('*');
-            $this->db->from(self::TABLE_NAME);
+            $this->db->from('purchase pu');
             if ($where !== NULL) {
                 if (is_array($where)) {
                     foreach ($where as $field=>$value) {
@@ -330,42 +323,38 @@ class M_purchase extends CI_Model {
             }
              if ($us_id) {
              
-                $this->db->where('user_id', $us_id);
+                $this->db->where('pu.us_id', $us_id);
              
             }
 
-             if ($ul_id != null) {
+             if ($pr_id != null) {
              
-                $this->db->where('pr_id >', 3);
+                $this->db->where('pu.pr_id >', $pr_id);
              
             }
 
             
             if($ver == 1)
             {
-              $this->db->where('ver', 1);
+              $this->db->where('pu.ver', 1);
             }
              
              
               
-            if (!$all) {
-                $this->db->where('supplier_id >', 0);
-            }           
-            $this->db->join('supplier', 'supp_id = supplier_id', 'left');
-
-            if (!$all) {
-                $this->db->where('us_id >', 0);
-            }           
-            $this->db->join('user', 'user_id = us_id', 'left');
-
-            if (!$all) {
-                $this->db->where('pro_id >', 0);
-            }           
-            $this->db->join('process', 'pr_id = pro_id', 'left');
-
-            $this->db->order_by('pur_id', 'desc');
+                  
+            $this->db->join('supplier su', 'pu.su_id = su.su_id', 'left');
+           
+            $this->db->join('user us', 'pu.us_id = us.us_id', 'left');
        
+            $this->db->join('process pr', 'pu.pr_id = pr.pr_id', 'left');
 
+            $this->db->join('project pro', 'pu.pro_id = pro.pro_id', 'left');
+
+            $this->db->order_by('pu_id', 'desc');
+       
+            if ($limit !== null && $start !== null) {
+                $this->db->limit($limit, $start);
+            }  
             $result = $this->db->get()->result();
             if ($result) {
                 if ($where !== NULL) {
@@ -381,7 +370,7 @@ class M_purchase extends CI_Model {
         public function getAll3($limit = null,$start = null, $ver = null,$ul_id = null , $us_id = null, $where = null , $all = false)
         {
             $this->db->select('*');
-            $this->db->from(self::TABLE_NAME);
+            $this->db->from('purchase pu');
             if ($where !== NULL) {
                 if (is_array($where)) {
                     foreach ($where as $field=>$value) {
@@ -393,7 +382,7 @@ class M_purchase extends CI_Model {
             }
              if ($us_id) {
              
-                $this->db->where('user_id', $us_id);
+                $this->db->where('us_id', $us_id);
              
             }
 
@@ -402,16 +391,16 @@ class M_purchase extends CI_Model {
               $this->db->where('ver', $ver);
             }
             
-            $this->db->where('pr_id !=', 7);
+            $this->db->where('pu.pr_id !=', 7);
             
             if (!$all) 
             {
-                $this->db->where('pur_id >', 0);
+                $this->db->where('pu.pu_id >', 0);
             }           
-            $this->db->join('supplier', 'supp_id = supplier_id', 'left');
-            $this->db->join('user', 'user_id = us_id', 'left');
-            $this->db->join('process', 'pr_id = pro_id', 'left');
-            $this->db->order_by('pur_id', 'desc');
+            $this->db->join('supplier su', 'pu.su_id = su.su_id', 'left');
+            $this->db->join('user us', 'pu.us_id = us.us_id', 'left');
+            $this->db->join('process pr', 'pu.pr_id = pr.pr_id', 'left');
+            $this->db->order_by('pu.pu_id', 'desc');
              if ($limit !== null && $start !== null) {
                 $this->db->limit($limit, $start);
             }  
@@ -426,12 +415,23 @@ class M_purchase extends CI_Model {
                 return false;
             }
         }
-        public function orderCount($ver = null)
+        public function orderCount($ver = null,$us_id = null,$pr_id = null)
         {
             $this->db->where('pr_id !=', 0);
             if ($ver != -1) {
                 $this->db->like('ver', $ver);
             }           
+
+            if ($us_id) {
+             
+                $this->db->where('us_id', $us_id);
+             
+            }
+            if ($pr_id != null) {
+             
+                $this->db->where('pr_id >', $pr_id);
+             
+            }
 
             $this->db->from('purchase');
             return $this->db->count_all_results();
@@ -450,6 +450,8 @@ class M_purchase extends CI_Model {
         return $this->db->affected_rows();
     }
 }
-        
-?>
+
+
+
+
 

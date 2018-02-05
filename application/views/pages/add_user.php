@@ -1,21 +1,4 @@
 
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Add User</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
                   
                        <form role="form" method="post" action="<?= site_url('purchase_v1/dashboard/addUser'); ?>" id="user-form">
 
@@ -144,48 +127,12 @@
                     </form>
                     <div class="clear" style="height: 50px;"></div>
                 
-                    <!-- <div id="sprintcontainer"> -->
-
-                  
-            </div>
-            <!-- /.container-fluid -->
-         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    </div>
-    <!-- /#wrapper -->
-
+          
 <script>
 
 $(document).ready(function() {
 
-                $('#user-form').validate({
-        rules: {
-            us_username: {
-                required: true
-            },
-            us_pass: {
-        
-                required: true
-            },
-            pass2: {
-                required: true
-            }
-        },
-        highlight: function (element) {
-            $(element).closest('.control-group').removeClass('has-success').addClass('has-error');
-        }/*,
-        success: function (element) {
-            element.addClass('valid')
-                .closest('.control-group').removeClass('has-error').addClass('has-success');
-        }*/
-    });
-
-
-
-
-
+   
 
                 $('#us_pass').keyup(function() {
                     if ($(this).val() == "") {
@@ -219,8 +166,3 @@ $(document).ready(function() {
 
 
 
-   
-
-</body>
-
-</html>

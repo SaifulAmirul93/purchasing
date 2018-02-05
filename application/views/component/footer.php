@@ -1,5 +1,10 @@
-  <!-- /#wrapper -->
+    <!-- /.container-fluid -->
+         </div>
+        <!-- /#page-wrapper -->
 
+    </div>
+    </div>
+    <!-- /#wrapper -->
  
     
     
@@ -12,14 +17,15 @@
     <script src="<?= base_url(); ?>vendor/metisMenu/metisMenu.min.js"></script>
 
 <!-- Bootstrap WYSIHTML5 -->
-<script src="<?= base_url(); ?>dist/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-   
+    <script src="<?= base_url(); ?>dist/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
     <!-- DataTables JavaScript -->
     <script src="<?= base_url(); ?>vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="<?= base_url(); ?>vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="<?= base_url(); ?>vendor/datatables-responsive/dataTables.responsive.js"></script>
    
+    
+
        <!-- Morris Charts JavaScript -->
     <script src="<?= base_url(); ?>vendor/raphael/raphael.min.js"></script>
     <script src="<?= base_url(); ?>vendor/morrisjs/morris.min.js"></script>
@@ -33,3 +39,8 @@
 
     <script src="<?= base_url(); ?>dist/bootbox/bootbox.min.js" type="text/javascript"></script>
     <script src="<?= base_url(); ?>dist/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+    
+    </body>
+
+</html>

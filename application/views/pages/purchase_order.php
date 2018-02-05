@@ -63,7 +63,7 @@ page {
   display: block;
   margin: 0 auto;
   margin-bottom: 0.5cm;
-  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  /*box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);*/
 }
 page[size="A4"] {  
   width: 22.8cm;
@@ -120,7 +120,7 @@ color: white !important;
 <page size="A4">
               <div class="clearfix" height="100px"></div>
             
-              <img src="<?= base_url(); ?>dist/img/formlogo.jpg" width="400" height="157" />
+              <img src="<?= base_url(); ?>dist/img/formlogo.jpg" width="398" height="225"/>
               
               <h1 style="float: right;padding-right: 4%; ">PURCHASE ORDER</h1>
               <div>
@@ -136,39 +136,52 @@ color: white !important;
               <span class="c0">TO &nbsp;</span>
               </p>
               <p class="">
-              <span class="c0">NAME: <?= $arr['purchase']->supplier_name; ?></span>
+              <span class="c0">NAME: <?= $arr['purchase']->su_name; ?></span>
               </p>
               <p class="">
               <span class="c3">
-              COMPANY: <?= $arr['purchase']->supplier_company; ?></span>
+              COMPANY: <?= $arr['purchase']->su_company; ?></span>
               
               </p>
               <p class="">
-              <span class="c0">ADDRESS: <?= $arr['purchase']->supplier_address; ?></span>
+              <span class="c0">ADDRESS: <?= $arr['purchase']->su_address; ?></span>
               </p>
               
               <p class="">
-              <span class="c0">PHONE: <?= $arr['purchase']->supplier_contact; ?></span>
+              <span class="c0">PHONE: <?= $arr['purchase']->su_contact; ?></span>
               </p>
               </div>
               <div style="width: 200px;float: right;padding-right: 4%; ">
-              <span class="c0">ORDER #: 
+              <span class="c0">ORDER CODE: 
                 <?php 
-                                            if ($arr['purchase']->pur_id) {
-                                                $id = '#'.(110000+$arr['purchase']->pur_id);
+                                            if ($arr['purchase']->pu_id) {
+                                                $id = '#'.(110000+$arr['purchase']->pu_id);
                                                 echo $id;
                                             } else {
                                                 echo "--Not Set--";
                                             }
                                             ?>
               </span><br>
-              <span class="c0">PROJECT CODE: <?= $arr['purchase']->project_code; ; ?></span><br>
-              <span class="c0">P.O.DATE: <?= $arr['purchase']->pur_date; ; ?></span><br>
+              <span class="c0">COMPANY CODE: <?= "#".(100+$arr['purchase']->nc_id);; ; ?></span><br>
+              <span class="c0">PROJECT CODE: <?= $arr['purchase']->pro_code; ; ?></span><br>
+              <span class="c0">P.O.DATE: <?= $arr['purchase']->pu_date; ; ?></span><br>
               <span class="c0">REQUISITIONER:<?= $arr['purchase']->us_username; ?></span><br>
               <span class="c0">SHIPPED VIA: </span><br>
               <span class="c0">TERMS: </span>
               </div>
+              <?php
+              if($arr['purchase']->pu_curr == 1){
+                  $curr="MYR";
+              }else if($arr['purchase']->pu_curr == 2){
+                  $curr="USD";
+              }else if($arr['purchase']->pu_curr == 3){
+                  $curr="RMB";
+              }
+              else{
+                  $curr="Error";
+              }
               
+              ?>
               <p class=" c11">
               <span class="c0">
                 
@@ -195,7 +208,12 @@ color: white !important;
               </td>
               <td class="c17" colspan="1" rowspan="1">
               <p class="c13">
-              <span class="c15">UNIT PRICE &nbsp;(RM)</span>
+              <span class="c15">UNIT PRICE (<?= $curr; ?>)</span>
+              </p>
+              </td>
+              <td class="c17" colspan="1" rowspan="1">
+              <p class="c13">
+              <span class="c15">DISCOUNT (<?= $curr; ?>)</span>
               </p>
               </td>
               <td class="c12" colspan="1" rowspan="1">
@@ -203,17 +221,17 @@ color: white !important;
               <span class="c15">TOTAL PRICE</span>
               </p>
               <p class="c13">
-              <span class="c15">INCL GST (RM)</span>
+              <span class="c15">INCL GST (<?= $curr; ?>)</span>
               </p>
               </td>
               </tr>
               <?php 
 
-         if($arr['purchase']->unit!=null){
+         if($arr['purchase']->pu_unit!=0){
                   foreach ($unit as $key) 
                   {
 
-                         if($key->un_id == $arr['purchase']->unit)
+                         if($key->un_id == $arr['purchase']->pu_unit)
                           {
                             $unit=$key->un_desc;
                           }
@@ -236,14 +254,7 @@ color: white !important;
               $n = 0;
               $sub_total=0.0;
 
-                if($arr['purchase']->currency == 1){
-                  $curr="MYR";
-              }else if($arr['purchase']->currency == 2){
-                  $curr="USD";
-              }
-              else{
-                  $curr="Error";
-              }
+                
 
               foreach ($arr['item'] as $key) {
               
@@ -284,18 +295,35 @@ color: white !important;
               </td>
               <td class="c7">
               <p class="c13">
-              <span class="c0"><?= $key->pi_qty; ?> <?= $unit; ?></span>
+              <span class="c0"><?= $key->pi_qty; ?> <?php if($key->un_id!=0)
+                {
+                  echo $key->un_desc;
+                }else{
+
+                  echo $unit;
+                  } ?></span>
               </p>
               
               </td>
               <td class="c17">
               <p class="c13">
-              <span class="c0"><?= $curr; ?> <?= $key->pi_price; ?></span>
+              <span class="c0"><?= $curr; ?><?= $key->pi_price;?></span>
+              </p>
+              </td>
+              <td class="c17">
+              <p class="c13">
+              <span class="c0"><?= $curr; ?>  <?= $key->pi_disc;?></span>
               </p>
               </td>
               <?php 
           $qty=$key->pi_qty;
-          $price=$key->pi_price;
+          if($key->pi_disc!=0)
+          {
+            $price=$key->pi_price-$key->pi_disc;
+          }
+          else{
+            $price=$key->pi_price;
+          }
           $amount=$qty*$price;
            ?>
               <td class="c12">
@@ -314,17 +342,26 @@ color: white !important;
              
               
               <tr class="c6">
-              <td class="c10" colspan="6" rowspan="1">
-              <p class="c4"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUB TOTAL &nbsp; &nbsp; &nbsp;<?= $curr; ?> <?= number_format((float)$sub_total, 2, '.', '');?> &nbsp; &nbsp; &nbsp;</span></p>
-              <?php 
+              <td class="c10" colspan="5" rowspan="1">
+              <p class="c4"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUB TOTAL &nbsp; &nbsp; &nbsp;</span></p>
+              <p class="c4"><span class="c0">
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6% GST &nbsp; &nbsp; &nbsp;
+              </span></p>
+              </td>
+             <td class="c12">
+              <p class="c4"><span class="c0">
+
+              <?= $curr; ?> <?= number_format((float)$sub_total, 2, '.', '');?></span></p>
+
+                 <?php 
 
 
-          if($arr['purchase']->gst == 1){
+          if($arr['purchase']->pu_gst == 1){
             $gst=$sub_total*0.06; 
 
           $grand=$sub_total+$gst; ?>
 
-              <p class="c4"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6% GST &nbsp; &nbsp; &nbsp;<?= $curr; ?> <?= number_format((float)$gst, 2, '.', '');?> </span></p>
+              <p class="c4"><span class="c0"><?= $curr; ?> <?= number_format((float)$gst, 2, '.', '');?> </span></p>
 <?php
           }else if($arr['purchase']->gst == 0){
             //$gst=$sub_total*0.06; 
@@ -335,11 +372,19 @@ color: white !important;
           
 
       ?>
-              </td></tr><tr class="c6"><td class="c10" colspan="6" rowspan="1"><p class="c4"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GRAND TOTAL&nbsp; &nbsp; &nbsp;<?= $curr; ?> <?= number_format((float)$grand, 2, '.', '');?></span></p></td></tr></tbody></table>
+               </td>
+              </tr><tr class="c6"><td class="c10" colspan="5" rowspan="1"><p class="c4"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GRAND TOTAL&nbsp; &nbsp; &nbsp;</span></p></td>
+              <td class="c10" colspan="4">
+              <p class="c4"><span class="c0">
+               <?= $curr; ?> <?= number_format((float)$grand, 2, '.', '');?>
+              </span></p></td>
+              
+              </tr></tbody></table>
 
               <br><br>
 
-              <p class=" c11"><span class="c0"></span></p><p class=" c11"><span class="c0"></span></p><p class=""><span class="c0">MADE BY:_____________________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class=""><span class="c3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="c15">&nbsp;PURCHASING ORDER MANAGER (POM)</span></p><p class=" c11"><span class="c15"></span></p><p class=" c11"><span class="c15"></span></p><p class=" c11"><span class="c15"></span></p><p class=" c11"><span class="c15"></span></p><p class=""><span class="c0">APPROVED BY::_____________________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CHECKED BY:________________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class=""><span class="c3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="c19">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CHIEF OPERATING OFFICER (COO) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CHIEF FINANCE OFFICER (CFO)</span></p>
+              
+              <p class=" c11"><span class="c0"></span></p><p class=" c11"><span class="c0"></span></p><p class=""><span class="c0">MADE BY:_____________________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; VERIFIED BY:________________________</span></p><p class=""><span class="c3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span class="c15">&nbsp;ASSISTANT PROCUREMENT&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMPANY HEAD</span></p><p class=" c11"><span class="c15"></span></p><p class=" c11"><span class="c15"></span></p><p class=" c11"><span class="c15"></span></p><p class=" c11"><span class="c15"></span></p><p class=""><span class="c0">APPROVED BY::_____________________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; CHECKED BY:________________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p><p class=""><span class="c3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="c19">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HEAD OF PROCUREMENT &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FINANCE DEPARTMENT</span></p>
               <br>
               <div class="clearfix" style="height: 100px"></div>
  </page>

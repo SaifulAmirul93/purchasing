@@ -1,23 +1,4 @@
 
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">View Project</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                  
-                      
-
                                         <div class="row">
                                             <div class=" col-md-4">
                                                 <h3 class="page-header">Project Details</h3>
@@ -31,7 +12,7 @@
                                                         <label class="col-md-2" >Project Code</label> 
                                                         <div class=" col-md-3"> 
                                                         
-                                                                <input type="text" name="code" id="code" class="form-control" disabled="" value="<?= $arr->project_code; ?>">
+                                                                <input type="text" name="code" id="code" class="form-control" disabled="" value="<?= $arr->pro_code; ?>">
                                                 
                                             
                                                         </div>
@@ -46,7 +27,7 @@
                                                         <label class="col-md-2" >Project Name</label> 
                                                         <div class=" col-md-3"> 
                                                         
-                                                                <input type="text" name="name" id="name" class="form-control" disabled="" value="<?= $arr->project_name; ?>">
+                                                                <input type="text" name="name" id="name" class="form-control" disabled="" value="<?= $arr->pro_name; ?>">
                                                 
                                             
                                                         </div>
@@ -83,7 +64,7 @@
                                                         <label class="col-md-2" >Person-In Change</label> 
                                                         <div class=" col-md-3"> 
                                                         
-                                                                <input type="text" name="incharge" id="incharge" class="form-control" disabled value="<?= $arr->Incharge; ?>">
+                                                                <input type="text" name="incharge" id="incharge" class="form-control" disabled value="<?= $arr->pro_incharge; ?>">
                                                 
                                             
                                                         </div>
@@ -95,7 +76,7 @@
                                         <div class="clear" style="height: 50px;"></div>
                                              <div class="row">
                                               <div class=" col-md-5">
-                                              <a href="<?= site_url('purchase_v1/dashboard/page/d3?edit=').$arr->projek_id; ?>" name="c5" title="Edit">
+                                              <a href="<?= site_url('purchase_v1/dashboard/page/d3?edit=').$arr->pro_id; ?>" name="c5" title="Edit">
                                                 <button type="button" class="btn btn-success">Edit</button>
                                                 </a>
                                                 <a href="<?= site_url('purchase_v1/dashboard/page/d2'); ?>" name="c5">    
@@ -113,12 +94,6 @@
                   
             </div>
             <!-- /.container-fluid -->
-         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    </div>
-    <!-- /#wrapper -->
 
 
 <script>
@@ -156,10 +131,3 @@ function drop(ev) {
 
 
 
-
-
-   
-
-</body>
-
-</html>

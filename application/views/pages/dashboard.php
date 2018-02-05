@@ -17,32 +17,24 @@
 
 
 
-    <div id="wrapper">
-
-         
-    
-
-            
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-2 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4>New Job Order</h4>                            
+                            </div>
+                        </div>
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-question fa-5x"></i>
+                                    <i class="fa fa-shopping-cart fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge count" data-counter="counterup"><?= $enquiry ?></div>
 
-                                    <div>Enquiry</div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -59,12 +51,19 @@
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Send Approval</h4>                            
+                                    </div>
+                            </div>
+                            <div class="row">
+
+                                
                                 <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
+                                    <i class="fa fa-envelope fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge count"><?= $nego ?></div>
-                                    <div>Nego</div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -80,13 +79,17 @@
                 <div class="col-lg-2 col-md-6">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
+                        <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Approved</h4>                            
+                                    </div>
+                            </div>
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-file-text-o fa-5x"></i>
+                                    <i class="fa fa-check-square-o fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge count"><?= $inv ?></div>
-                                    <div>Invoice</div>
                                 </div>
                             </div>
                         </div>
@@ -105,12 +108,16 @@
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Payment</h4>                            
+                                    </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-smile-o fa-5x"></i>
+                                    <i class="fa fa-money fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge count"><?= $happy ?></div>
-                                    <div>Happy Hour</div>
                                 </div>
                             </div>
                         </div>
@@ -127,12 +134,17 @@
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>ETD</h4>                            
+                                    </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-truck fa-5x"></i>
+                                    <i class="fa fa-truck fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge count"><?= $etd ?></div>
-                                    <div>ETD</div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -150,12 +162,17 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>Arrived</h4>                            
+                                    </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-map-marker fa-5x"></i>
+                                    <i class="fa fa-map-marker fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge count"><?= $arr ?></div>
-                                    <div>Arrived</div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -168,38 +185,120 @@
                         </a>
                     </div>
                 </div>
-
-
-
             </div>
+          
         <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Job Order Dashboard
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Procurement Dashboard
                             <div class="pull-right">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
+                                    
                                 </div>
                             </div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            
+                            
+                            <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                       
+                                                <div class="col-lg-2">
+                                                    <select id="month" class="form-control" required="">
+                                                        <option value="-1">-- All Month --</option>
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
+                                                        <div class="col-lg-1">
+                                                            <input type="number" name="year" id="year" class="form-control" min="2017" placeholder="Year" required="">
+                                                        </div>
+                                                <div class="col-lg-1">
+                                                    <button type="button" id="itemBtn" name="itemBtn" class="btn btn-success">Search</button>
+                                                </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="clearfix" style="height:20px">
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                    <div class="col-md-12">
+                                                        <big><i class="fa fa-money"></i> Total Spend</big>                        
+                                                    </div>
+                                            </div>
+                                            <div>&nbsp;</div>
+                                            <div class="row">
+
+                                                
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-line-chart fa-4x"></i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <div class="huge count"><?= $nego ?></div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#">
+                                            <div class="panel-footer">
+                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-4">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                    <div class="col-md-12">
+                                                        <big><i class="fa fa-money"></i> Cost Reduction</big>                        
+                                                    </div>
+                                            </div>
+                                            <div>&nbsp;</div>
+                                            <div class="row">
+
+                                                
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-line-chart fa-4x"></i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <div class="huge count"><?= $nego ?></div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#">
+                                            <div class="panel-footer">
+                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div> 
+                            </div>
+
 
                             <div class="row">
                                 <div class="col-lg-12">
@@ -315,12 +414,7 @@
 
 
             
-        </div>
-
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+        
 <script>
 $(document).ready(function() {
      $.post('<?= site_url('purchase_v1/dashboard/getAjaxGraph') ?>', {}, function(data) {

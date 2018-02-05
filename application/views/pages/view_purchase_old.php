@@ -104,11 +104,11 @@
                                         ?>
                                         <tr>
                                             <td><?= $n; ?></td>
-                                            <td><b><?= $pur->supplier_name; ?></b></td>
+                                            <td><b><?= $pur->su_name; ?></b></td>
                                             <td>
                                             <?php 
-                                            if ($pur->pur_id) {
-                                                $id = '#'.(110000+$pur->pur_id);
+                                            if ($pur->pu_id) {
+                                                $id = '#'.(110000+$pur->pu_id);
                                                 echo '<span style = "color : #3F6AFE;"><p style=" font-size:20px"><strong>'.$id.'</strong></p></span>';
                                             } else {
                                                 echo "--Not Set--";
@@ -120,11 +120,11 @@
                                             <td><b><?= $pur->us_username; ?></b></td>
                                             <td>
                                               <?php
-                                              if($pur->prjk_id != -1){
+                                              if($pur->pro_id != -1){
 
                                                foreach ($lvl as $key) {
-                                                    if($key->projek_id == $pur->prjk_id){
-                                                        echo $key->project_code;
+                                                    if($key->pro_id == $pur->pro_id){
+                                                        echo $key->pro_code;
                                                     }
                                                 }
                                             }
@@ -133,49 +133,49 @@
                                                 echo "--Not Set--";
                                             }
                                           ?>
-                                           <!--  <?= $pur->project_code; ?> -->
+                                           <!--  <?= $pur->pro_code; ?> -->
                                                 
                                             </td>
-                                            <td><?= $pur->pur_date; ?></td>
-                                            <td><?= $pur->deli_date; ?></td>
-                                            <td><span class="label" style = "background-color : <?= $pur->pro_color; ?>"><strong><?= $pur->pro_desc; ?></strong></span></td>
+                                            <td><?= $pur->pu_date; ?></td>
+                                            <td><?= $pur->pu_deli; ?></td>
+                                            <td><span class="label" style = "background-color : <?= $pur->pr_color; ?>"><strong><?= $pur->pr_desc; ?></strong></span></td>
                                             <td align="center">
-                                            <?php if($pur->pay == 0){ ?>
+                                            <?php if($pur->pu_pay == 0){ ?>
                                             <a class="uc" id="up<?= $n; ?>">
                                             <img src="<?= base_url(); ?>dist/img/unpaid_tag.png" width="38" height="63">
-                                            <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pur_id; ?>">
+                                            <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pu_id; ?>">
                                             </a>
-                                            <?php } else if ($pur->pay == 1) { ?>
+                                            <?php } else if ($pur->pu_pay == 1) { ?>
                                                <a class="uc" id="up<?= $n; ?>">
                                             <img src="<?= base_url(); ?>dist/img/50paid_tag.png" width="38" height="63">
-                                            <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pur_id; ?>">
+                                            <input type="hidden" class="form-control up<?= $n; ?>" value="<?= $pur->pu_id; ?>">
                                             </a>
                                             
-                                            <?php } else if ($pur->pay == 2) { ?>
+                                            <?php } else if ($pur->pu_pay == 2) { ?>
                                                <div title="Bayaran" id="gmbrn<?= $n ?>" class="bayaran" >
                                             <img src="<?= base_url(); ?>dist/img/paid_tag.png" width="38" height="63">
                                             </div>
-                                            <input type="hidden" class="form-control gmbrn<?= $n ?>" value="<?= $pur->pur_id; ?>">
+                                            <input type="hidden" class="form-control gmbrn<?= $n ?>" value="<?= $pur->pu_id; ?>">
                                             
                                             <?php     
                                             } ?>
                                             </td>
                                             <td align="center">
-                                            <?php if($pur->pr_inv!=null){ ?>
+                                            <?php if($pur->pu_inv!=null){ ?>
                                             <div title="Paid" id="gmbr<?= $n ?>" class="bayar" >
                                             <img src="<?= base_url(); ?>dist/img/Easy Invoice Mac App Icon.png" width="50" height="50">
                                             </div>
-                                            <input type="hidden" class="form-control gmbr<?= $n ?>" value="<?= $pur->pur_id; ?>">
+                                            <input type="hidden" class="form-control gmbr<?= $n ?>" value="<?= $pur->pu_id; ?>">
                                             <?php }?>
                                             </td>
                                             <td align="center"></a>
                                            
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$pur->pur_id; ?>" name="c5" title="View Purchase">
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c30?view=').$pur->pu_id; ?>" name="c5" title="View Purchase">
                                             <button type="button" class="btn btn-info btn-xs" title="View"><i class="fa fa-eye"></i></button></a>
 
                                             &nbsp;&nbsp;
                                             
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$pur->pur_id; ?>" name="c5" title="Edit Purchase">
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c29?edit=').$pur->pu_id; ?>" name="c5" title="Edit Purchase">
                                             <button type="button" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil"></i></button></a>
                                              &nbsp;&nbsp;
                                            <?php $us_lvl = $this->session->userdata('ul_id');?>
@@ -183,50 +183,50 @@
                                         <?php if($pur->pr_id == 1){?>
                                             
                                             <button type="button" class="negBtn btn btn-info btn-xs" title="Negotiate" style="background-color: #5CFE3F" id="<?= $n.'neg' ?>" name="<?= $n.'neg' ?>">NEGO</button>
-                                            <input type="hidden" class="form-control <?= $n.'neg' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            <input type="hidden" class="form-control <?= $n.'neg' ?>" name="pur_id" id="pur_id" value="<?= $pur->pu_id ?>">
                                              &nbsp;&nbsp;
                                             <?php }else if($pur->pr_id == 2){?>
                                            
 
                                             
                                             <button type="button" class="invBtn btn btn-info btn-xs" title="Invoice" style="background-color: #FE9F3F" id="<?= $n.'inv' ?>" name="<?= $n.'inv' ?>">INV</button>
-                                            <input type="hidden" class="form-control <?= $n.'inv' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            <input type="hidden" class="form-control <?= $n.'inv' ?>" name="pur_id" id="pur_id" value="<?= $pur->pu_id ?>">
 
                                             &nbsp;&nbsp;
                                             <?php }else if($pur->pr_id == 3){?>
                                             
                                             <button type="button" class="hapBtn btn btn-info btn-xs" title="Happy Hour" style="background-color: #5F9CC1" id="<?= $n.'hap' ?>" name="<?= $n.'hap' ?>">HAPPY</button>
-                                            <input type="hidden" class="form-control <?= $n.'hap' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            <input type="hidden" class="form-control <?= $n.'hap' ?>" name="pur_id" id="pur_id" value="<?= $pur->pu_id ?>">
                                             &nbsp;&nbsp;
                                             <?php }else if($pur->pr_id == 4){?>
                                             
                                             <button type="button" class="etdBtn btn btn-info btn-xs" title="ETD" style="background-color: #BD5FC1" id="<?= $n.'etd' ?>" name="<?= $n.'etd' ?>">ETD</button>
-                                            <input type="hidden" class="form-control <?= $n.'etd' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            <input type="hidden" class="form-control <?= $n.'etd' ?>" name="pur_id" id="pur_id" value="<?= $pur->pu_id ?>">
                                             &nbsp;&nbsp;
                                             <?php }else if($pur->pr_id == 5){?>
                                             
                                             <button type="button" class="etaBtn btn btn-info btn-xs" title="ETA" style="background-color: #5FC17E" id="<?= $n.'eta' ?>" name="<?= $n.'eta' ?>">Arrived</button>
-                                            <input type="hidden" class="form-control <?= $n.'eta' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            <input type="hidden" class="form-control <?= $n.'eta' ?>" name="pur_id" id="pur_id" value="<?= $pur->pu_id ?>">
                                             &nbsp;&nbsp;
                                             <?php } ?>
                                             
                                              <br><br>
-                                            <button onclick = "window.open('<?= site_url('purchase_v1/dashboard/page/P01?edit=').$pur->pur_id; ?>');" type="button" class="btn btn-success btn-xs" title="Purchase Order"><i class="fa fa-file-text"></i></button>
+                                            <button onclick = "window.open('<?= site_url('purchase_v1/dashboard/page/P01?edit=').$pur->pu_id; ?>');" type="button" class="btn btn-success btn-xs" title="Purchase Order"><i class="fa fa-file-text"></i></button>
                                             &nbsp;&nbsp;
                                             <?php if($pur->pr_id >= 3){?>
                                             <button type="button" class="btn btn-info btn-xs upPic" style="background-color: #AD3089" title="Upload Invoice" id="up<?= $n; ?>"><i class="fa fa-upload"></i></button>
-                                            <input type="hidden" class="form-control up<?= $n; ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                            <input type="hidden" class="form-control up<?= $n; ?>" name="pur_id" id="pur_id" value="<?= $pur->pu_id ?>">
                                              &nbsp;&nbsp;
                                              <?php } ?>
                                              <?php } ?>
                                              
                                              
-                                             <!-- <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a15?delete=').$pur->pur_id; ?>" name="c5" title="Delete Purchase"> -->
+                                             <!-- <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a15?delete=').$pur->pu_id; ?>" name="c5" title="Delete Purchase"> -->
                                              <!--<button type="button" class="delBtn btn btn-danger btn-xs" title="Delete" id="<?= $n.'del' ?>" name="<?= $n.'del' ?>"><i class="fa fa-close"></i></button>-->
-                                             <!--<input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">-->
+                                             <!--<input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $pur->pu_id ?>">-->
                                              
                                              <button type="button" class="delBtn btn btn-danger btn-xs" title="Delete" id="<?= $n.'del' ?>" name="<?= $n.'del' ?>"><i class="fa fa-close"></i></button>
-                                             <input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $pur->pur_id ?>">
+                                             <input type="hidden" class="form-control <?= $n.'del' ?>" name="pur_id" id="pur_id" value="<?= $pur->pu_id ?>">
                                             </td>
                                         </tr>
                                           <?php

@@ -11,7 +11,7 @@ class M_supplier extends CI_Model {
     /**
      * @name string PRI_INDEX Holds the name of the tables' primary index used in this model
      */
-    const PRI_INDEX = 'supplier_id';
+    const PRI_INDEX = 'su_id';
 
     /**
      * Retrieves record(s) from the database
@@ -75,30 +75,27 @@ class M_supplier extends CI_Model {
     }
 
 
-      public function getList()
+      public function getList($limit = null,$start = null,$where = null)
         {
 
 
-            $arr = $this->db->select('*')->from(self::TABLE_NAME)->get();
+            $this->db->select('*');
+            $this->db->from(self::TABLE_NAME);
+
+            if ($limit !== null && $start !== null) {
+                $this->db->limit($limit, $start);
+            }  
             
-            /*$this->db->select('*');
-            $this->db->from(self::TABLE_NAME);*/
-            /*  if ($where !== NULL) {
-            if (is_array($where)) {
-                foreach ($where as $field=>$value) {
-                    $this->db->where($field, $value);
+            $result = $this->db->get()->result();
+            if ($result) {
+                if ($where !== NULL) {
+                    return array_shift($result);
+                } else {
+                    return $result;
                 }
             } else {
-                $this->db->where(self::PRI_INDEX, $where);
+                return false;
             }
-        }*/
-
-           /* $arr = $this->db->get();*/
-
-           /* for ($i=0; $i < sizeof($result); $i++) { 
-                $result[$i]->supplier = $this->db->get()->result();
-            }*/
-            return $arr->result();
         }
 
      public function getAll($where = null , $all = false)
@@ -140,6 +137,12 @@ class M_supplier extends CI_Model {
 
                 return array_shift($result);
 
+        }
+
+         public function orderCount()
+        {
+            $this->db->from(self::TABLE_NAME);
+            return $this->db->count_all_results();
         }
 
     /**

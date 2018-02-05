@@ -4,9 +4,9 @@
             <br/>
             <span style="color: black; font-size: 75%;" ><strong><?= $cat->cat_name; ?></strong></span></td>
                                                        
-            <td><input type="number" name="qty[]" id="inputPrice" min="0" step="any" class="quantity form-control" value="" required="true"></td>
+            <td><input type="number" name="qty[]" id="inputQty" min="0" step="any" class="quantity form-control" value="" required="true"></td>
             <td>
-            	<select class="form-control" name="unit" id="unit" required>
+            	<select class="form-control" name="unit[]" id="inputUnit" required>
                                                     <option value="-1">--Select Unit--</option>
                                                       <?php foreach ($unit as $key) {
                                                                 ?>
@@ -17,7 +17,8 @@
                                                             } ?>
                 </select>
             </td> 
-            <td><input type="text" name="price[]" id="inputQty" min="0" class="price<?= $num; ?> form-control" required="true"></td>
+            <td><input type="text" name="price[]" id="inputPrice" min="0" class="price<?= $num; ?> form-control" required="true"></td>
+            <td><input type="text" name="disc[]" id="inputDisc" min="0.01" class="disc<?= $num; ?> form-control" required="true"></td>
             <td><span><button type="button" class="btn btn-danger btn-xs delBtn<?= $num; ?>"><i class="fa fa-trash" ></i></button></span>
             <input type="hidden" name="itemId[]" id="inputItemId[]" class="form-control" value="<?= $item->item_id; ?>">
             <input type="hidden" name="cattId[]" id="inputItemId[]" class="form-control" value="<?= $cat->catt_id; ?>">

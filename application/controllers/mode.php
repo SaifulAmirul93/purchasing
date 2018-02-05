@@ -22,11 +22,11 @@ class Mode extends CI_Controller {
 </style>
 
 <article>
-<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/s1kBgXLTR8A?autoplay=1" frameborder="0" allowfullscreen></iframe><br><h3>Nasty Inventory r1.0 </h3><br><h1>We&rsquo;ll be back soon!</h1><br><h4>We should be back shortly .Thank you for your patience. ;)</h4></div>	
+<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/s1kBgXLTR8A?autoplay=1" frameborder="0" allowfullscreen></iframe><br><h3>Nasty Purchasing System </h3><br><h1>We&rsquo;ll be back soon!</h1><br><h4>We should be back shortly .Thank you for your patience. ;)</h4></div>	
     
     <div>
-        <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:epul@nastyjuice.com">contact us</a>, otherwise we&rsquo;ll be back online shortly!</p>
-        <p>&mdash; Jauhmerah &mdash;</p>
+        <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:it@nastyjuice.com">contact us</a>, otherwise we&rsquo;ll be back online shortly!</p>
+        <p>&mdash; Epul &mdash;</p>
     </div>
 </article>
         <?php

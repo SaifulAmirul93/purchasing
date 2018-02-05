@@ -23,13 +23,6 @@
     <!-- Custom Fonts -->
     <link href="<?= base_url(); ?>vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 
     <style type="text/css">
         body{
@@ -38,7 +31,7 @@
          background:     -ms-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* IE10 */
          background:      -o-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* Opera 11.10+ */
         background:         linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* W3C */
-
+        }
 
     </style>
 
@@ -50,20 +43,57 @@
     <div class="container">
 
         <div class="row vertical-offset-100">
+                <div class="clear" style="height: 50px">
+                                    
+                                </div>
             <div class="col-md-4 col-md-offset-4">
-          
-                <div class="login-panel panel panel-default">
-
-                                     <div class="panel-heading">
                     <div  align="center">
-                             <img src="<?= base_url(); ?>dist/img/purchase.png" class="img-responsive" alt="Conxole Admin"/>
-                     <!--    <img src="http://s11.postimg.org/7kzgji28v/logo_sm_2_mr_1.png" class="img-responsive" alt="Conxole Admin"/>
-                  -->
+                             <img src="<?= base_url(); ?>dist/img/purchase1.png" class="img-responsive"/>
                     </div>
-                        <div class="clear" style="height:30px;"></div>
-                        <h1 class="panel-title" align="center">Welcome senpai!!!</h1>
+                    <div class="clear" style="height: 20px">
+                                    
+                                </div>
+                     <div class="row">                   
+                                    <div class="col-md-12">
+                                <?php if($this->session->flashdata('success')){ ?>
+                                        <div class="alert alert-success alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                            <strong><i class="fa fa-check"></i>  Success!</strong> <?= $this->session->flashdata('success'); ?>
+                                        </div>
+                                <?php } if($this->session->flashdata('warning')){
+                                ?>
+                                        <div class="alert alert-warning alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                            <strong><i class="fa fa-exclamation-triangle"></i> Warning!</strong> <?= $this->session->flashdata('warning'); ?>
+                                        </div>
+                                <?php } if($this->session->flashdata('info')){ ?>
+                                        <div class="alert alert-info alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                            <strong><i class="fa fa-info-circle"></i> Info!</strong> <?= $this->session->flashdata('info'); ?>
+                                        </div>
+                                <?php } if($this->session->flashdata('error')){ ?>
+                                        <div class="alert alert-danger alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                            <strong><i class="fa fa-times-circle-o"></i> Error!</strong> <?= $this->session->flashdata('error'); ?> 
+                                        </div>
+                                <?php } ?>
+                                    </div>
+                    </div>
+
+
+
+
+
+                <div class="login-panel panel panel-primary">
+                    
+                    <div class="panel-heading">
+                     
+                        <h3 class="panel-header" align="center">Login Form</h3>
                     </div>
                     <div class="panel-body">
+                                <div class="clear" style="height: 20px">
+                                    
+                                </div>
                         <form role="form" action="<?= site_url('Login/signin'); ?>" method="post">
                             <fieldset>
                                 <div class="form-group">
@@ -72,13 +102,16 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" id="us_pass" name="us_pass" type="password"  required="">
                                 </div>
-                                <!-- <div class="checkbox">
+                                <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
-                                </div> -->
+                                </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+                                <hr>
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+                                </div>
                             </fieldset>
                         </form>
                     </div>

@@ -52,14 +52,14 @@ class Login extends CI_Controller {
 	    			'us_username' => $data->us_username
 
 	    		);	 
-	    		echo "<script>alert('Successfull')</script>";   		
+	    				
 	    		$this->session->set_userdata( $array );
-	    		// print_r($data);
-	    		// print_r($array);
-	        redirect(site_url('purchase_v1/dashboard'),'refresh');
+	    	
+	        	redirect(site_url('purchase_v1/dashboard'),'refresh');
 	        }
 	        else{
-	    		echo "<script>alert('Not Successfull')</script>";
+	    			    		$this->session->set_flashdata('error', 'Your username or password Is Wrong');
+
 	    		redirect(site_url('login'),'refresh');
 	    	}
 

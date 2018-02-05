@@ -1,99 +1,110 @@
 
+                                     <div class="row">
+                                        
+                                       <div class="col-lg-12">
+                                            <div class="panel panel-green">
+                                                <div class="panel-heading">
+                                                     Job Order Information
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Project Code :  <strong><?= $arr['purchase']->pro_code; ?></strong></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Company Code :  <strong><?= "#".(100+$arr['purchase']->nc_id); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $arr['purchase']->nc_name; ?></strong></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                    </div>
 
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">View Purchase</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
                   
                                     <div class="row">
                                         
                                        <div class="col-lg-12">
                                             <div class="panel panel-red">
                                                 <div class="panel-heading">
-                                                     Supplier Info
+                                                     Supplier Information
                                                 </div>
                                                   <div class="panel-body">
-                                                            <div class="row"  id="supplierInfo">
+                                                            <div class="row">
 
                                                                  <div class=" col-md-4">
-                                                                 <div class="form-group">
-                                                                    <label class="control-label">Name : <strong><?= $arr['purchase']->supplier_name; ?></strong></label>
-                                                                    
-                                                                    
-                                                                </div>
-                                                                </div>
-                                                                   <div class=" col-md-4">
-                                                                 <div class="form-group">
-                                                                    <label class="control-label">Company : <strong><?= $arr['purchase']->supplier_company; ?></strong></label>
-                                                                  
-                                                                </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Name : <strong><?= $arr['purchase']->su_name; ?></strong></label>
+                                                                        
+                                                                        
+                                                                    </div>
                                                                 </div>
                                                                 <div class=" col-md-4">
-                                                                  <div class="form-group">
-                                                                  <label class="control-label">Delivery Date : <strong><?= $arr['purchase']->deli_date; ?></strong></label>
-                                                                  
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Company : <strong><?= $arr['purchase']->su_company; ?></strong></label>
+                                                                    
                                                                     </div>
                                                                 </div>
 
                                                                  <div class=" col-md-4">
-                                                                 <div class="form-group">
-                                                                    <label class="control-label">Contact Number : <strong><?= $arr['purchase']->supplier_contact; ?></strong></label>
-                                                                    
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Contact Number : <strong><?= $arr['purchase']->su_contact; ?></strong></label>
+                                                                        
+                                                                    </div>
                                                                 </div>
-                                                                </div>
-
-                                                                 <div class=" col-md-4">
-                                                                 <div class="form-group">
-                                                                    <label class="control-label">Email : <strong><?= $arr['purchase']->supplier_email; ?></strong></label>
-                                                                    
-                                                                </div>
-                                                                </div>
-
-                                                                     <div class=" col-md-4">
-                                                                 <div class="form-group">
-                                                                    <label class="control-label">Purchase Date : <strong><?= $arr['purchase']->pur_date; ?></strong></label>
-                                                                    
-                                                                </div>
-                                                                </div>
-
-                                                                 <div class=" col-md-8">
-                                                                 <div class="form-group">
-                                                                    <label class="control-label">Address : <?= $arr['purchase']->supplier_address; ?></label>
+                                                            </div>
+                                                            <div class="row">
+                                                            
+                                                                <div class=" col-md-4">
+                                                                    <div class="form-group">
+                                                                    <label class="control-label">Delivery Date : <strong><?= $arr['purchase']->pu_deli; ?></strong></label>
                                                                   
-                                                                </div>
+                                                                    </div>
                                                                 </div>
 
                                                                 <div class=" col-md-4">
-                                                                     <div class="form-group">
-                                                                        <label class="control-label">Currency (%) : 
-                                                                        <?php if($arr['purchase']->currency == 1){
-
-                                                                            echo "MYR";}
-                                                                        else if($arr['purchase']->currency == 2){
-                                                                            echo "USD";
-                                                                            } ?>
-
-
-
-                                                                        </label>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Email : <strong><?= $arr['purchase']->su_email; ?></strong></label>
                                                                         
                                                                     </div>
                                                                 </div>
 
+                                                                <div class=" col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Purchase Date : <strong><?= $arr['purchase']->pu_date; ?></strong></label>
+                                                                        
+                                                                    </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class=" col-md-8">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Address : <?= $arr['purchase']->su_address; ?></label>
+                                                                    
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class=" col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Currency (%) : 
+                                                                            <?php if($arr['purchase']->pu_curr == 1){
+
+                                                                                echo "MYR";}
+                                                                            else if($arr['purchase']->pu_curr == 2){
+                                                                                echo "USD";
+                                                                                } ?>
+
+
+
+                                                                            </label>
+                                                                        
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                            
 
 
 
@@ -102,11 +113,11 @@
                                         </div>
                                         </div>
  <?php
-          if($arr['purchase']->unit!=null){
+          if($arr['purchase']->pu_unit!=null){
                   foreach ($unit as $key) 
                   {
 
-                         if($key->un_id == $arr['purchase']->unit)
+                         if($key->un_id == $arr['purchase']->pu_unit)
                           {
                             $unit=$key->un_desc;
                           }
@@ -116,33 +127,17 @@
            $unit="Error";  
           }
 
-
-  // if ($arr['purchase']->unit ==1){
-  //         $unit="PCS";
-
-  //        }
-  //        else if ($arr['purchase']->unit ==2){
-  //         $unit="KG";
-
-  //        }
-  //         else if ($arr['purchase']->unit ==3){
-  //         $unit="ROLL";
-
-  //        }
-  //          else {
-  //         $unit="Error";      
-  //        } 
-           if($arr['purchase']->currency == 1){
+           if($arr['purchase']->pu_curr == 1){
                   $curr="MYR";
-              }else if($arr['purchase']->currency == 2){
+              }else if($arr['purchase']->pu_curr == 2){
                   $curr="USD";
               }
               else{
                   $curr="Error";
               }
-               if($arr['purchase']->pay == 0){
+               if($arr['purchase']->pu_pay == 0){
                   $pay="Unpaid";
-              }else if($arr['purchase']->pay == 1){
+              }else if($arr['purchase']->pu_pay == 1){
                   $pay="50% paid";
               }
               else{
@@ -171,6 +166,7 @@
                                                                                                         <th>Item Detail</th>
                                                                                                         <th>Quantitty</th>
                                                                                                         <th>Unit Price</th>
+                                                                                                        <th>Discount</th>
                                                                                                         
                                                                                                       
                                                                                                     </tr>
@@ -191,8 +187,10 @@
                                                                                                         <br/>
                                                                                                         <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span></td>
                                                                                                                                                    
-                                                                                                        <td><?= $key->pi_qty; ?> <?= $unit; ?></td>
-                                                                                                        <td><?= $curr; ?> <?= number_format((float)$key->pi_price, 2, '.', '');?></td>
+                                                                                                        <td><?= $key->pi_qty; ?> <?= $key->un_desc; ?></td>
+                                                                                                        <td><?= $curr; ?> <?= $key->pi_price;?></td>
+                                                                                                        <td><?= $curr; ?> <?= $key->pi_disc;?></td>
+
                                                                                                         
                                                                                                         
                                                                                                      
@@ -240,32 +238,7 @@
 
   </div>
                                        
-                                                            
-                                       
-                                                
-                                             
-                                            
                                                         
-                                                
-                                                  
-                            </div>
-                       </div>
-                                                               
-                    </div>
-                </div>
-                
-                
-
-                                        
-
-                                                  
-  
-    
-
-                  
-    
-    <!-- /#wrapper -->
-      <!-- /#wrapper -->
 
 
 

@@ -1,64 +1,13 @@
 
 
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Supplier List</h1>
-                    </div>
-                 </div>
-
-                <div class="row">                   
-                        <div class="col-md-12">
-                    <?php if($this->session->flashdata('success')){ ?>
-                            <div class="alert alert-success alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                                <strong><i class="fa fa-check"></i>  Success!</strong> <?= $this->session->flashdata('success'); ?>
-                            </div>
-                    <?php } if($this->session->flashdata('warning')){
-                    ?>
-                            <div class="alert alert-warning alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                                <strong><i class="fa fa-exclamation-triangle"></i> Warning!</strong> <?= $this->session->flashdata('warning'); ?>
-                            </div>
-                    <?php } if($this->session->flashdata('info')){ ?>
-                            <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                                <strong><i class="fa fa-info-circle"></i> Info!</strong> <?= $this->session->flashdata('info'); ?>
-                            </div>
-                    <?php } if($this->session->flashdata('error')){ ?>
-                            <div class="alert alert-danger alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                                <strong><i class="fa fa-times-circle-o"></i> Error!</strong> <?= $this->session->flashdata('error'); ?> 
-                            </div>
-                    <?php } ?>
-                        </div>
-                    </div>
-
-                    <!-- /.col-lg-12 -->
                   
                      <div class="row">
                 
-                    <div class="panel panel-default">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
 
                                             
-                                                         
-                             <div class=" col-md-3 pull-right">  
-                                <div class="form-group input-group">
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                </div>
-                            </div>
+                
 
                             <a href="<?= site_url('purchase_v1/dashboard/page/a62'); ?>">                             
                             <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add Supplier</button>
@@ -93,20 +42,21 @@
                                         <tr>
                                             <td><?= $n; ?></td>
                                             <td>
-                                            <?php echo $supplier->supplier_name; ?> 
+                                            <?php echo $supplier->su_name; ?> 
                                             </td>
-                                            <td><?php echo $supplier->supplier_company; ?> </td>
-                                            <td><?php echo $supplier->supplier_contact; ?> </td>
-                                            <td><?php echo $supplier->supplier_email; ?></td>
+                                            <td><?php echo $supplier->su_company; ?> </td>
+                                            <td><?php echo $supplier->su_contact; ?> </td>
+                                            <td><?php echo $supplier->su_email; ?></td>
                                             <td>
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c12?view=').$supplier->supplier_id; ?>" name="c5" title="View Supplier">
+                                            <center>
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c12?view=').$supplier->su_id; ?>" name="c5" title="View Supplier">
                                             <button type="button" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></button></a>
-                                            &nbsp;&nbsp;&nbsp;
-                                            <a href="<?= site_url('purchase_v1/dashboard/page/c11?edit=').$supplier->supplier_id; ?>" name="c5" title="Edit Supplier">
+                                            &nbsp;
+                                            <a href="<?= site_url('purchase_v1/dashboard/page/c11?edit=').$supplier->su_id; ?>" name="c5" title="Edit Supplier">
                                             <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
                                             </a>
-                                             &nbsp;&nbsp;&nbsp;
-                                             <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a13?delete=').$supplier->supplier_id; ?>" name="c5" title="Delete Supplier">
+                                             &nbsp;
+                                             <a onclick = "return onDel();" href="<?= site_url('purchase_v1/dashboard/page/a13?delete=').$supplier->su_id; ?>" name="c5" title="Delete Supplier">
                                              <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close"></i></button></a>
                                             </td>
                                         </tr>
@@ -117,6 +67,33 @@
                                         ?>
                                  
                                     </tbody>
+                                    <?php if (isset($page)) {?>
+                            <tfoot>
+                                <td colspan="6">
+                                <div class="col-md-5 col-sm-5">
+                                    <div class="dataTables_info" id="sample_1_info" role="status" aria-live="polite">Showing <?= ($page+1); ?> to <?= ($page+$row); ?> of <?= $total; ?> records</div>
+                                </div>
+                                <div class="col-md-7 col-sm-7" align="right">
+                                    <div class="dataTables_paginate paging_bootstrap_full_number" id="sample_1_paginate">
+                                        <ul class="pagination" style="visibility: visible;">
+                                        <?php
+                                        $prev = "";
+                                        $next = "";
+                                            if ($page == 0) {
+                                                $prev = "disabled";
+                                            }
+                                            if ($total <= ($page + 10)) {
+                                                $next = "disabled";
+                                            }
+                                        ?>
+                                            <li class="prev <?= $prev; ?>"><a <?php if($prev!="disabled"){ ?>href="<?= site_url('purchase_v1/dashboard/page/a6?page='.($page-10)); ?>"<?php } ?> title="Prev" ><i class="fa fa-angle-left"></i></a></li>                                            
+                                            <li class="next <?= $next; ?>"><a <?php if($next!="disabled"){ ?>href="<?= site_url('purchase_v1/dashboard/page/a6?page='.($page+10)); ?>"<?php } ?> title="Next"><i class="fa fa-angle-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                </td>
+                            </tfoot> <?php 
+                            } ?>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
@@ -128,19 +105,7 @@
          
             </div>
                 
-                
-                    <!-- <div id="sprintcontainer"> -->
 
-                  
-         
-            <!-- /.container-fluid -->
-         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    </div>
-
- 
   
 <script>
 function onDel() {
@@ -231,11 +196,3 @@ $(".ui-droppable").sortable({
 
 
 
-
-
-
-   
-
-</body>
-
-</html>

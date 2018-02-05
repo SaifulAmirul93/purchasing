@@ -1,21 +1,5 @@
 
-<body>
 
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">View Unit</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                  
                        <form role="form">
 
                                         <div class="row">
@@ -59,18 +43,7 @@
                     </form>
                 
                 
-                    <!-- <div id="sprintcontainer"> -->
-
-                  
-            </div>
-            <!-- /.container-fluid -->
-         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    </div>
-    <!-- /#wrapper -->
-
+            
 
 <script>
 
@@ -103,14 +76,3 @@ function drop(ev) {
 
 
 </script>
-
-
-
-
-
-
-   
-
-</body>
-
-</html>

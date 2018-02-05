@@ -3,14 +3,14 @@
 if ($cat == -1) { ?>
  <label class="col-sm-2">Item :</label>
 	<div class=" col-sm-4">
-<select id="itemType" class="form-control" disabled>
+<select id="itemType" class="form-control js-example-basic-single" disabled>
     <option value="-1">-- Select Type --</option>
 </select>
 </div>	
 <?php }else{ ?>
  <label class="col-sm-2">Item :</label>
 	<div class=" col-sm-4">
-			<select id="itemType" class="form-control">
+			<select id="itemType" class="form-control js-example-basic-single">
 		    	<option value="-1">-- Select Type --</option>
 		    	<?php 
 				foreach ($type as $key) { ?>
@@ -23,6 +23,8 @@ if ($cat == -1) { ?>
 ?>
 	<script> 
 		$(document).ready(function() {
+
+			$('.js-example-basic-single').select2();
 			$('#itemType').change(function() {
 				temp = $(this).val();
 				
@@ -39,16 +41,7 @@ if ($cat == -1) { ?>
 
 				}
 			});
-			// $('#inputNico').change(function() {
-			// 	temp = $(this).val();
-			// 	temp2 = $('#cat').val();
-			// 	temp3 = $('#itemType').val();
-			// 	if (temp == -1 || temp2 == -1 || temp3 == -1) {
-			// 		$("#addBtn").prop('disabled' , 'disabled');
-			// 	} else {
-			// 		$("#addBtn").removeProp('disabled');
-			// 	}
-			// });	
+			
 					
 		});
 	</script>	

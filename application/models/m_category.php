@@ -57,30 +57,6 @@ class M_category extends CI_Model {
         return $result;
 
 
-
-
-        // $this->db->select('*');
-        // $this->db->from(self::TABLE_NAME);
-        // if ($where !== NULL) {
-        //     if (is_array($where)) {
-        //         foreach ($where as $field=>$value) {
-        //             $this->db->where($field, $value);
-        //         }
-        //     } else {
-        //         $this->db->where('cat_id', $where);
-        //     }
-        // }
-        // $result = $this->db->get()->result();
-        // echo "<script>alert($result);</script>";
-        // if ($result) {
-        //     if ($where !== NULL) {
-        //         return array_shift($result);
-        //     } else {
-        //         return $result;
-        //     }
-        // } else {
-        //     return false;
-        // }
     }
 
     /**
@@ -113,32 +89,6 @@ class M_category extends CI_Model {
     }
 
 
-      // public function getList()
-      //   {
-
-
-      //       $arr = $this->db->select('*')->from(self::TABLE_NAME)->get();
-            
-            /*$this->db->select('*');
-            $this->db->from(self::TABLE_NAME);*/
-            /*  if ($where !== NULL) {
-            if (is_array($where)) {
-                foreach ($where as $field=>$value) {
-                    $this->db->where($field, $value);
-                }
-            } else {
-                $this->db->where(self::PRI_INDEX, $where);
-            }
-        }*/
-
-           /* $arr = $this->db->get();*/
-
-           /* for ($i=0; $i < sizeof($result); $i++) { 
-                $result[$i]->supplier = $this->db->get()->result();
-            }*/
-        //     return $arr->result();
-        // }
-
          public function getLvl(){
             $this->db->select("*");
             $this->db->from('category_item');
@@ -159,10 +109,8 @@ class M_category extends CI_Model {
                     $this->db->where(self::PRI_INDEX, $where);
                 }
             }
-            if (!$all) {
-                $this->db->where('cat_id >', 0);
-            }           
-            $this->db->join('category_item', 'cat_id = catt_id', 'left');
+            $this->db->like('del', 0);
+
             $result = $this->db->get()->result();
             if ($result) {
                 if ($where !== NULL) {
@@ -195,11 +143,12 @@ class M_category extends CI_Model {
      * @return int Number of rows affected by the delete query
      */
     public function delete($where = array()) {
-
-            $where = array(self::PRI_INDEX => $where);
-    
-        $this->db->delete(self::TABLE_NAME, $where);
-        return $this->db->affected_rows();
+        if (!is_array($where)) {
+                $where =array(self::PRI_INDEX => $where);
+                $del =array('del' => 1);
+            }
+        $this->db->update(self::TABLE_NAME, $del, $where);
+          return $this->db->affected_rows();
     }
 }
         

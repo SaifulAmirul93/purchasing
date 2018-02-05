@@ -1,61 +1,53 @@
-
-
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-     
-
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Edit Purchase</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                  
-                       <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z121?key=').$this->my_func->scpro_encrypt($arr['purchase']->pur_id); ?>" method="post">
+    
+                       <form role="form" action="<?= site_url('purchase_v1/dashboard/page/z121?key=').$this->my_func->scpro_encrypt($arr['purchase']->pu_id); ?>" method="post">
                        
 
                        <div class="row">
-                                         <div class="form-group">
-                                            <label class="col-md-2">Supplier Name :</label>
-                                            <div class=" col-md-2">
-                                            <select class="form-control" name="Supplier" id="Supplier" required>
-                                            <option value="-1">--New Client--</option>
-                                                <?php foreach ($lvl as $key) {
-                                                                ?>
-                                                                <option value="<?= $key->supplier_id; ?>" <?php if($key->supplier_id == $arr['purchase']->supp_id){echo " selected ";} ?>> <?= $key->supplier_name; ?>
-                                                                    
-                                                                </option>
-                                                                <?php
-                                                            } ?>
-                                            </select>
-                                            </div>
-                                            <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-md-2">Project Code :</label>
-                                            <div class=" col-md-2">
-                                            <select class="form-control" name="prjk_id" id="prjk_id" required>
-                                            <option value="">--Project--</option>
-                                                <?php foreach ($prjk as $key) {
-                                                                ?>
-                                                                <option value="<?= $key->projek_id; ?>" <?php if($key->projek_id == $arr['purchase']->prjk_id){echo " selected ";} ?>> <?= $key->project_code; ?>
-                                                                    
-                                                                </option>
-                                                                <?php
-                                                            } ?>
-                                            </select>
-                                            </div>
-                                            <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span>
-                                        </div>
-                                    </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2">Supplier Name :</label>
+                                                    <div class=" col-md-2">
+                                                            <select class="form-control js-example-basic-single" name="Supplier" id="Supplier" required>
+                                                                <option value="-1">--New Client--</option>
+                                                                    <?php foreach ($lvl as $key) {
+                                                                                    ?>
+                                                                                    <option value="<?= $key->su_id; ?>" <?php if($key->su_id == $arr['purchase']->su_id){echo " selected ";} ?>> <?= $key->su_name; ?>
+                                                                                        
+                                                                                    </option>
+                                                                                    <?php
+                                                                                } ?>
+                                                            </select>
+                                                    </div>
+                                                <span class="pull-left" id="loadingText" style="display: none;"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading</span>
+                                                 <label class="col-md-2">Project Code :</label>
+                                                    <div class=" col-md-2">
+                                                        <select class="form-control js-example-basic-single" name="prjk_id" id="prjk_id" required>
+                                                            <option value="">--New Project--</option>
+                                                                <?php foreach ($prjk as $key) {
+                                                                                ?>
+                                                                                <option value="<?= $key->pro_id; ?>" <?php if($key->pro_id == $arr['purchase']->pro_id){echo " selected ";} ?>> <?= $key->pro_code; ?>
+                                                                                    
+                                                                                </option>
+                                                                                <?php
+                                                                            } ?>
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-md-2">Company Code :</label>
+                                                        <div class=" col-md-2">
+                                                        <select class="form-control input-sm js-example-basic-single" name="nc" id="nc" required="required">
+                                                        <option value="">--New Company Code--</option>
+                                                            <?php foreach ($nc as $key) {
+                                                                            ?>
+                                                                            <option value="<?= $key->nc_id; ?>" <?php if ($key->nc_id == $arr['purchase']->nc_id) { echo "selected"; }?> ><?= "#".(100+$key->nc_id); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $key->nc_name; ?>
+                                                                                
+                                                                            </option>
+                                                                            <?php
+                                                                        } ?>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                </div>
+                                            
+                            
                                         
                                         <div class="row">
                                             <div class=" col-md-4">
@@ -67,28 +59,28 @@
                                          <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Name</label>
-                                            <input class="form-control" name="supplier_name" id="supplier_name" disabled="" value="<?= $arr['purchase']->supplier_name; ?>">
+                                            <input class="form-control" name="supplier_name" id="supplier_name" disabled="" value="<?= $arr['purchase']->su_name; ?>">
                                             
                                         </div>
                                         </div>
                                            <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Company</label>
-                                            <input class="form-control"  name="supplier_company" id="supplier_company" disabled="" value="<?= $arr['purchase']->supplier_company; ?>">
+                                            <input class="form-control"  name="supplier_company" id="supplier_company" disabled="" value="<?= $arr['purchase']->su_company; ?>">
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
                                         <div class=" col-md-4">
                                           <div class="form-group">
                                           <label>Delivery Date</label>
-                                                 <input class="form-control" id="deli_date" name="deli_date" value="<?= $arr['purchase']->deli_date; ?>">
+                                                 <input class="form-control" id="deli_date" name="deli_date" value="<?= $arr['purchase']->pu_deli; ?>">
                                             </div>
                                         </div>
 
                                          <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Contact Number</label>
-                                            <input class="form-control" name="supplier_contact" id="supplier_contact" disabled="" value="<?= $arr['purchase']->supplier_contact; ?>">
+                                            <input class="form-control" name="supplier_contact" id="supplier_contact" disabled="" value="<?= $arr['purchase']->su_contact; ?>">
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
@@ -96,7 +88,7 @@
                                          <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Email</label>
-                                            <input class="form-control" name="supplier_email" id="supplier_email" disabled="" value="<?= $arr['purchase']->supplier_email; ?>">
+                                            <input class="form-control" name="supplier_email" id="supplier_email" disabled="" value="<?= $arr['purchase']->su_email; ?>">
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
@@ -104,7 +96,7 @@
                                              <div class=" col-md-4">
                                          <div class="form-group">
                                             <label>Purchase Date</label>
-                                            <input class="form-control" name="pur_date" id="pur_date" disabled="" value="<?= $arr['purchase']->pur_date; ?>">
+                                            <input class="form-control" name="pur_date" id="pur_date" disabled="" value="<?= $arr['purchase']->pu_date; ?>">
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
@@ -112,7 +104,7 @@
                                          <div class=" col-md-8">
                                          <div class="form-group">
                                             <label>Address</label>
-                                            <textarea class="form-control"  name="supplier_address" id="supplier_address" disabled=""> <?= $arr['purchase']->supplier_address; ?></textarea> 
+                                            <textarea class="form-control"  name="supplier_address" id="supplier_address" disabled=""> <?= $arr['purchase']->su_address; ?></textarea> 
                                             <!-- <p class="help-block">Example block-level help text here.</p> -->
                                         </div>
                                         </div>
@@ -122,41 +114,23 @@
                                             <label>Currency</label>
                                             <select class="form-control" name="currency" id="currency">
                                             <option value="0">--Select Currency--</option>
-                                            <option value="1" <?php if($arr['purchase']->currency == 1){echo "selected";} ?>>MYR</option>
-                                            <option value="2" <?php if($arr['purchase']->currency == 2){echo "selected";} ?>>USD</option>
+                                            <option value="1" <?php if($arr['purchase']->pu_curr == 1){echo "selected";} ?>>MYR</option>
+                                            <option value="2" <?php if($arr['purchase']->pu_curr == 2){echo "selected";} ?>>USD</option>
                                             </select>
                                             
                                         </div>
                                         </div>
 
                                         </div>
-                                        <div class="row">
-                                        <div class=" col-md-4 pull-right">
-                                         <div class="form-group">
-                                            <label>Quantity Unit</label>
-                                            <select class="form-control" name="unit" id="unit">
-                                            <option value="0">--Select Unit--</option>
-                                            <?php foreach ($unit as $key) {
-                                                                            ?>
-                                                                            <option value="<?= $key->un_id; ?>" <?php if($key->un_id == $arr['purchase']->unit){echo " selected ";} ?>> <?= $key->un_desc; ?>
-                                                                                
-                                                                            </option>
-                                                                            <?php
-                                                                        } ?>
-                                            </select>
-                                            
-                                        </div>
-                                        </div>
-                                    </div>
-
+                                
                                      <div class="row">
                                         <div class=" col-md-4 pull-right">
                                                  <div class="form-group">
                                                     <label>GST :</label>
-                                                    <input type="radio" name="gst" value="1" required="" <?php if($arr['purchase']->gst == 1){echo "checked";} ?>>
+                                                    <input type="radio" name="gst" value="1" required="" <?php if($arr['purchase']->pu_gst == 1){echo "checked";} ?>>
                                                     <label>Yes</label>
                                                     &nbsp;&nbsp;&nbsp;
-                                                    <input type="radio" name="gst" value="0" <?php if($arr['purchase']->gst == 0){echo "checked";} ?>>
+                                                    <input type="radio" name="gst" value="0" <?php if($arr['purchase']->pu_gst == 0){echo "checked";} ?>>
                                                     <label>No</label>
                                                 </div>
                                         </div>
@@ -178,8 +152,9 @@
                                                                                 
                                                                                 <th>Item Detail</th>
                                                                                 <th>Quantity</th>
-                                                                                <th>Unit Price</th>
-                                                                                <!-- <th>GST</th> -->
+                                                                                <th>Unit Qty</th>
+                                                                                <th>Price</th>
+                                                                                <th>Discount</th>
                                                                                 <th>Action</th>
                                                                             </tr>
                                                                         </thead>
@@ -199,9 +174,19 @@
                                                                                 <br/>
                                                                                 <span style="color: black; font-size: 75%;" ><strong><?= $key->cat_name; ?></strong></span></td>
                                                                                                                            
-                                                                                <td><input type="number" name="qty1[]" id="inputPrice" min="0" step="any" class="quantity form-control" value="<?= $key->pi_qty; ?>" required="required"></td>
-                                                                                <td><input type="text" name="price1[]" id="inputQty" min="0" class="price form-control" required="required" value="<?= $key->pi_price; ?>"></td>
-                                                                                
+                                                                                <td><input type="number" name="qty1[]" id="inputQty" min="0" step="any" class="quantity form-control" value="<?= $key->pi_qty; ?>" required="required"></td>
+                                                                                <td>
+                                                                                    <select class="form-control" name="unit1[]" id="inputUnit" required>
+                                                                                    <option value="-1">--Select Unit--</option>
+                                                                                       <?php foreach ($unit as $ky) {
+                                                                                        ?>
+                                                                                                <option value="<?= $ky->un_id; ?>" <?php if($key->un_id == $ky->un_id){ echo "selected"; } ?> > <?= $ky->un_desc; ?></option>
+                                                                                        <?php
+                                                                                        } ?> 
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td><input type="text" name="price1[]" id="inputPrice" min="0" class="price form-control" required="required" value="<?= $key->pi_price; ?>"></td>
+                                                                                <td><input type="text" name="disc1[]" id="inputDisc"  class="disc form-control" value="<?= $key->pi_disc; ?>"></td>
                                                                                 <td><span><button type="button" class="btn btn-danger btn-xs delBtn" id="<?= $key->pi_id;?>"><i class="fa fa-trash" ></i></button></span>
                                                                                
                                                                                 <input type="hidden" name="idE[]" id="inputIdE" class="form-control" value="<?= $key->pi_id;?>">
@@ -220,7 +205,7 @@
                                                         <div class="form-group">
                                                                 <label class="col-sm-2">Category :</label>
                                                                 <div class="col-sm-4">
-                                                                <select class="form-control" id="cat_id" name="cat_id">
+                                                                <select class="form-control js-example-basic-single" id="cat_id" name="cat_id">
                                                                 <option value="-1">-- Select Category --</option>
                                                                     <?php foreach ($cat as $key) {
                                                                 ?>
@@ -269,7 +254,7 @@
                                             </div>
                                         </div>
                                         </div>
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="panel panel-info">
                                                     <div class="panel-heading">
@@ -277,30 +262,30 @@
                                                     </div>
 
                                                     <div class="panel-body">
-                                                    <div class="row">
-                                                    <div class="form-group">
-                                                    <label class="col-sm-2">Payment Status :</label>
-                                                        <div class="mt-radio-inline">
-                                                        <label class="mt-radio">
-                                                            <input type="radio" name="pay" value="0" <?php if($arr['purchase']->pay == 0){echo "checked";} ?>>
-                                                                <strong>Unpaid</strong>
-                                                            <span></span>
-                                                        </label>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <label class="mt-radio">
-                                                            <input type="radio" name="pay" value="1" <?php if($arr['purchase']->pay == 1){echo "checked";} ?>>
-                                                                <strong>50% Payment</strong>
-                                                            <span></span>
-                                                        </label>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <label class="mt-radio">
-                                                            <input type="radio" name="pay" value="2" <?php if($arr['purchase']->pay == 2){echo "checked";} ?>>
-                                                                <strong>Full Payment</strong>
-                                                            <span></span>
-                                                        </label>
-                                                    </div>
-                                                    </div>
-                                                    </div>
+                                                        <div class="row">
+                                                            <div class="form-group">
+                                                            <label class="col-sm-2">Payment Status :</label>
+                                                                <div class="mt-radio-inline">
+                                                                    <label class="mt-radio">
+                                                                        <input type="radio" name="pay" value="0" <?php if($arr['purchase']->pu_pay == 0){echo "checked";} ?>>
+                                                                            <strong>Unpaid</strong>
+                                                                        <span></span>
+                                                                    </label>
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <label class="mt-radio">
+                                                                        <input type="radio" name="pay" value="1" <?php if($arr['purchase']->pu_pay == 1){echo "checked";} ?>>
+                                                                            <strong>50% Payment</strong>
+                                                                        <span></span>
+                                                                    </label>
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <label class="mt-radio">
+                                                                        <input type="radio" name="pay" value="2" <?php if($arr['purchase']->pu_pay == 2){echo "checked";} ?>>
+                                                                            <strong>Full Payment</strong>
+                                                                        <span></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
                                                    
 
@@ -310,7 +295,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="clear" style="height: 20px;"></div>
                                         <button type="submit" class="btn btn-success">Update</button>
@@ -320,20 +305,8 @@
                                         <div class="clear" style="height: 20px;"></div>                   
                     </form>
                 
-                
-                    <!-- <div id="sprintcontainer"> -->
-
-                  
-            </div>
-            <!-- /.container-fluid -->
-         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    </div>
-    <!-- /#wrapper -->
-      <!-- /#wrapper -->
-
+              
+   
 
 
 <script>
@@ -351,11 +324,14 @@
 var num = 1;
 $(document).ready(function() {
 
+        $('.js-example-basic-single').select2();
+
+
         $('#Supplier').change(function() {
             temp = $(this).val();
             
             $.when($('#loadingText').show()).then(function(){
-                $.post('<?= site_url('purchase_v1/dashboard/getAjaxSupplier2'); ?>', {key : temp , i : <?= $arr['purchase']->pur_id; ?>}, function(data) {
+                $.post('<?= site_url('purchase_v1/dashboard/getAjaxSupplier2'); ?>', {key : temp , i : <?= $arr['purchase']->pu_id; ?>}, function(data) {
                     $.when($('#supplierInfo').html(data)).then(function(){
                         $('#loadingText').hide();
                     });
@@ -438,11 +414,3 @@ $(document).ready(function() {
 
 
 
-
-
-
-   
-
-</body>
-
-</html>

@@ -11,7 +11,7 @@
 	    /**
 	     * @name string PRI_INDEX Holds the name of the tables' primary index used in this model
 	     */
-	    const PRI_INDEX = 'projek_id';
+	    const PRI_INDEX = 'pro_id';
 	
 	    /**
 	     * Retrieves record(s) from the database
@@ -142,14 +142,17 @@
 	    }
 
 
-	    public function del($data = array(), $where = array()) {
-            if (!is_array($where)) {
+		public function del($data = array(), $where = array()) 
+		{
+        	if (!is_array($where)) {
                 $where =array(self::PRI_INDEX => $where);
-                $del_id =array('del_id' => $data);
-            }
-          $this->db->update(self::TABLE_NAME, $del_id, $where);
-          return $this->db->affected_rows();
-      }
+                $del_id =array('del' => $data);
+			}
+			
+		  	$this->db->update(self::TABLE_NAME, $del_id, $where);
+		  
+          	return $this->db->affected_rows();
+      	}
 	}
 	        
 ?>

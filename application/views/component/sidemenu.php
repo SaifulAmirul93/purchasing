@@ -16,34 +16,40 @@
                             <a href="<?= site_url('purchase_v1/dashboard/page/a1'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <?php $us_lvl = $this->my_func->scpro_decrypt($this->session->userdata('ul_id'));?>
-                        <?php if($us_lvl != 4 ){?>
-                         <li>
-                            <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Purchase<span class="fa arrow"></span></a>
+                        <?php if($us_lvl != 4 && $us_lvl != 3 && $us_lvl != 2){?>
+                        
+                        <li>
+                            <a href="#"><i class="fa fa-shopping-basket fa-fw"></i> Job Order<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                            <?php if($us_lvl != 3 ){?>
                                 <li>
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a22'); ?>">Add Purchase</a>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/a22.1'); ?>">Add Job Order</a>
                                 </li>
-                                <?php }else{?>
-                                 <li>
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a22.1'); ?>">Add Purchase</a>
-                                </li>
-                                <?php } ?>
-                                <?php if($us_lvl != 3 ){?>
                                 <li>
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a29'); ?>">Purchase List</a>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/a30'); ?>">Job Order List</a>
                                 </li>
-                                <?php }?>
-                                <?php if($us_lvl != 1 && $us_lvl != 2 && $us_lvl != 4){?>
-                                <li>
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/a30'); ?>">Your Purchase</a>
-                                </li>
-                                <?php }?>
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                         <?php }?>
-                         
+                        
+                        
+                        <?php if($us_lvl != 4 && $us_lvl != 3){?>
+                            <li>
+                                <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Purchasing<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                
+                                    <li>
+                                        <a href="<?= site_url('purchase_v1/dashboard/page/a22'); ?>">Add Purchase</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a href="<?= site_url('purchase_v1/dashboard/page/a29'); ?>">Purchase List</a>
+                                    </li>
+                                    
+                                
+                                </ul>
+                            </li>
+                        <?php }?>
+                        
                         
                         <?php if($us_lvl != 2 && $us_lvl != 3 ){?>
                          <li>
@@ -65,29 +71,28 @@
                                 <li>
                                     <a href="<?= site_url('purchase_v1/dashboard/page/a27'); ?>"><i class="fa fa-gift fa-fw"></i> Item</a>
                                 </li>
-                                <?php } ?>
-                                <?php if($us_lvl != 4 ){?>
+                                
                                 <li>
                                     <a href="<?= site_url('purchase_v1/dashboard/page/e27'); ?>"><i class="fa fa-tag fa-fw"></i> Categories</a>
                                 </li>
-                                <?php } ?>
-                                <?php if($us_lvl != 4 ){?>
+                                
 
                                 <li>
-                                    <a href="<?= site_url('purchase_v1/dashboard/page/e27'); ?>"><i class="fa fa-tags fa-fw"></i> Type</a>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/t1'); ?>"><i class="fa fa-tags fa-fw"></i> Type</a>
                                 </li>
-                                <?php } ?>
-                                <?php if($us_lvl != 4 ){?>
+
+                                <li>
+                                    <a href="<?= site_url('purchase_v1/dashboard/page/k1'); ?>"><i class="fa fa-building fa-fw"></i> Company Code</a>
+                                </li>
+                               
                                 <li>
                                     <a href="<?= site_url('purchase_v1/dashboard/page/a6'); ?>"><i class="fa fa-users fa-fw"></i> Supplier</a>
                                 </li>
-                                <?php } ?>
-                                <?php if($us_lvl != 4 ){?>
+                                
                                 <li>
                                     <a href="<?= site_url('purchase_v1/dashboard/page/d2'); ?>"><i class="fa fa-tasks fa-fw"></i> Project</a>
                                 </li>
-                                <?php } ?>
-                                <?php if($us_lvl != 4 ){?>
+                                
                                 <li>
                                     <a href="<?= site_url('purchase_v1/dashboard/page/u2'); ?>"><i class="fa fa-balance-scale fa-fw"></i> Quantity Unit</a>
                                 </li>
